@@ -10,3 +10,4 @@
 - aggiunta metodi ejb connessioni
 - aggiunta metodi crud ejb utente implementati (verificare i try\catch sql exception per ogni inserimento)
 ***
+-prova di commit
