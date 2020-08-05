@@ -48,4 +48,10 @@ public class UtentiEJB implements Iutenti {
 		x.chiudiconnessione(entitymanager);
 		return listaUtente;
 	}
+	@Override
+	public Utente cercautenteperid(Utente ut) {
+		EntityManager entitymanager=x.apriconnessione();
+		Utente temp=entitymanager.find(Utente.class, ut.getId());
+		return temp;
+	}
 }

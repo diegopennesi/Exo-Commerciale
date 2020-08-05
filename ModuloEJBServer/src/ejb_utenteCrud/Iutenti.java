@@ -12,5 +12,6 @@ public interface Iutenti {
 	 public boolean inserisciutente(Utente ut);
 	 public void cancellautente(Utente ut);
 	 public void modificautente(Utente ut);
+	 public Utente cercautenteperid(Utente ut);
 	 public List cercautenteperNome(Utente ut);
 }
