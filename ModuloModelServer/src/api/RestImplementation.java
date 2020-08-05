@@ -13,6 +13,7 @@ import model.Alimentari;
 import model.BollaacquistoAbbigliamento;
 import model.BollaacquistoAlimenti;
 import model.Elettronica;
+import model.Reparti;
 
 
 
@@ -49,23 +50,25 @@ public class RestImplementation {
 	@Path("/concludiacqusito")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String acquistaStock(Object stock) {//Entrerà un oggetto dello stock
+	public String acquistaStock(Object stock,Reparti reparti) {//Entrerà un oggetto dello stock
 		if(stock instanceof Alimentari) {
 		}
 		else if(stock instanceof Abbigliamento){
 			BollaacquistoAbbigliamento boAb = new BollaacquistoAbbigliamento();
 			boAb.setNomeFV("Magazini MAS");
 			boAb.setCodiceAcquisto(1l + (long) (Math.random() * (10L - 1L)));
-			boAb.setDataAcquisto("oggi");
-			boAb.setStock(String.valueOf(((Abbigliamento) stock).getPrezzo()) + ((Abbigliamento) stock).getNome());
+			boAb.setDataAcquisto("oggi");//inserire calendar.tostring
+			boAb.setStock(String.valueOf(((Abbigliamento) stock).getQuantità()) + " "+ ((Abbigliamento) stock).getNome());
 			boAb.setPrTotale(((Abbigliamento) stock).getPrezzo());
-			boAb.setPrUnitario(((Abbigliamento) stock).getPrezzo()*3);
+			boAb.setPrUnitario((double)((Abbigliamento) stock).getPrezzo()/3);
 			boAb.setAbbigliamento((Abbigliamento)stock);
+			//EJB.INSERISCIBOLLA
+			((Abbigliamento) stock).setBollaAcquisto(boAb);
+			//EJB.INSERISCIOGGETTO
 		}
 		else if(stock instanceof Elettronica) {
 			
 		}
-		
 		return null;	
 	}
 }
