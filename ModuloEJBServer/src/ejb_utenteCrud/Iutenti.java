@@ -9,8 +9,8 @@ import model.Utente;
 
 @Local
 public interface Iutenti {
-	 public boolean inserisciutente();
+	 public boolean inserisciutente(Utente ut);
 	 public void cancellautente(Utente ut);
 	 public void modificautente(Utente ut);
-	 public List cercautente(Utente ut);
+	 public List cercautenteperNome(Utente ut);
 }

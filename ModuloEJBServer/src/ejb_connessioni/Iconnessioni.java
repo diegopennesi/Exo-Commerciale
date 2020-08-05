@@ -2,6 +2,7 @@ package ejb_connessioni;
 
 import javax.ejb.Local;
 import javax.persistence.EntityManager;
+
 @Local
 public interface Iconnessioni {
 	
