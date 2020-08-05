@@ -32,8 +32,8 @@ public class Abbigliamento implements Serializable{
 	private String colore;
 	@Column (name="descrizione")
 	private String descrizione;
-	@Column (name="quantità")
-	private int quantità;
+	@Column (name="quantita")
+	private int quantita;
 	@Column(name="prezzo",unique=true, nullable=false)
 	private double prezzo;
 	@ManyToOne
@@ -49,26 +49,26 @@ public class Abbigliamento implements Serializable{
 	
 	public Abbigliamento() {}
 	
-	public Abbigliamento(String nome, String taglia, String colore, String descrizione, int quantità,double prezzo,Reparti reparti,
+	public Abbigliamento(String nome, String taglia, String colore, String descrizione, int quantita,double prezzo,Reparti reparti,
 			BollaacquistoAbbigliamento bollaAcquisto) {
 		super();
 		this.nome = nome;
 		this.taglia = taglia;
 		this.colore = colore;
 		this.descrizione = descrizione;
-		this.quantità = quantità;
+		this.quantita = quantita;
 		this.prezzo=prezzo;
 		this.reparti=reparti;
 		this.bollaAcquisto=bollaAcquisto;
 	}
 	
-	public Abbigliamento(String nome, String taglia, String colore, String descrizione, int quantità,double prezzo) {
+	public Abbigliamento(String nome, String taglia, String colore, String descrizione, int quantita,double prezzo) {
 		super();
 		this.nome = nome;
 		this.taglia = taglia;
 		this.colore = colore;
 		this.descrizione = descrizione;
-		this.quantità = quantità;
+		this.quantita = quantita;
 		this.prezzo=prezzo;
 	}
 	
@@ -114,10 +114,10 @@ public class Abbigliamento implements Serializable{
 		this.descrizione = descrizione;
 	}
 	public int getQuantità() {
-		return quantità;
+		return quantita;
 	}
-	public void setQuantità(int quantità) {
-		this.quantità = quantità;
+	public void setQuantità(int quantita) {
+		this.quantita = quantita;
 	}
 	
 	public double getPrezzo() {
@@ -131,7 +131,7 @@ public class Abbigliamento implements Serializable{
 	@Override
 	public String toString() {
 		return "Abbigliamento [id=" + id + ", nome=" + nome + ", taglia=" + taglia + ", colore=" + colore
-				+ ", descrizione=" + descrizione + ", quantità=" + quantità + ", prezzo=" + prezzo + ", reparti="
+				+ ", descrizione=" + descrizione + ", quantità=" + quantita + ", prezzo=" + prezzo + ", reparti="
 				+ reparti + ", bollaAcquisto=" + bollaAcquisto + "]";
 	}
 
@@ -147,7 +147,7 @@ public class Abbigliamento implements Serializable{
 		long temp;
 		temp = Double.doubleToLongBits(prezzo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + quantità;
+		result = prime * result + quantita;
 		result = prime * result + ((reparti == null) ? 0 : reparti.hashCode());
 		result = prime * result + ((taglia == null) ? 0 : taglia.hashCode());
 		return result;
@@ -186,7 +186,7 @@ public class Abbigliamento implements Serializable{
 			return false;
 		if (Double.doubleToLongBits(prezzo) != Double.doubleToLongBits(other.prezzo))
 			return false;
-		if (quantità != other.quantità)
+		if (quantita != other.quantita)
 			return false;
 		if (reparti == null) {
 			if (other.reparti != null)

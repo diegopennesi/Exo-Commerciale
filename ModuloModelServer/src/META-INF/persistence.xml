@@ -7,14 +7,14 @@
    
    <persistence-unit name="jpaServer" transaction-type="RESOURCE_LOCAL">
    
-       <class>model.Reparti</class>
-       <class>model.Alimentari</class>
-       <class>model.Elettronica</class>
        <class>model.Abbigliamento</class>
+       <class>model.Account</class>
+       <class>model.Alimentari</class>
        <class>model.BollaacquistoAbbigliamento</class>
        <class>model.BollaacquistoAlimenti</class>
        <class>model.BollaacquistoElettronica</class>
-       <class>model.Account</class>
+       <class>model.Elettronica</class>
+       <class>model.Reparti</class>
        <class>model.Utente</class>
 
       <properties>

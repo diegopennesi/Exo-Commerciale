@@ -19,17 +19,8 @@ public class BollaacquistoAbbigliamento implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -3084091051025520907L;
-	public BollaacquistoAbbigliamento(String nomeFV,long codiceAcquisto,String dataAcquisto,String stock,double prTotale,double prUnitario) {
-		this.nomeFV=nomeFV;
-		this.codiceAcquisto=codiceAcquisto;
-		this.dataAcquisto=dataAcquisto;
-		this.stock=stock;
-		this.prTotale=prTotale;
-		this.prUnitario=prUnitario;
-		
-}
-
-	public BollaacquistoAbbigliamento() {}
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -56,6 +47,30 @@ public class BollaacquistoAbbigliamento implements Serializable {
 	@MapsId
 	private Abbigliamento abbigliamento;
 	////////////////////////////////////
+	public BollaacquistoAbbigliamento(String nomeFV,long codiceAcquisto,String dataAcquisto,String stock,double prTotale,double prUnitario,
+			Abbigliamento abbigliamento) {
+		this.nomeFV=nomeFV;
+		this.codiceAcquisto=codiceAcquisto;
+		this.dataAcquisto=dataAcquisto;
+		this.stock=stock;
+		this.prTotale=prTotale;
+		this.prUnitario=prUnitario;
+		this.abbigliamento=abbigliamento;
+}
+	public BollaacquistoAbbigliamento(String nomeFV,long codiceAcquisto,String dataAcquisto,String stock,double prTotale,double prUnitario) {
+		this.nomeFV=nomeFV;
+		this.codiceAcquisto=codiceAcquisto;
+		this.dataAcquisto=dataAcquisto;
+		this.stock=stock;
+		this.prTotale=prTotale;
+		this.prUnitario=prUnitario;
+}
+	
+	public BollaacquistoAbbigliamento(double prTotale,double prUnitario) {
+		this.prTotale=prTotale;
+		this.prUnitario=prUnitario;
+	}
+	public BollaacquistoAbbigliamento() {}
 	public int getId() {
 		return id;
 	}
@@ -105,6 +120,69 @@ public class BollaacquistoAbbigliamento implements Serializable {
 	}
 	public void setAbbigliamento(Abbigliamento abbigliamento) {
 		this.abbigliamento = abbigliamento;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((abbigliamento == null) ? 0 : abbigliamento.hashCode());
+		result = prime * result + (int) (codiceAcquisto ^ (codiceAcquisto >>> 32));
+		result = prime * result + ((dataAcquisto == null) ? 0 : dataAcquisto.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((nomeFV == null) ? 0 : nomeFV.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(prTotale);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(prUnitario);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((stock == null) ? 0 : stock.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BollaacquistoAbbigliamento other = (BollaacquistoAbbigliamento) obj;
+		if (abbigliamento == null) {
+			if (other.abbigliamento != null)
+				return false;
+		} else if (!abbigliamento.equals(other.abbigliamento))
+			return false;
+		if (codiceAcquisto != other.codiceAcquisto)
+			return false;
+		if (dataAcquisto == null) {
+			if (other.dataAcquisto != null)
+				return false;
+		} else if (!dataAcquisto.equals(other.dataAcquisto))
+			return false;
+		if (id != other.id)
+			return false;
+		if (nomeFV == null) {
+			if (other.nomeFV != null)
+				return false;
+		} else if (!nomeFV.equals(other.nomeFV))
+			return false;
+		if (Double.doubleToLongBits(prTotale) != Double.doubleToLongBits(other.prTotale))
+			return false;
+		if (Double.doubleToLongBits(prUnitario) != Double.doubleToLongBits(other.prUnitario))
+			return false;
+		if (stock == null) {
+			if (other.stock != null)
+				return false;
+		} else if (!stock.equals(other.stock))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "BollaacquistoAbbigliamento [id=" + id + ", nomeFV=" + nomeFV + ", codiceAcquisto=" + codiceAcquisto
+				+ ", dataAcquisto=" + dataAcquisto + ", stock=" + stock + ", prTotale=" + prTotale + ", prUnitario="
+				+ prUnitario + ", abbigliamento=" + abbigliamento + "]";
 	}
 	
 
