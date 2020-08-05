@@ -42,6 +42,8 @@ public class Elettronica implements Serializable {
 	public int getId() {
 		return id;
 	}
+	
+	public Elettronica() {}
 	public Elettronica(boolean disponibilità, String tecnologie, String destrizione, double peso, Reparti reparti,
 			BollaacquistoElettronica bollaAcquisto) {
 		super();
