@@ -129,6 +129,13 @@ public class Abbigliamento implements Serializable{
 	}
 
 	@Override
+	public String toString() {
+		return "Abbigliamento [id=" + id + ", nome=" + nome + ", taglia=" + taglia + ", colore=" + colore
+				+ ", descrizione=" + descrizione + ", quantità=" + quantità + ", prezzo=" + prezzo + ", reparti="
+				+ reparti + ", bollaAcquisto=" + bollaAcquisto + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -194,11 +201,6 @@ public class Abbigliamento implements Serializable{
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Abbigliamento [id=" + id + ", nome=" + nome + ", taglia=" + taglia + ", colore=" + colore
-				+ ", descrizione=" + descrizione + ", quantità=" + quantità + ", reparti=" + reparti
-				+ ", BollaAcquisto=" + bollaAcquisto + "]";
-	}
+	
 	
 }
