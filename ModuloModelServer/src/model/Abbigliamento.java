@@ -32,7 +32,7 @@ public class Abbigliamento implements Serializable{
 	private String colore;
 	@Column (name="descrizione")
 	private String descrizione;
-	@Column (name="quantità")
+	@Column (name="quantita")
 	private int quantita;
 	@Column(name="prezzo",unique=true, nullable=false)
 	private double prezzo;

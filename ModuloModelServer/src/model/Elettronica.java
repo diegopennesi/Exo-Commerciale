@@ -31,8 +31,8 @@ public class Elettronica implements Serializable {
 	private String tecnologie;
 	@Column (name = "descrizione")
 	private String descrizione;
-	@Column (name = "peso")
-	private double peso;
+	@Column (name = "quantita")
+	private double quantita;
 	@Column(name="prezzo",unique=true, nullable=false)
 	private double prezzo;
 	@ManyToOne
@@ -47,23 +47,23 @@ public class Elettronica implements Serializable {
 	}
 	
 	public Elettronica() {}
-	public Elettronica(boolean disponibilita, String tecnologie, String destrizione, double peso, double prezzo,Reparti reparti,
+	public Elettronica(boolean disponibilita, String tecnologie, String destrizione, double quantita, double prezzo,Reparti reparti,
 			BollaacquistoElettronica bollaAcquisto) {
 		super();
 		this.disponibilita = disponibilita;
 		this.tecnologie = tecnologie;
 		this.descrizione = destrizione;
-		this.peso = peso;
+		this.quantita = quantita;
 		this.prezzo=prezzo;
 		this.reparti = reparti;
 		BollaAcquisto = bollaAcquisto;
 	}
 	
-	public Elettronica(boolean disponibilita, String tecnologie, String descrizione, double peso, double prezzo) {
+	public Elettronica(boolean disponibilita, String tecnologie, String descrizione, double quantita, double prezzo) {
 		this.disponibilita=disponibilita;
 		this.tecnologie=tecnologie;
 		this.descrizione=descrizione;
-		this.peso=peso;
+		this.quantita=quantita;
 		this.prezzo=prezzo;
 	}
 	public void setId(int id) {
@@ -93,11 +93,11 @@ public class Elettronica implements Serializable {
 	public void setTecnologie(String tecnologie) {
 		this.tecnologie = tecnologie;
 	}
-	public double getPeso() {
-		return peso;
+	public double getQuantita() {
+		return quantita;
 	}
-	public void setPeso(double peso) {
-		this.peso = peso;
+	public void setQuantita(double quantita) {
+		this.quantita = quantita;
 	}
 	public String getDestrizione() {
 		return descrizione;
@@ -117,7 +117,7 @@ public class Elettronica implements Serializable {
 	@Override
 	public String toString() {
 		return "Elettronica [id=" + id + ", disponibilita=" + disponibilita + ", tecnologie=" + tecnologie
-				+ ", descrizione=" + descrizione + ", peso=" + peso + ", prezzo=" + prezzo + ", reparti=" + reparti
+				+ ", descrizione=" + descrizione + ", peso=" + quantita + ", prezzo=" + prezzo + ", reparti=" + reparti
 				+ ", BollaAcquisto=" + BollaAcquisto + "]";
 	}
 
@@ -130,7 +130,7 @@ public class Elettronica implements Serializable {
 		result = prime * result + (disponibilita ? 1231 : 1237);
 		result = prime * result + id;
 		long temp;
-		temp = Double.doubleToLongBits(peso);
+		temp = Double.doubleToLongBits(quantita);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(prezzo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -162,7 +162,7 @@ public class Elettronica implements Serializable {
 			return false;
 		if (id != other.id)
 			return false;
-		if (Double.doubleToLongBits(peso) != Double.doubleToLongBits(other.peso))
+		if (Double.doubleToLongBits(quantita) != Double.doubleToLongBits(other.quantita))
 			return false;
 		if (Double.doubleToLongBits(prezzo) != Double.doubleToLongBits(other.prezzo))
 			return false;

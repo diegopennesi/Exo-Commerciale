@@ -23,7 +23,7 @@ public class Alimentari implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column (name = "id")
 	private int id;
-	@Column (name = "quantità")//????? come la gestiamo?
+	@Column (name = "quantita")//????? come la gestiamo?
 	private int quantita;
 	@Column (name = "nome")
 	private String nome;
@@ -31,7 +31,7 @@ public class Alimentari implements Serializable {
 	private String scadenza;
 	@Column (name ="descrizione")
 	private String descrizione;
-	@Column (name = "disponibilità")
+	@Column (name = "disponibilita")
 	private boolean disponibilita;
 	@Column(name="prezzo",unique=true, nullable=false)
 	private double prezzo;
