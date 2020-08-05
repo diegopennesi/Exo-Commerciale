@@ -10,9 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="alimenti")
+@Table(name="alimenti",uniqueConstraints=@UniqueConstraint(columnNames= {"prezzo"}))
 public class Alimentari implements Serializable {
 	/**
 	 * 
@@ -32,6 +33,8 @@ public class Alimentari implements Serializable {
 	private String descrizione;
 	@Column (name = "disponibilità")
 	private boolean disponibilità;
+	@Column(name="prezzo",unique=true, nullable=false)
+	private double prezzo;
 	@ManyToOne
 	@JoinColumn(name="Id_reparto")
 	private Reparti reparti;

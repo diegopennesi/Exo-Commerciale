@@ -11,10 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table (name ="elettronica")
+@Table (name ="elettronica",uniqueConstraints=@UniqueConstraint(columnNames= {"prezzo"}))
 public class Elettronica implements Serializable {
 	/**
 	 * 
@@ -32,6 +33,8 @@ public class Elettronica implements Serializable {
 	private String destrizione;
 	@Column (name = "peso")
 	private double peso;
+	@Column(name="prezzo",unique=true, nullable=false)
+	private double prezzo;
 	@ManyToOne
 	@JoinColumn(name="Id_reparto")
 	private Reparti reparti;
@@ -44,13 +47,14 @@ public class Elettronica implements Serializable {
 	}
 	
 	public Elettronica() {}
-	public Elettronica(boolean disponibilità, String tecnologie, String destrizione, double peso, Reparti reparti,
+	public Elettronica(boolean disponibilità, String tecnologie, String destrizione, double peso, double prezzo,Reparti reparti,
 			BollaacquistoElettronica bollaAcquisto) {
 		super();
 		this.disponibilità = disponibilità;
 		this.tecnologie = tecnologie;
 		this.destrizione = destrizione;
 		this.peso = peso;
+		this.prezzo=prezzo;
 		this.reparti = reparti;
 		BollaAcquisto = bollaAcquisto;
 	}
