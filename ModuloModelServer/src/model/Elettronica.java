@@ -38,8 +38,19 @@ public class Elettronica implements Serializable {
 	@OneToOne(mappedBy="elettronica")
 	private BollaacquistoElettronica BollaAcquisto;
 	///////////////////////////////////////////////
+	
 	public int getId() {
 		return id;
+	}
+	public Elettronica(boolean disponibilità, String tecnologie, String destrizione, double peso, Reparti reparti,
+			BollaacquistoElettronica bollaAcquisto) {
+		super();
+		this.disponibilità = disponibilità;
+		this.tecnologie = tecnologie;
+		this.destrizione = destrizione;
+		this.peso = peso;
+		this.reparti = reparti;
+		BollaAcquisto = bollaAcquisto;
 	}
 	public void setId(int id) {
 		this.id = id;
