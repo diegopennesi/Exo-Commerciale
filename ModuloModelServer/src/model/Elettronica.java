@@ -105,6 +105,14 @@ public class Elettronica implements Serializable {
 	public void setDestrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+	
+	public double getPrezzo() {
+		return prezzo;
+	}
+	
+	public void setPrezzo(double prezzo) {
+		this.prezzo=prezzo;
+	}
 
 	@Override
 	public String toString() {
