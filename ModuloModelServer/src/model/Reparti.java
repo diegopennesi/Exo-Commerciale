@@ -33,6 +33,20 @@ public class Reparti implements Serializable {
 	@OneToMany (mappedBy="reparti")
 	private List<Abbigliamento> abbigliamento= new ArrayList<Abbigliamento>();
 	/////////////////////////////////////////////////////////////////////////
+
+	public Reparti() {}
+	public Reparti(String reparto,List<Alimentari> alimentari,List<Elettronica>elettronica, List<Abbigliamento>abbigliamento) {
+		this.reparto=reparto;
+		this.alimentari=alimentari;
+		this.elettronica=elettronica;
+		this.abbigliamento=abbigliamento;
+	}
+	public Reparti(String reparto) {
+		this.reparto=reparto;
+	}
+	public Reparti(List<Alimentari> alimentari) {
+		this.alimentari=alimentari;
+	}
 	public List<Elettronica> getElettronica() {
 		return elettronica;
 	}
@@ -56,5 +70,54 @@ public class Reparti implements Serializable {
 	}
 	public void setReparto(String reparto) {
 		this.reparto = reparto;
+	}
+	@Override
+	public String toString() {
+		return "Reparti [id=" + id + ", reparto=" + reparto + ", alimentari=" + alimentari + ", elettronica="
+				+ elettronica + ", abbigliamento=" + abbigliamento + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((abbigliamento == null) ? 0 : abbigliamento.hashCode());
+		result = prime * result + ((alimentari == null) ? 0 : alimentari.hashCode());
+		result = prime * result + ((elettronica == null) ? 0 : elettronica.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((reparto == null) ? 0 : reparto.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reparti other = (Reparti) obj;
+		if (abbigliamento == null) {
+			if (other.abbigliamento != null)
+				return false;
+		} else if (!abbigliamento.equals(other.abbigliamento))
+			return false;
+		if (alimentari == null) {
+			if (other.alimentari != null)
+				return false;
+		} else if (!alimentari.equals(other.alimentari))
+			return false;
+		if (elettronica == null) {
+			if (other.elettronica != null)
+				return false;
+		} else if (!elettronica.equals(other.elettronica))
+			return false;
+		if (id != other.id)
+			return false;
+		if (reparto == null) {
+			if (other.reparto != null)
+				return false;
+		} else if (!reparto.equals(other.reparto))
+			return false;
+		return true;
 	}
 }
