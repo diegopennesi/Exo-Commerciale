@@ -55,6 +55,7 @@ public class Fattura implements Serializable {
 		this.listaReparti=listaReparti;
 	}
 	
+	
 	public int getId_scontrino() {
 		return id_scontrino;
 	}
@@ -98,7 +99,11 @@ public class Fattura implements Serializable {
 		this.listaReparti = listaReparti;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Fattura [id_scontrino=" + id_scontrino + ", descrizione=" + descrizione + ", quantita=" + quantita
+				+ ", utente=" + utente + ", prezzo=" + prezzo + ", iva=" + iva + ", listaReparti=" + listaReparti + "]";
+	}
 	
 
 }

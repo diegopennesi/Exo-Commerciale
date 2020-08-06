@@ -81,10 +81,10 @@ public class Elettronica implements Serializable {
 	public void setBollaAcquisto(BollaacquistoElettronica bollaAcquisto) {
 		BollaAcquisto = bollaAcquisto;
 	}
-	public boolean isDisponibilità() {
+	public boolean isDisponibilita() {
 		return disponibilita;
 	}
-	public void setDisponibilità(boolean disponibilità) {
+	public void setDisponibilita(boolean disponibilità) {
 		this.disponibilita = disponibilità;
 	}
 	public String getNome() {

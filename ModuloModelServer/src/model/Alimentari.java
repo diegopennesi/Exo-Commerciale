@@ -107,12 +107,6 @@ public class Alimentari implements Serializable {
 	public void setBollaAcquisto(BollaacquistoAlimenti bollaAcquisto) {
 		this.bollaAcquisto = bollaAcquisto;
 	}
-	public boolean isDisponibilità() {
-		return disponibilita;
-	}
-	public void setDisponibilità(boolean disponibilita) {
-		this.disponibilita = disponibilita;
-	}
 	
 	public int getQuantita() {
 		return quantita;
