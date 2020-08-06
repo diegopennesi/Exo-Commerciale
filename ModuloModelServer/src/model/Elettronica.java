@@ -32,7 +32,7 @@ public class Elettronica implements Serializable {
 	@Column (name = "descrizione")
 	private String descrizione;
 	@Column (name = "quantita")
-	private double quantita;
+	private int quantita;
 	@Column(name="prezzo",unique=true, nullable=false)
 	private double prezzo;
 	@ManyToOne
@@ -47,7 +47,7 @@ public class Elettronica implements Serializable {
 	}
 	
 	public Elettronica() {}
-	public Elettronica(String nome, String destrizione, double quantita,boolean disponibilita, double prezzo, Reparti reparti,
+	public Elettronica(String nome, String destrizione, int quantita,boolean disponibilita, double prezzo, Reparti reparti,
 			BollaacquistoElettronica bollaAcquisto) {
 		super();
 		this.nome = nome;
@@ -59,7 +59,7 @@ public class Elettronica implements Serializable {
 		BollaAcquisto = bollaAcquisto;
 	}
 	
-	public Elettronica( String nome, String descrizione, double quantita,boolean disponibilita, double prezzo) {
+	public Elettronica( String nome, String descrizione, int quantita,boolean disponibilita, double prezzo) {
 		this.nome=nome;
 		this.descrizione=descrizione;
 		this.quantita=quantita;
@@ -96,7 +96,7 @@ public class Elettronica implements Serializable {
 	public double getQuantita() {
 		return quantita;
 	}
-	public void setQuantita(double quantita) {
+	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
 	public String getDestrizione() {

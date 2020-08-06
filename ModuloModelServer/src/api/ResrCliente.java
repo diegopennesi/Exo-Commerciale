@@ -1,8 +1,5 @@
 package api;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,7 +10,6 @@ import javax.ws.rs.core.Response;
 
 import model.Abbigliamento;
 import model.Alimentari;
-import utility.Venditore;
 
 @Path("/cliente")
 public class ResrCliente {

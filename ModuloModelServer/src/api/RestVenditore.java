@@ -2,16 +2,12 @@ package api;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-
 import model.Abbigliamento;
 import model.Alimentari;
 import model.BollaacquistoAbbigliamento;
-import model.BollaacquistoAlimenti;
 import model.Elettronica;
 import model.Reparti;
 import utility.BollaBuilder;
