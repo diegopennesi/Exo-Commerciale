@@ -114,6 +114,18 @@ public class Alimentari implements Serializable {
 		this.disponibilita = disponibilita;
 	}
 	
+	public int getQuantita() {
+		return quantita;
+	}
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+	public boolean isDisponibilita() {
+		return disponibilita;
+	}
+	public void setDisponibilita(boolean disponibilita) {
+		this.disponibilita = disponibilita;
+	}
 	public double getPrezzo() {
 		return prezzo;
 	}

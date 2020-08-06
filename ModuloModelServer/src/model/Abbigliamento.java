@@ -73,6 +73,7 @@ public class Abbigliamento implements Serializable{
 		this.disponibilita=disponibilita;
 		this.prezzo=prezzo;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -119,6 +120,7 @@ public class Abbigliamento implements Serializable{
 	public void setPrezzo(double prezzo) {
 		this.prezzo=prezzo;
 	}
+
 	public int getQuantita() {
 		return quantita;
 	}

@@ -20,7 +20,7 @@ import utility.Venditore;
 
 
 @Path("/venditore")
-public class RestImplementation {
+public class RestVenditore {
 	
 	@GET
 	@Path("/acqusita")

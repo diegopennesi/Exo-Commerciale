@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
-
 import model.Abbigliamento;
 import model.Alimentari;
 import model.BollaacquistoAbbigliamento;
@@ -20,7 +19,7 @@ public class BollaBuilder {
 		bolla.setNomeFV(fornitore);
 		bolla.setCodiceAcquisto(1l + (long) (Math.random() * (10L - 1L)));	
 		bolla.setDataAcquisto(simpleDateFormat.format(calendar.getTime()));
-		bolla.setStock(String.valueOf(((Abbigliamento) stock).getQuantità()) + " "+ ((Abbigliamento) stock).getNome());
+		bolla.setStock(String.valueOf(((Abbigliamento) stock).getQuantita()) + " "+ ((Abbigliamento) stock).getNome());
 		bolla.setPrTotale(((Abbigliamento) stock).getPrezzo());
 		bolla.setPrUnitario((double)((Abbigliamento) stock).getPrezzo()/3);
 		bolla.setAbbigliamento((Abbigliamento)stock);
@@ -32,9 +31,9 @@ public class BollaBuilder {
 		bolla.setNomeFV(fornitore);
 		bolla.setCodiceAcquisto(1l + (long) (Math.random() * (10L - 1L)));	
 		bolla.setDataAcquisto(simpleDateFormat.format(calendar.getTime()));
-		bolla.setStock(String.valueOf(((Abbigliamento) stock).getQuantità()) + " "+ ((Abbigliamento) stock).getNome());
-		bolla.setPrTotale(((Abbigliamento) stock).getPrezzo());
-		bolla.setPrUnitario((double)((Abbigliamento) stock).getPrezzo()/3);
+		bolla.setStock(String.valueOf(((Alimentari) stock).getQuantita()) + " "+ ((Alimentari) stock).getNome());
+		bolla.setPrTotale(((Alimentari) stock).getPrezzo());
+		bolla.setPrUnitario((double)((Alimentari) stock).getPrezzo()/3);
 		bolla.setAlimenti((Alimentari) stock);
 		return bolla;	
 	}
@@ -44,9 +43,9 @@ public class BollaBuilder {
 		bolla.setNomeFV(fornitore);
 		bolla.setCodiceAcquisto(1l + (long) (Math.random() * (10L - 1L)));	
 		bolla.setDataAcquisto(simpleDateFormat.format(calendar.getTime()));
-		bolla.setStock(String.valueOf(((Abbigliamento) stock).getQuantità()) + " "+ ((Abbigliamento) stock).getNome());
-		bolla.setPrTotale(((Abbigliamento) stock).getPrezzo());
-		bolla.setPrUnitario((double)((Abbigliamento) stock).getPrezzo()/3);
+		bolla.setStock(String.valueOf(((Elettronica) stock).getQuantita()) + " "+ ((Elettronica) stock).getNome());
+		bolla.setPrTotale(((Elettronica) stock).getPrezzo());
+		bolla.setPrUnitario((double)((Elettronica) stock).getPrezzo()/3);
 		bolla.setElettronica((Elettronica) stock);
 		return bolla;	
 	}
