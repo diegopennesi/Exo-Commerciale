@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import model.Abbigliamento;
 import model.Alimentari;
 import model.Elettronica;
+import model.Utente;
 
 @Path("/cliente")
 public class ResrCliente {
@@ -56,27 +57,55 @@ public class ResrCliente {
 	@Path("/acqusita")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response acquista(HashMap<Integer,ArrayList> mappa) {
-		for (Integer i : mappa.keySet())//cicla la mappa
-			for (Object s : mappa.get(i))//cicliamo ogni reparto tutta la arraylist verifichiamo 
+	public Response acquista(HashMap<Integer,ArrayList> mappa,Utente u) {
+		boolean flag=true;
+		for (Integer i : mappa.keySet()) {//cicla la mappa
+			for (Object s : mappa.get(i)) {//cicliamo ogni reparto tutta la arraylist verifichiamo 
 				if (s instanceof Alimentari) {
-				//Alimento temp=ejb.cercastockalimentoperID(s)
-				//if temp.getquantita=>s.getquantita
-			       	//temp.setquantita(temp.getquantita-s.getquantita)
-				    //flag=	
-				}else if (s instanceof Alimentari) {
-
+					//Alimento temp=ejb.cercastockalimentoperID(s)
+					//if temp.getquantita=>s.getquantita
+					//else flag = false;
+					//((Alimentari) s).setDisponibilita(false);	
+				}else if (s instanceof Abbigliamento) {
+					//Abbigliamento temp=ejb.cercastockAbbigliamentoID(s)
+					//if temp.getquantita=>s.getquantita
+					//else flag = false;
+					//((Abbigliamento) s).setDisponibilita(false);
 				}else if (s instanceof Elettronica) {
+					//Elettronica temp=ejb.cercastockElettronicaID(s)
+					//if temp.getquantita=>s.getquantita
+					//else flag = false;
+					//((Elettronica) s).setDisponibilita(false);	
+				}
+			}
+		}
+		if (flag == false) {//facciamo tornare la mappa con alcuni oggetti non disponibili per farli togliere dal front
+			return Response.status(Response.Status.BAD_REQUEST).entity(mappa).build();
+		}else if (flag == true) {
+			for (Integer i : mappa.keySet()) {//cicla la mappa
+				for (Object s : mappa.get(i)) {
+					if (s instanceof Alimentari) {
+						//Alimento temp=ejb.cercastockalimentoperID(s)
+						//if temp.getquantita=>s.getquantita
+						//ejb.modificaalimento(s)
+						//ejb.creafattura(s,u)
+					}else if (s instanceof Abbigliamento) {
+						//Abbigliamento temp=ejb.cercastockAbbigliamentoperID(s)
+						//if temp.getquantita=>s.getquantita
+						//ejb.modificaabbigliamento(s)
+						//ejb.creafattura(s,u)
+					}else if (s instanceof Elettronica) {
+						//Elettronica temp=ejb.cercastockElettronicaperID(s)
+						//if temp.getquantita=>s.getquantita
+						//ejb.modificaelettronica(s)
+						//ejb.creafattura(s,u)
+					}
 
 				}
-		//e sono di numero sufficente all'acquisto totale e copiamo il risultato in una mappa speculare
-		//SE non è disponibile flagghiamo come NON disponibile l'oggetto che faremo ritornare
-		return null;
-
-
-
+			}
+		}
+		return Response.status(Response.Status.OK).entity("Acquisti eseguiti con successo").build();
 	}
-	//vorrei fare una sola chiamata di acquisto
 	@POST
 	@Path("/acqusitaAlimento")
 	@Consumes(MediaType.APPLICATION_JSON)
