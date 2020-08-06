@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html 
+    
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+  <title>Login</title>
+  
+  <style>
+  
+   #banner{background-image:url("https://adindex.ru/podcast/digital-boom/277781/img/getty.jpg");
+   /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  width:500px;
+  height:300px;
+  border-radius:10px;
+  -webkit-filter: grayscale(50%);
+  
+  }
+  
+  
+  #logo{width:70px;
+  height:70px;
+  border-radius:50%;
+  background-image:url("https://image.freepik.com/vettori-gratuito/logo-del-carrello-carino_23-2148453859.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  
+  }
+  
+   #form-style{/*box-shadow:1px 1px 10px 2px lightgrey; */
+  padding:5%;
+  border-radius:10px;}
+  
+  body{background-image:url("https://i.pinimg.com/originals/3f/93/9a/3f939af4dda1ec2988b9c6ce3bdb3886.jpg");
+  /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: auto;
+  
+  }
+  
+  body,html{width:100%,height:100%;}
+ 
+  
+  </style>
+  
+</h:head>
+<h:body>
+
+  <div id="logo"></div>
+
+  <div id="form-style" style="margin-left:25%;width:60%;height:50%;margin-top:0;background-color:white;">
+  <h:panelGrid columns="2">
+  
+  
+  <h:form>
+  
+  <h:panelGrid columns="1" cellpadding="3">
+  
+  <p:outputLabel value="username"/>
+  <p:inputText action="#{utentebean.ut.username}"/>
+  <p:outputLabel value="password"/>
+  <p:password action="#{utentebean.ut.password}"/>
+  <p:outputLabel value="email"/>
+  <p:inputText action="#{utentebean.ut.email}"/>
+  
+  <p:commandButton value="invia" action="#{utentebean.login()}"/>
+  
+  <p:commandLink value="registrati" action="#"/>
+  
+  </h:panelGrid>
+  
+  
+  
+  
+  </h:form>
+  
+  <h:panelGrid column="1">
+  <div id="banner"></div>
+  </h:panelGrid>
+  
+
+
+  </h:panelGrid>
+  </div>
+  
+</h:body>
+
+</html>

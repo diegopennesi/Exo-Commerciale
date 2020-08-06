@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html 
+    
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"></link>
+  <title>Login</title>
+  
+  <style>
+  
+  body{background-image:url("https://i.pinimg.com/originals/3f/93/9a/3f939af4dda1ec2988b9c6ce3bdb3886.jpg");
+  
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: auto;
+  
+  }
+  
+
+  #logo{width:70px;
+  height:70px;
+  border-radius:50%;
+  background-image:url("https://image.freepik.com/vettori-gratuito/logo-del-carrello-carino_23-2148453859.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  
+  }
+
+  
+ 
+ 
+  
+  </style>
+  
+</h:head>
+<h:body>
+<div id="logo"></div>
+
+<div class="container">
+<p:commandLink value="vai alla pagina acquisti" action="#"/>
+<hr/>
+<p:commandLink value="torna al tuo account" action="#"/>
+
+<h3 class="display-4">Modifica i tuoi dati personali</h3>
+</div>
+<div class="container"  style="margin:auto;"> 
+<h:form style="margin:auto;">
+
+<h:panelGrid column="1">
+
+<p:outputLabel value="username"/>
+<p:inputText/>
+
+<p:outputLabel value="password"/>
+<p:password/>
+
+<p:outputLabel value="email"/>
+<p:inputText/>
+
+<p:outputLabel value="username"/>
+<p:inputText/>
+
+<p:commandButton style="margin-top:10px;" value="modifica"/>
+
+</h:panelGrid>
+
+</h:form>
+ 
+  </div>
+
+ 
+
+</h:body>
+
+</html>
