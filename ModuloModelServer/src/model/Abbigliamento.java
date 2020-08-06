@@ -34,6 +34,8 @@ public class Abbigliamento implements Serializable{
 	private String descrizione;
 	@Column (name="quantita")
 	private int quantita;
+	@Column (name="disponibilità")
+	private boolean disponibilita;
 	@Column(name="prezzo",unique=true, nullable=false)
 	private double prezzo;
 	@ManyToOne
@@ -61,19 +63,16 @@ public class Abbigliamento implements Serializable{
 		this.reparti=reparti;
 		this.bollaAcquisto=bollaAcquisto;
 	}
-	
-	public Abbigliamento(String nome, String taglia, String colore, String descrizione, int quantita,double prezzo) {
+	public Abbigliamento(String nome, String taglia, String colore, String descrizione, int quantita,boolean disponibilita,double prezzo) {
 		super();
 		this.nome = nome;
 		this.taglia = taglia;
 		this.colore = colore;
 		this.descrizione = descrizione;
 		this.quantita = quantita;
+		this.disponibilita=disponibilita;
 		this.prezzo=prezzo;
 	}
-	
-	
-	
 	public String getNome() {
 		return nome;
 	}
@@ -113,19 +112,27 @@ public class Abbigliamento implements Serializable{
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public int getQuantità() {
-		return quantita;
-	}
-	public void setQuantità(int quantita) {
-		this.quantita = quantita;
-	}
-	
 	public double getPrezzo() {
 		return prezzo;
 	}
 	
 	public void setPrezzo(double prezzo) {
 		this.prezzo=prezzo;
+	}
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+
+	public boolean isDisponibilita() {
+		return disponibilita;
+	}
+
+	public void setDisponibilita(boolean disponibilita) {
+		this.disponibilita = disponibilita;
 	}
 
 	@Override

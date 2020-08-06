@@ -27,8 +27,8 @@ public class Elettronica implements Serializable {
 	private int id;
 	@Column (name = "disponibilita")
 	private boolean disponibilita;
-	@Column (name = "tecnologie")//cosa implementa l'oggetto elettronico, wifi\zoom digitale\flash led\incursore a**le etc etc
-	private String tecnologie;
+	@Column (name = "nome")//cosa implementa l'oggetto elettronico, wifi\zoom digitale\flash led\incursore a**le etc etc
+	private String nome;
 	@Column (name = "descrizione")
 	private String descrizione;
 	@Column (name = "quantita")
@@ -47,23 +47,23 @@ public class Elettronica implements Serializable {
 	}
 	
 	public Elettronica() {}
-	public Elettronica(boolean disponibilita, String tecnologie, String destrizione, double quantita, double prezzo,Reparti reparti,
+	public Elettronica(String nome, String destrizione, double quantita,boolean disponibilita, double prezzo, Reparti reparti,
 			BollaacquistoElettronica bollaAcquisto) {
 		super();
-		this.disponibilita = disponibilita;
-		this.tecnologie = tecnologie;
+		this.nome = nome;
 		this.descrizione = destrizione;
 		this.quantita = quantita;
+		this.disponibilita = disponibilita;
 		this.prezzo=prezzo;
 		this.reparti = reparti;
 		BollaAcquisto = bollaAcquisto;
 	}
 	
-	public Elettronica(boolean disponibilita, String tecnologie, String descrizione, double quantita, double prezzo) {
-		this.disponibilita=disponibilita;
-		this.tecnologie=tecnologie;
+	public Elettronica( String nome, String descrizione, double quantita,boolean disponibilita, double prezzo) {
+		this.nome=nome;
 		this.descrizione=descrizione;
 		this.quantita=quantita;
+		this.disponibilita=disponibilita;
 		this.prezzo=prezzo;
 	}
 	public void setId(int id) {
@@ -87,11 +87,11 @@ public class Elettronica implements Serializable {
 	public void setDisponibilità(boolean disponibilità) {
 		this.disponibilita = disponibilità;
 	}
-	public String getTecnologie() {
-		return tecnologie;
+	public String getNome() {
+		return nome;
 	}
-	public void setTecnologie(String tecnologie) {
-		this.tecnologie = tecnologie;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public double getQuantita() {
 		return quantita;
@@ -116,7 +116,7 @@ public class Elettronica implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Elettronica [id=" + id + ", disponibilita=" + disponibilita + ", tecnologie=" + tecnologie
+		return "Elettronica [id=" + id + ", disponibilita=" + disponibilita + ", tecnologie=" + nome
 				+ ", descrizione=" + descrizione + ", peso=" + quantita + ", prezzo=" + prezzo + ", reparti=" + reparti
 				+ ", BollaAcquisto=" + BollaAcquisto + "]";
 	}
@@ -135,7 +135,7 @@ public class Elettronica implements Serializable {
 		temp = Double.doubleToLongBits(prezzo);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((reparti == null) ? 0 : reparti.hashCode());
-		result = prime * result + ((tecnologie == null) ? 0 : tecnologie.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -171,10 +171,10 @@ public class Elettronica implements Serializable {
 				return false;
 		} else if (!reparti.equals(other.reparti))
 			return false;
-		if (tecnologie == null) {
-			if (other.tecnologie != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!tecnologie.equals(other.tecnologie))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}

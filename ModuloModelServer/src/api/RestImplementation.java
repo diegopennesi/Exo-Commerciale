@@ -14,6 +14,7 @@ import model.BollaacquistoAbbigliamento;
 import model.BollaacquistoAlimenti;
 import model.Elettronica;
 import model.Reparti;
+import utility.BollaBuilder;
 import utility.Venditore;
 
 
@@ -26,46 +27,24 @@ public class RestImplementation {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response scaricaMappa() {
 	HashMap<Integer,ArrayList> mappa = Venditore.getIstance().getLista();
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	return Response.status(Response.Status.OK).entity(mappa).build() ;	
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	@POST
 	@Path("/concludiacqusito")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String acquistaStock(Object stock,Reparti reparti) {//Entrerà un oggetto dello stock
 		if(stock instanceof Alimentari) {
+			
 		}
 		else if(stock instanceof Abbigliamento){
-			BollaacquistoAbbigliamento boAb = new BollaacquistoAbbigliamento();
-			boAb.setNomeFV("Magazini MAS");
-			boAb.setCodiceAcquisto(1l + (long) (Math.random() * (10L - 1L)));
-			boAb.setDataAcquisto("oggi");//inserire calendar.tostring
-			boAb.setStock(String.valueOf(((Abbigliamento) stock).getQuantità()) + " "+ ((Abbigliamento) stock).getNome());
-			boAb.setPrTotale(((Abbigliamento) stock).getPrezzo());
-			boAb.setPrUnitario((double)((Abbigliamento) stock).getPrezzo()/3);
-			boAb.setAbbigliamento((Abbigliamento)stock);
+			BollaacquistoAbbigliamento boAb= new BollaacquistoAbbigliamento();
+			BollaBuilder builder = new BollaBuilder();
+			boAb=builder.BollaAbb_Builder(boAb, stock, "test");
 			//EJB.INSERISCIBOLLA
 			((Abbigliamento) stock).setBollaAcquisto(boAb);
-			//EJB.INSERISCIOGGETTO
+			//EJB.INSERISCISTOCK
 		}
 		else if(stock instanceof Elettronica) {
 			

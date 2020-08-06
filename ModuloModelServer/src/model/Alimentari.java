@@ -43,24 +43,24 @@ public class Alimentari implements Serializable {
 	////////////////////////////////////////////
 	
 	public Alimentari() {}
-	public Alimentari(int quantita, String nome,String scadenza, String descrizione,boolean disponibilita,
+	public Alimentari( String nome,String scadenza, String descrizione,int quantita,boolean disponibilita,
 			double prezzo,Reparti reparti,BollaacquistoAlimenti bollaAcquisto) {
-		this.quantita=quantita;
 		this.nome=nome;
 		this.scadenza=scadenza;
 		this.descrizione=descrizione;
+		this.quantita=quantita;
 		this.disponibilita=disponibilita;
 		this.prezzo=prezzo;
 		this.reparti=reparti;
 		this.bollaAcquisto=bollaAcquisto;
 	}
 	
-	public Alimentari(int quantita, String nome,String scadenza, String descrizione,boolean disponibilita,
+	public Alimentari(String nome,String scadenza, String descrizione,int quantita,boolean disponibilita,
 			double prezzo) {
-		this.quantita=quantita;
 		this.nome=nome;
 		this.scadenza=scadenza;
 		this.descrizione=descrizione;
+		this.quantita=quantita;
 		this.disponibilita=disponibilita;
 		this.prezzo=prezzo;
 	}
