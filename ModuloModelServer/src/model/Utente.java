@@ -1,12 +1,15 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,7 +31,10 @@ public class Utente implements Serializable {
 	private String indirizzo;
 	@OneToOne(mappedBy="utente")
 	private Account account;
-    ////////////////////////////////////
+	@OneToMany(mappedBy="utente")
+	private List<Fattura> listaFattura =new ArrayList<Fattura>();
+   
+	////////////////////////////////////
 	public int getId() {
 		return id;
 	}
@@ -59,4 +65,10 @@ public class Utente implements Serializable {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+	 public List<Fattura> getListaFattura() {
+			return listaFattura;
+		}
+		public void setListaFattura(List<Fattura> listaFattura) {
+			this.listaFattura = listaFattura;
+		}
 }

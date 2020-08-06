@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,6 +35,11 @@ public class Reparti implements Serializable {
 	private List<Elettronica> elettronica= new ArrayList<Elettronica>();
 	@OneToMany (mappedBy="reparti")
 	private List<Abbigliamento> abbigliamento= new ArrayList<Abbigliamento>();
+	@ManyToMany
+	@JoinTable(name="fattura_reparti",
+			joinColumns=@JoinColumn(name="id_fattura"),
+			inverseJoinColumns=@JoinColumn(name="id_reparto"))
+			private List<Fattura> listaReparti = new ArrayList<Fattura>();
 	/////////////////////////////////////////////////////////////////////////
 
 	public Reparti() {}
@@ -71,6 +79,8 @@ public class Reparti implements Serializable {
 	public void setReparto(String reparto) {
 		this.reparto = reparto;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "Reparti [id=" + id + ", reparto=" + reparto + ", alimentari=" + alimentari + ", elettronica="
