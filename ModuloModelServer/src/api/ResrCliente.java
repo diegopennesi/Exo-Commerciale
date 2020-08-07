@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import model.Abbigliamento;
+import model.Account;
 import model.Alimentari;
 import model.Elettronica;
 import model.Utente;
@@ -146,5 +147,17 @@ public class ResrCliente {
 		//return Response.status(Response.Status.REQUESTED_RANGE_NOT_SATISFIABLE).entity("non abbastanza stok").build();
 		return null;
 	}
+
+	@POST
+	@Path("/aggiungifondi")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response acquistacredito(Account account) {
+		Account temp = null;//=ejb.cercaaccountperID(utente);
+		temp.setPortafoglio(account.getPortafoglio());
+		//ejb.modificaaccount(temp);
+		return Response.status(Response.Status.OK).entity("Saldo aggiornato con successo").build();
+	}
+
 
 }
