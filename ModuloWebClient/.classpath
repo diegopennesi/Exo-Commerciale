@@ -15,5 +15,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/marzo/OneDrive/Desktop/Strumenti per Applicazioni/mysql-connector/mysql-connector-java-8.0.12.jar"/>
 	<classpathentry kind="lib" path="C:/Users/marzo/OneDrive/Desktop/Strumenti per Applicazioni/PrimeFaces_8.0/primefaces-8.0.jar"/>
+	<classpathentry kind="src" path="/ModuloModelServer"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
