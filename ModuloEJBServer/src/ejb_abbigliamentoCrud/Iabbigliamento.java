@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import model.Abbigliamento;
 
+@Local
 public interface Iabbigliamento {
 	
 	 public boolean inserisciabbigliamento(Abbigliamento ab);

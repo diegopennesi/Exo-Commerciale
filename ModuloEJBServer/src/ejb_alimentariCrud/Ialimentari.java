@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import model.Alimentari;
 
+@Local
 public interface Ialimentari {
 	
 	public boolean inseriscialimento(Alimentari al);

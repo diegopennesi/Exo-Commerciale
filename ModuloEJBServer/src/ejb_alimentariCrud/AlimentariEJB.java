@@ -8,7 +8,7 @@ import javax.persistence.TypedQuery;
 import ejb_connessioni.Iconnessioni;
 import model.Alimentari;
 
-
+@Stateless
 public class AlimentariEJB implements Ialimentari {
 	
 	@EJB
@@ -34,16 +34,19 @@ public class AlimentariEJB implements Ialimentari {
 	@Override
 	public void modificaalimento(Alimentari al) {
 		EntityManager entitymanager=x.apriconnessione();
-		Utente temp=entitymanager.find(Utente.class, al.getId());
+		Alimentari temp=entitymanager.find(Alimentari.class, al.getId());
 		temp.setNome(al.getNome());
-		temp.setCognome(al.getCognome());
-		temp.setIndirizzo(al.getIndirizzo());
+		temp.setPrezzo(al.getPrezzo());
+		temp.setDescrizione(al.getDescrizione());
+		temp.setQuantita(al.getQuantita());
+		temp.setScadenza(al.getScadenza());
+		temp.setReparti(al.getReparti());
 		x.chiudiconnessione(entitymanager);
 	}
 	@Override
 	public Utente cercaalimwntoperid(Alimentari al) {
 		EntityManager entitymanager=x.apriconnessione();
-		Utente temp=entitymanager.find(Utente.class, al.getId());
+		Alimentari temp=entitymanager.find(Alimentari.class, al.getId());
 		return temp;
 	}
 	
