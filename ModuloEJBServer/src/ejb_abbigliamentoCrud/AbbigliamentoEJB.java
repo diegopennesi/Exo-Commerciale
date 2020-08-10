@@ -1,6 +1,7 @@
 package ejb_abbigliamentoCrud;
 
 import java.util.List;
+
 import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -56,6 +57,14 @@ public class AbbigliamentoEJB implements Iabbigliamento {
 		EntityManager entitymanager=x.apriconnessione();
 		entitymanager.persist(bolla);
 		x.chiudiconnessione(entitymanager);
+	}
+	@Override
+	public List<Abbigliamento> prendiLista() {
+		EntityManager entitymanager=x.apriconnessione();
+		TypedQuery<Abbigliamento> query = entitymanager.createQuery("SELECT p FROM Abbigliamento p",Abbigliamento.class);
+		List<Abbigliamento> lista = query.getResultList();
+		x.chiudiconnessione(entitymanager);
+		return lista;
 	}
 
 

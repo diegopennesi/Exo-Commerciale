@@ -3,8 +3,10 @@ package api;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
+import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,46 +15,53 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import ejb_abbigliamentoCrud.Iabbigliamento;
+import ejb_alimentariCrud.Ialimentari;
+import ejb_elettronicaCrud.Ielettronica;
 import model.Abbigliamento;
 import model.Account;
 import model.Alimentari;
 import model.Elettronica;
+import model.Reparti;
 import model.Utente;
 
 @Path("/cliente")
 public class ResrCliente {
+	@EJB
+	Ialimentari al;
+	@EJB
+	Iabbigliamento ab;
+	@EJB
+	Ielettronica el;
 
-	@GET
-	@Path("/listareparti")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listareparti() {
-		//reparti=ejb.getlistareparti
-		//return Response.status(Response.Status.OK).entity(reparti).build() ;	
-		return null;
-	}
+//	@GET
+//	@Path("/listareparti")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response listareparti() {
+//		Reparti reparti=ejb.getlistareparti
+//		//return Response.status(Response.Status.OK).entity(reparti).build() ;	
+//		return null;
+//	}
 	@GET
 	@Path("/listareparti/abbigliamento")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getabbigliamento() {
-		//list<Abbigliamento> lista=ejb.getlistaabbigliamento
-		//return Response.status(Response.Status.OK).entity(lista).build() ;	
-		return null;
+		List<Abbigliamento> lista=ab.prendiLista();
+		return Response.status(Response.Status.OK).entity(lista).build() ;	
 	}
 	@GET
 	@Path("/listareparti/alimentari")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response alimentari() {
-		//list<alimentari> lista=ejb.getlistaalimentari
-		//return Response.status(Response.Status.OK).entity(lista).build() ;	
-		return null;
+		List<Alimentari> lista=al.prendiLista();
+		return Response.status(Response.Status.OK).entity(lista).build() ;	
 	}
 	@GET
 	@Path("/listareparti/elettronica")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response elettronica() {
-		//list<elettronica> lista=ejb.getlistaelettronica
-		//return Response.status(Response.Status.OK).entity(lista).build() ;	
-		return null;
+		List<Elettronica> lista=el.prendilista();
+		return Response.status(Response.Status.OK).entity(lista).build() ;		
 	}
 	@POST
 	@Path("/acqusita")
@@ -63,20 +72,26 @@ public class ResrCliente {
 		for (Integer i : mappa.keySet()) {//cicla la mappa
 			for (Object s : mappa.get(i)) {//cicliamo ogni reparto tutta la arraylist verifichiamo 
 				if (s instanceof Alimentari) {
-					//Alimento temp=ejb.cercastockalimentoperID(s)
-					//if temp.getquantita=>s.getquantita
-					//else flag = false;
-					//((Alimentari) s).setDisponibilita(false);	
+					Alimentari temp=al.cercaalimentoperid((Alimentari)s);
+					if (temp.getQuantita()>=((Alimentari)s).getQuantita()) {
+					}else {
+						flag = false;
+						((Alimentari) s).setDisponibilita(false);	
+					}
 				}else if (s instanceof Abbigliamento) {
-					//Abbigliamento temp=ejb.cercastockAbbigliamentoID(s)
-					//if temp.getquantita=>s.getquantita
-					//else flag = false;
-					//((Abbigliamento) s).setDisponibilita(false);
+					Abbigliamento temp=ab.cercaabbigliamentoperid((Abbigliamento) s);
+					if(temp.getQuantita()>=((Abbigliamento)s).getQuantita()) {
+					}else {
+						flag = false;
+						((Abbigliamento) s).setDisponibilita(false);
+					}
 				}else if (s instanceof Elettronica) {
-					//Elettronica temp=ejb.cercastockElettronicaID(s)
-					//if temp.getquantita=>s.getquantita
-					//else flag = false;
-					//((Elettronica) s).setDisponibilita(false);	
+					Elettronica temp=el.cercaelettronicaperid((Elettronica) s);
+					if (temp.getQuantita()>=((Elettronica)s).getQuantita()) {
+					}else {
+						flag = false;
+						((Elettronica) s).setDisponibilita(false);	
+					}
 				}
 			}
 		}
@@ -86,10 +101,11 @@ public class ResrCliente {
 			for (Integer i : mappa.keySet()) {//cicla la mappa
 				for (Object s : mappa.get(i)) {
 					if (s instanceof Alimentari) {
-						//Alimento temp=ejb.cercastockalimentoperID(s)
-						//if temp.getquantita=>s.getquantita
-						//ejb.modificaalimento(s)
-						//ejb.creafattura(s,u)
+						Alimentari temp=al.cercaalimentoperid((Alimentari)s);
+						if (temp.getQuantita()>=((Alimentari)s).getQuantita()) {
+							al.modificaalimento((Alimentari) s);
+//						ejb.creafattura(s,u)
+						}
 					}else if (s instanceof Abbigliamento) {
 						//Abbigliamento temp=ejb.cercastockAbbigliamentoperID(s)
 						//if temp.getquantita=>s.getquantita

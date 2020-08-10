@@ -1,5 +1,7 @@
 package ejb_alimentariCrud;
 
+import java.util.List;
+
 import javax.ejb.Local;
 import model.Alimentari;
 import model.BollaacquistoAlimenti;
@@ -11,5 +13,6 @@ public interface Ialimentari {
 	public void cancellaalimento(Alimentari al);
 	public void modificaalimento(Alimentari al);
 	public Alimentari cercaalimentoperid(Alimentari al);
+	public List<Alimentari> prendiLista();
 	public void inseriscibolla(BollaacquistoAlimenti bolla);
 }

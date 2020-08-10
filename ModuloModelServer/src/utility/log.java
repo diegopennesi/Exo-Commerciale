@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-
 import model.Account;
 import model.Alimentari;
-
-
 public class log {
 	
 	public void loggerlogin(Account a) {
@@ -41,7 +38,7 @@ public class log {
 			e.printStackTrace();
 		}
 	}
-	public void acquisto(Account a, String acquisto, int quantita) {
+	public void acquisto(Account a, Object Stock) {
 		Logger logger = Logger.getLogger("logVendita");  
 		FileHandler fh;
 		try {
@@ -49,7 +46,7 @@ public class log {
 			logger.addHandler(fh);
 			SimpleFormatter formatter = new SimpleFormatter();  
 			fh.setFormatter(formatter);
-			logger.info(a.getUsername()+" " + "ha acquistato"+" "+quantita+" "+ acquisto);
+			logger.info(a.getUsername()+" " + "ha acquistato"+" "+((Alimentari)Stock).getQuantita()+" "+ ((Alimentari)Stock).getNome());
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

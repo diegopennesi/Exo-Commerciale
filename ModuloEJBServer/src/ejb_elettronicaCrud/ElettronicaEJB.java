@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
+import model.Alimentari;
 import model.BollaacquistoElettronica;
 import model.Elettronica;
 
@@ -54,6 +55,14 @@ public class ElettronicaEJB implements Ielettronica{
 		EntityManager entitymanager=x.apriconnessione();
 		entitymanager.persist(bolla);
 		x.chiudiconnessione(entitymanager);
+	}
+	@Override
+	public List<Elettronica> prendilista() {
+		EntityManager entitymanager=x.apriconnessione();
+		TypedQuery<Elettronica> query = entitymanager.createQuery("SELECT p FROM Elettronica p",Elettronica.class);
+		List<Elettronica> lista = query.getResultList();
+		x.chiudiconnessione(entitymanager);
+		return lista;
 	}
 
 

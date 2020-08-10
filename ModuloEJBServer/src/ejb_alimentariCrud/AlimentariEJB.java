@@ -1,9 +1,14 @@
 package ejb_alimentariCrud;
 
 
+import java.util.List;
+
 import javax.ejb.*;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
 import ejb_connessioni.Iconnessioni;
+import model.Abbigliamento;
 import model.Alimentari;
 import model.BollaacquistoAlimenti;
 
@@ -53,6 +58,14 @@ public class AlimentariEJB implements Ialimentari {
 		EntityManager entitymanager=x.apriconnessione();
 		entitymanager.persist(bolla);
 		x.chiudiconnessione(entitymanager);
+	}
+	@Override
+	public List<Alimentari> prendiLista() {
+		EntityManager entitymanager=x.apriconnessione();
+		TypedQuery<Alimentari> query = entitymanager.createQuery("SELECT p FROM Alimentari p",Alimentari.class);
+		List<Alimentari> lista = query.getResultList();
+		x.chiudiconnessione(entitymanager);
+		return lista;
 	}
 	
 	
