@@ -2,9 +2,7 @@ package api;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -24,9 +22,6 @@ import model.Abbigliamento;
 import model.Account;
 import model.Alimentari;
 import model.Elettronica;
-import model.Fattura;
-import model.Reparti;
-import model.Utente;
 import utility.FatturaBuilder;
 import utility.Log;
 

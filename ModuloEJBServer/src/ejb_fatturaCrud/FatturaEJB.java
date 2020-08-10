@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
-import model.Elettronica;
 import model.Fattura;
 
 @Stateless
@@ -53,6 +52,15 @@ public class FatturaEJB implements Ifattura {
 		EntityManager entitymanager=x.apriconnessione();
 		entitymanager.remove(fa);
 		x.chiudiconnessione(entitymanager);
+	}
+	@Override
+	public List<Fattura> cercafatturaperReparto(int reparto) {
+		EntityManager entitymanager=x.apriconnessione();
+		TypedQuery<Fattura> query = entitymanager.createQuery("SELECT p FROM Fattura p WHERE p.id_reparto LIKE :id_reparto",Fattura.class)
+				.setParameter("id_reparto", reparto);
+		List<Fattura> lista = query.getResultList();
+		x.chiudiconnessione(entitymanager);
+		return lista;
 	}
 
 }

@@ -12,5 +12,6 @@ public interface Ifattura {
 	//public void modificafattura(Fattura fa);//non so neanche se lo usiamo(?)
 	public List<Fattura> cercafatturaperId(Fattura fa);
 	public List<Fattura> cercafatturaperIdUtente(Fattura fa);
+	public List<Fattura> cercafatturaperReparto(int reparto);
 	public void cancellafattura(Fattura fa);
 }

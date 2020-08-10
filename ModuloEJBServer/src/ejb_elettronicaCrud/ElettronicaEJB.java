@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
-import model.Alimentari;
 import model.BollaacquistoElettronica;
 import model.Elettronica;
 

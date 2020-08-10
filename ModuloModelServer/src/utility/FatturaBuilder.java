@@ -6,7 +6,6 @@ import ejb_repartiCrud.Ireparti;
 import model.Account;
 import model.Alimentari;
 import model.Fattura;
-import model.Reparti;
 public class FatturaBuilder {
 	@EJB
 	Ireparti x;

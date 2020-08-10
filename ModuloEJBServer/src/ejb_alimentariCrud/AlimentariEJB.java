@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
-import model.Abbigliamento;
 import model.Alimentari;
 import model.BollaacquistoAlimenti;
 

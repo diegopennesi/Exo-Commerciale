@@ -1,5 +1,6 @@
 package ejb_bollaCrud;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -11,7 +12,7 @@ import model.BollaacquistoElettronica;
 
 @Local
 public interface Ibolla {
-	public List<BollaacquistoAlimenti> prendiListaBolleAlimenti();
-	public List<BollaacquistoAbbigliamento> prendiListaBolleAbbigliamento();
-	public List<BollaacquistoElettronica> prendiListaBolleElettronica();
+	public ArrayList<BollaacquistoAlimenti> prendiListaBolleAlimenti();
+	public ArrayList<BollaacquistoAbbigliamento> prendiListaBolleAbbigliamento();
+	public ArrayList<BollaacquistoElettronica> prendiListaBolleElettronica();
 }
