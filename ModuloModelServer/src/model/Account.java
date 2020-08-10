@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="account")
+@Table(name="accounts")
 public class Account implements Serializable {
 	/**
 	 * 

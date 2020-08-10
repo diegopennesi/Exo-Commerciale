@@ -54,4 +54,7 @@ public class UtentiEJB implements Iutenti {
 		Utente temp=entitymanager.find(Utente.class, ut.getId());
 		return temp;
 	}
+	
+	
+	
 }
