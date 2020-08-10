@@ -105,6 +105,9 @@ public class ResrCliente {
 						Alimentari temp=al.cercaalimentoperid((Alimentari)s);
 						if (temp.getQuantita()>=((Alimentari)s).getQuantita()) {
 							al.modificaalimento((Alimentari) s);
+							int iva=10;
+							Reparti reparto= new Reparti(); //errore
+							reparto.setId(1);// errore
                          //ejb.creafattura(s,u)
 						}
 					}else if (s instanceof Abbigliamento) {
