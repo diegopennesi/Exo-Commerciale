@@ -13,5 +13,4 @@ public interface Ifattura {
 	public List<Fattura> cercafatturaperId(Fattura fa);
 	public List<Fattura> cercafatturaperIdUtente(Fattura fa);
 	public void cancellafattura(Fattura fa);
-
 }

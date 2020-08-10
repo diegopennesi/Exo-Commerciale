@@ -33,8 +33,8 @@ public class Fattura implements Serializable {
 	@Column(name="quantita")
 	private int quantita;
 	@ManyToOne
-	@JoinColumn(name="id_utente")
-	private Utente utente;
+	@JoinColumn(name="id_account")
+	private Account account;
 	@Column(name="prezzo")
 	private double prezzo;
 	@Column(name="iva")
@@ -46,11 +46,11 @@ public class Fattura implements Serializable {
 	private List<Reparti> listaReparti = new ArrayList<Reparti>();
 	
 	public Fattura() {}
-	public Fattura(int id_scontrino, String descrizione,int quantita,Utente utente, int iva, List<Reparti>listaReparti) {
+	public Fattura(int id_scontrino, String descrizione,int quantita,Account account, int iva, List<Reparti>listaReparti) {
 		this.id_scontrino=id_scontrino;
 		this.descrizione=descrizione;
 		this.quantita=quantita;
-		this.utente=utente;
+		this.account=account;
 		this.iva=iva;
 		this.listaReparti=listaReparti;
 	}
@@ -74,11 +74,11 @@ public class Fattura implements Serializable {
 	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
-	public Utente getUtente() {
-		return utente;
+	public Account getAccount() {
+		return account;
 	}
-	public void setUtente(Utente utente) {
-		this.utente = utente;
+	public void setUtente(Account account) {
+		this.account = account;
 	}
 	public double getPrezzo() {
 		return prezzo;
@@ -102,7 +102,7 @@ public class Fattura implements Serializable {
 	@Override
 	public String toString() {
 		return "Fattura [id_scontrino=" + id_scontrino + ", descrizione=" + descrizione + ", quantita=" + quantita
-				+ ", utente=" + utente + ", prezzo=" + prezzo + ", iva=" + iva + ", listaReparti=" + listaReparti + "]";
+				+ ", account=" + account + ", prezzo=" + prezzo + ", iva=" + iva + ", listaReparti=" + listaReparti + "]";
 	}
 	
 

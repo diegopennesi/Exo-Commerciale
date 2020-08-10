@@ -98,23 +98,26 @@ public class ResrCliente {
 		if (flag == false) {//facciamo tornare la mappa con alcuni oggetti non disponibili per farli togliere dal front
 			return Response.status(Response.Status.BAD_REQUEST).entity(mappa).build();
 		}else if (flag == true) {
+			int id_scontrino=1 + (int) (Math.random() * (5L - 1L));
 			for (Integer i : mappa.keySet()) {//cicla la mappa
 				for (Object s : mappa.get(i)) {
 					if (s instanceof Alimentari) {
 						Alimentari temp=al.cercaalimentoperid((Alimentari)s);
 						if (temp.getQuantita()>=((Alimentari)s).getQuantita()) {
 							al.modificaalimento((Alimentari) s);
-//						ejb.creafattura(s,u)
+                         //ejb.creafattura(s,u)
 						}
 					}else if (s instanceof Abbigliamento) {
-						//Abbigliamento temp=ejb.cercastockAbbigliamentoperID(s)
-						//if temp.getquantita=>s.getquantita
-						//ejb.modificaabbigliamento(s)
+						Abbigliamento temp=ab.cercaabbigliamentoperid((Abbigliamento) s);
+						if(temp.getQuantita()>=((Abbigliamento)s).getQuantita()) {
+							ab.modificaabbigliamento((Abbigliamento) s);
+						}
 						//ejb.creafattura(s,u)
 					}else if (s instanceof Elettronica) {
-						//Elettronica temp=ejb.cercastockElettronicaperID(s)
-						//if temp.getquantita=>s.getquantita
-						//ejb.modificaelettronica(s)
+						Elettronica temp=el.cercaelettronicaperid((Elettronica) s);
+						if (temp.getQuantita()>=((Elettronica)s).getQuantita()) {
+							el.modificaelettronica((Elettronica) s);
+						}
 						//ejb.creafattura(s,u)
 					}
 

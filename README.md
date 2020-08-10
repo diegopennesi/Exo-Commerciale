@@ -5,6 +5,8 @@
 - Andate su eclispse
 - Importate progetto per progetto un progetto alla volta (so 3 moduli)
 ***
+modifiche su account\utente, account è anagrafica utente ha i dati di log-in
+***
 10/8 aggiunto utility Log, completate le rest\server
 ***
 Aggiunto modulo web CLIENT
