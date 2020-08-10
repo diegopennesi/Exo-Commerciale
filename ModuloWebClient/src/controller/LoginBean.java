@@ -5,6 +5,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import ejb_accountcrud.IAccountCrud;
 import model.Account;
@@ -22,7 +23,8 @@ public class LoginBean {
 	public String logIn() {
 		 FacesContext context = FacesContext.getCurrentInstance();
 		account = accountServ.getAccount(account.getUsername(), account.getPassword());
-		 context.getExternalContext().getSessionMap().put("account", account);
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		session.setAttribute("account", account);
 		if (account==null) {
 			account=new Account();
 			FacesContext.getCurrentInstance().addMessage(null,
