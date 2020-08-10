@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import ejb_abbigliamentoCrud.Iabbigliamento;
+import ejb_accountcrud.IAccountCrud;
 import ejb_alimentariCrud.Ialimentari;
 import ejb_elettronicaCrud.Ielettronica;
 import ejb_fatturaCrud.Ifattura;
@@ -39,6 +40,8 @@ public class ResrCliente {
 	Ielettronica el;
 	@EJB
 	Ifattura fa;
+	@EJB
+	IAccountCrud ac;
 
 //	@GET
 //	@Path("/listareparti")
@@ -112,21 +115,21 @@ public class ResrCliente {
 						Alimentari temp=al.cercaalimentoperid((Alimentari)s);
 						if (temp.getQuantita()>=((Alimentari)s).getQuantita()) {
 							al.modificaalimento((Alimentari) s);
-							fa.inseriscifattura(new FatturaBuilder().FatturaBuilder(acco, s, id_scontrino, 10));
+							fa.inseriscifattura(new FatturaBuilder().fatturaBuilder(acco, s, id_scontrino, 10));
 							log.acquisto(acco, s);
 						}
 					}else if (s instanceof Abbigliamento) {
 						Abbigliamento temp=ab.cercaabbigliamentoperid((Abbigliamento) s);
 						if(temp.getQuantita()>=((Abbigliamento)s).getQuantita()) {
 							ab.modificaabbigliamento((Abbigliamento) s);
-							fa.inseriscifattura(new FatturaBuilder().FatturaBuilder(acco, s, id_scontrino, 22));
+							fa.inseriscifattura(new FatturaBuilder().fatturaBuilder(acco, s, id_scontrino, 22));
 							log.acquisto(acco, s);
 						}
 					}else if (s instanceof Elettronica) {
 						Elettronica temp=el.cercaelettronicaperid((Elettronica) s);
 						if (temp.getQuantita()>=((Elettronica)s).getQuantita()) {
 							el.modificaelettronica((Elettronica) s);
-							fa.inseriscifattura(new FatturaBuilder().FatturaBuilder(acco, s, id_scontrino, 22));
+							fa.inseriscifattura(new FatturaBuilder().fatturaBuilder(acco, s, id_scontrino, 22));
 							log.acquisto(acco, s);
 						}
 					}
@@ -176,14 +179,14 @@ public class ResrCliente {
 //		return null;
 //	}
 //
-//	@POST
-//	@Path("/aggiungifondi")
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response acquistacredito(Account account) {
-//		Account temp = null;//=ejb.cercaaccountperID(utente);
-//		temp.setPortafoglio(account.getPortafoglio());
-//		//ejb.modificaaccount(temp);
-//		return Response.status(Response.Status.OK).entity("Saldo aggiornato con successo").build();
-//	}
+	@POST
+	@Path("/aggiungifondi")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response acquistacredito(Account a) {
+		Account temp = ac.getAccount(a.getUsername(), a.getPassword());
+		temp.setPortafoglio(a.getPortafoglio());
+		ac.updateAccount(a);
+		return Response.status(Response.Status.OK).entity("Saldo aggiornato con successo").build();
+	}
 }

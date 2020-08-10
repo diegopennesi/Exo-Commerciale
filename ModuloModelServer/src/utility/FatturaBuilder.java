@@ -11,7 +11,7 @@ public class FatturaBuilder {
 	@EJB
 	Ireparti x;
 	
-	public Fattura FatturaBuilder(Account a,Object s,int id_scontrino,int iva) {
+	public Fattura fatturaBuilder(Account a,Object s,int id_scontrino,int iva) {
 		Fattura fattura = new Fattura();
 		fattura.setId_scontrino(id_scontrino);
 		fattura.setDescrizione(((Alimentari)s).getDescrizione());

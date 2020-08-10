@@ -45,7 +45,7 @@ public class RestVenditore {
 	@Path("/concludiacqusito")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String acquistaStock(Object stock,Reparti reparti) {//Entrerà un oggetto dello stock
+	public String acquistaStock(Object stock) {//Entrerà un oggetto dello stock
 		if(stock instanceof Alimentari) {
 			BollaacquistoAlimenti boAa= new BollaacquistoAlimenti();
 			BollaBuilder builder = new BollaBuilder();
