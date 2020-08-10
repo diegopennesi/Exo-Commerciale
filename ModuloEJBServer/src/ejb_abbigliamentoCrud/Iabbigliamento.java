@@ -1,11 +1,8 @@
 package ejb_abbigliamentoCrud;
 
-import java.util.List;
-
 import javax.ejb.Local;
-
 import model.Abbigliamento;
-import model.BollaacquistoAlimenti;
+import model.BollaacquistoAbbigliamento;
 
 @Local
 public interface Iabbigliamento {

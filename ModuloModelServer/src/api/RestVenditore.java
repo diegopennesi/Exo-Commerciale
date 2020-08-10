@@ -8,7 +8,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import ejb_abbigliamentoCrud.Iabbigliamento;
 import ejb_alimentariCrud.Ialimentari;
+import ejb_elettronicaCrud.Ielettronica;
 import model.Abbigliamento;
 import model.Alimentari;
 import model.BollaacquistoAbbigliamento;
@@ -26,6 +28,10 @@ public class RestVenditore {
 	
 	@EJB
 	Ialimentari al;
+	@EJB
+	Iabbigliamento ab;
+	@EJB
+	Ielettronica el;
 	
 	@GET
 	@Path("/acqusita")
@@ -52,17 +58,17 @@ public class RestVenditore {
 			BollaacquistoAbbigliamento boAb= new BollaacquistoAbbigliamento();
 			BollaBuilder builder = new BollaBuilder();
 			boAb=builder.BollaAbb_Builder(boAb, stock, "fornitore");
-			//EJB.INSERISCIBOLLA
+			ab.inseriscibolla(boAb);
 			((Abbigliamento) stock).setBollaAcquisto(boAb);
-			//EJB.INSERISCISTOCK
+			ab.inserisciabbigliamento((Abbigliamento)stock);
 		}
 		else if(stock instanceof Elettronica) {
 			BollaacquistoElettronica boAe= new BollaacquistoElettronica();
 			BollaBuilder builder = new BollaBuilder();
 			boAe=builder.BollaEle_Builder(boAe, stock, "fornitore");
-			//EJB.INSERISCIBOLLA
+			el.inseriscibolla(boAe);
 			((Elettronica) stock).setBollaAcquisto(boAe);
-			//EJB.INSERISCISTOCK
+			el.inseriscielettronica((Elettronica) stock);
 		}
 		return null;	
 	}

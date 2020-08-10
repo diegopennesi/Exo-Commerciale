@@ -56,7 +56,6 @@ public class AbbigliamentoEJB implements Iabbigliamento {
 		EntityManager entitymanager=x.apriconnessione();
 		entitymanager.persist(bolla);
 		x.chiudiconnessione(entitymanager);
-		
 	}
 
 
