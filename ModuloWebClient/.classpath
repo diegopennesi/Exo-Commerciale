@@ -14,5 +14,6 @@
 	<classpathentry kind="src" path="/ModuloModelServer"/>
 	<classpathentry kind="src" path="/ModuloEJBServer"/>
 	<classpathentry kind="lib" path="C:/Users/Exolab/wildfly-17.0.1.Final/modules/system/layers/base/javax/ejb/api/main/jboss-ejb-api_3.2_spec-1.0.2.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Exolab/wildfly-17.0.1.Final/modules/system/layers/base/javax/servlet/api/main/jboss-servlet-api_4.0_spec-1.0.0.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
