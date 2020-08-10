@@ -11,6 +11,7 @@ public class FatturaBuilder {
 		fattura.setId_scontrino(id_scontrino);
 		fattura.setDescrizione(((Alimentari)s).getDescrizione());
 		fattura.setQuantita(((Alimentari)s).getQuantita());
+		fattura.setAccount(a);
 	}
 
 }

@@ -77,7 +77,7 @@ public class Fattura implements Serializable {
 	public Account getAccount() {
 		return account;
 	}
-	public void setUtente(Account account) {
+	public void setAccount(Account account) {
 		this.account = account;
 	}
 	public double getPrezzo() {

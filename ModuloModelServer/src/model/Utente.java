@@ -31,8 +31,6 @@ public class Utente implements Serializable {
 	private String indirizzo;
 	@OneToOne(mappedBy="utente")
 	private Account account;
-	@OneToMany(mappedBy="utente")
-	private List<Fattura> listaFattura =new ArrayList<Fattura>();
    
 	////////////////////////////////////
 	public int getId() {
