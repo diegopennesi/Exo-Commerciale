@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+    version="2.1">
+
+
+<navigation-rule>
+ 	<from-view-id>/login.xhtml</from-view-id>
+ 	<navigation-case>
+ 		<from-action>#{utentebean.login}</from-action>
+ 		<from-outcome>user</from-outcome>
+ 		<to-view-id>/account.xhtml</to-view-id>
+ 		</navigation-case>
+ 	<navigation-case>
+            <from-action>#{utentebean.login}</from-action>
+            <from-outcome>gdf</from-outcome>
+            <to-view-id>/guardiadifinanza.xhtml</to-view-id>
+        </navigation-case>
+ 	<navigation-case>
+            <from-action>#{utentebean.login}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/error.xhtml</to-view-id>
+        </navigation-case>
+</navigation-rule>
+ </faces-config>
+
