@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
+import model.BollaacquistoElettronica;
 import model.Elettronica;
 
 @Stateless
@@ -36,7 +37,7 @@ public class ElettronicaEJB implements Ielettronica{
 		EntityManager entitymanager=x.apriconnessione();
 		Elettronica temp=entitymanager.find(Elettronica.class, el.getId());
 		temp.setNome(el.getNome());
-		temp.setDescrizione(el.getDestrizione());
+		temp.setDestrizione(el.getDestrizione());
 		temp.setPrezzo(el.getPrezzo());
 		temp.setQuantita(el.getQuantita());
 		temp.setReparti(el.getReparti());
@@ -48,5 +49,12 @@ public class ElettronicaEJB implements Ielettronica{
 		Elettronica temp=entitymanager.find(Elettronica.class, el.getId());
 		return temp;
 	}
+	@Override
+	public void inseriscibolla(BollaacquistoElettronica bolla) {
+		EntityManager entitymanager=x.apriconnessione();
+		entitymanager.persist(bolla);
+		x.chiudiconnessione(entitymanager);
+	}
+
 
 }

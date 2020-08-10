@@ -8,5 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/javax.persistence-api-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Diego/eclipse-workspace/Exo-Commerciale/ModuloEJBServer/lib/ejb-api-3.0.jar"/>
+	<classpathentry kind="src" path="/ModuloEJBServer"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

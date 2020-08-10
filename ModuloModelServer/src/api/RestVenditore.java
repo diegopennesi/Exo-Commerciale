@@ -2,9 +2,13 @@ package api;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import ejb_alimentariCrud.Ialimentari;
 import model.Abbigliamento;
 import model.Alimentari;
 import model.BollaacquistoAbbigliamento;
@@ -19,6 +23,9 @@ import utility.Venditore;
 
 @Path("/venditore")
 public class RestVenditore {
+	
+	@EJB
+	Ialimentari al;
 	
 	@GET
 	@Path("/acqusita")
@@ -36,15 +43,15 @@ public class RestVenditore {
 		if(stock instanceof Alimentari) {
 			BollaacquistoAlimenti boAa= new BollaacquistoAlimenti();
 			BollaBuilder builder = new BollaBuilder();
-			boAa=builder.BollaAli_Builder(boAa, stock, "test");
-			//EJB.INSERISCIBOLLA
+			boAa=builder.BollaAli_Builder(boAa, stock, "fornitore");
+			al.inseriscibolla(boAa);
 			((Alimentari) stock).setBollaAcquisto(boAa);
-			//EJB.INSERISCISTOCK
+			al.inseriscialimento((Alimentari)stock);
 		}
 		else if(stock instanceof Abbigliamento){
 			BollaacquistoAbbigliamento boAb= new BollaacquistoAbbigliamento();
 			BollaBuilder builder = new BollaBuilder();
-			boAb=builder.BollaAbb_Builder(boAb, stock, "test");
+			boAb=builder.BollaAbb_Builder(boAb, stock, "fornitore");
 			//EJB.INSERISCIBOLLA
 			((Abbigliamento) stock).setBollaAcquisto(boAb);
 			//EJB.INSERISCISTOCK
@@ -52,7 +59,7 @@ public class RestVenditore {
 		else if(stock instanceof Elettronica) {
 			BollaacquistoElettronica boAe= new BollaacquistoElettronica();
 			BollaBuilder builder = new BollaBuilder();
-			boAe=builder.BollaEle_Builder(boAe, stock, "test");
+			boAe=builder.BollaEle_Builder(boAe, stock, "fornitore");
 			//EJB.INSERISCIBOLLA
 			((Elettronica) stock).setBollaAcquisto(boAe);
 			//EJB.INSERISCISTOCK

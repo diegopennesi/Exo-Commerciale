@@ -93,7 +93,7 @@ public class Elettronica implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public double getQuantita() {
+	public int getQuantita() {
 		return quantita;
 	}
 	public void setQuantita(int quantita) {

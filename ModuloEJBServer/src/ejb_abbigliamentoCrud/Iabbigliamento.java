@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import model.Abbigliamento;
+import model.BollaacquistoAlimenti;
 
 @Local
 public interface Iabbigliamento {
@@ -13,5 +14,5 @@ public interface Iabbigliamento {
 	 public void cancellaabbigliamento(Abbigliamento ab);
 	 public void modificaabbigliamento(Abbigliamento ab);
 	 public Abbigliamento cercaabbigliamentoperid(Abbigliamento ab);
-	 // ?
+	 public void inseriscibolla(BollaacquistoAbbigliamento bolla);
 }

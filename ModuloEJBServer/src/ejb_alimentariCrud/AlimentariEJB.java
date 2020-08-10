@@ -1,12 +1,11 @@
 package ejb_alimentariCrud;
 
-import java.util.List;
+
 import javax.ejb.*;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-
 import ejb_connessioni.Iconnessioni;
 import model.Alimentari;
+import model.BollaacquistoAlimenti;
 
 @Stateless
 public class AlimentariEJB implements Ialimentari {
@@ -44,10 +43,16 @@ public class AlimentariEJB implements Ialimentari {
 		x.chiudiconnessione(entitymanager);
 	}
 	@Override
-	public Utente cercaalimwntoperid(Alimentari al) {
+	public Alimentari cercaalimentoperid(Alimentari al) {
 		EntityManager entitymanager=x.apriconnessione();
 		Alimentari temp=entitymanager.find(Alimentari.class, al.getId());
 		return temp;
+	}
+	@Override
+	public void inseriscibolla(BollaacquistoAlimenti bolla) {
+		EntityManager entitymanager=x.apriconnessione();
+		entitymanager.persist(bolla);
+		x.chiudiconnessione(entitymanager);
 	}
 	
 	

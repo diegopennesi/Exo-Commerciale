@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
 import model.Abbigliamento;
+import model.BollaacquistoAbbigliamento;
 
 @Stateless
 public class AbbigliamentoEJB implements Iabbigliamento {
@@ -26,13 +27,13 @@ public class AbbigliamentoEJB implements Iabbigliamento {
 		return true;
 	}
 	@Override
-	public void cancellaabbigliamento(Utente ab) {
+	public void cancellaabbigliamento(Abbigliamento ab) {
 		EntityManager entitymanager=x.apriconnessione();
 		entitymanager.remove(ab);
 		x.chiudiconnessione(entitymanager);
 	}
 	@Override
-	public void modificabbigliamento(Abbigliamento ab) {
+	public void modificaabbigliamento(Abbigliamento ab) {
 		EntityManager entitymanager=x.apriconnessione();
 		Abbigliamento temp=entitymanager.find(Abbigliamento.class, ab.getId());
 		temp.setNome(ab.getNome());
@@ -45,10 +46,18 @@ public class AbbigliamentoEJB implements Iabbigliamento {
 		x.chiudiconnessione(entitymanager);
 	}
 	@Override
-	public Utente cercaabbigliamentoperid(Abbigliamento ab) {
+	public Abbigliamento cercaabbigliamentoperid(Abbigliamento ab) {
 		EntityManager entitymanager=x.apriconnessione();
 		Abbigliamento temp=entitymanager.find(Abbigliamento.class, ab.getId());
 		return temp;
 	}
+	@Override
+	public void inseriscibolla(BollaacquistoAbbigliamento bolla) {
+		EntityManager entitymanager=x.apriconnessione();
+		entitymanager.persist(bolla);
+		x.chiudiconnessione(entitymanager);
+		
+	}
+
 
 }
