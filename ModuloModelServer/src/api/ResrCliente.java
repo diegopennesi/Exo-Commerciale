@@ -18,12 +18,16 @@ import javax.ws.rs.core.Response;
 import ejb_abbigliamentoCrud.Iabbigliamento;
 import ejb_alimentariCrud.Ialimentari;
 import ejb_elettronicaCrud.Ielettronica;
+import ejb_fatturaCrud.Ifattura;
 import model.Abbigliamento;
 import model.Account;
 import model.Alimentari;
 import model.Elettronica;
+import model.Fattura;
 import model.Reparti;
 import model.Utente;
+import utility.FatturaBuilder;
+import utility.Log;
 
 @Path("/cliente")
 public class ResrCliente {
@@ -33,6 +37,8 @@ public class ResrCliente {
 	Iabbigliamento ab;
 	@EJB
 	Ielettronica el;
+	@EJB
+	Ifattura fa;
 
 //	@GET
 //	@Path("/listareparti")
@@ -67,8 +73,9 @@ public class ResrCliente {
 	@Path("/acqusita")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response acquista(HashMap<Integer,ArrayList> mappa,Utente u) {
+	public Response acquista(HashMap<Integer,ArrayList> mappa,Account acco) {
 		boolean flag=true;
+		Log log=new Log();
 		for (Integer i : mappa.keySet()) {//cicla la mappa
 			for (Object s : mappa.get(i)) {//cicliamo ogni reparto tutta la arraylist verifichiamo 
 				if (s instanceof Alimentari) {
@@ -105,81 +112,78 @@ public class ResrCliente {
 						Alimentari temp=al.cercaalimentoperid((Alimentari)s);
 						if (temp.getQuantita()>=((Alimentari)s).getQuantita()) {
 							al.modificaalimento((Alimentari) s);
-							int iva=10;
-							Reparti reparto= new Reparti(); //errore
-							reparto.setId(1);// errore
-                         //ejb.creafattura(s,u)
+							fa.inseriscifattura(new FatturaBuilder().FatturaBuilder(acco, s, id_scontrino, 10));
+							log.acquisto(acco, s);
 						}
 					}else if (s instanceof Abbigliamento) {
 						Abbigliamento temp=ab.cercaabbigliamentoperid((Abbigliamento) s);
 						if(temp.getQuantita()>=((Abbigliamento)s).getQuantita()) {
 							ab.modificaabbigliamento((Abbigliamento) s);
+							fa.inseriscifattura(new FatturaBuilder().FatturaBuilder(acco, s, id_scontrino, 22));
+							log.acquisto(acco, s);
 						}
-						//ejb.creafattura(s,u)
 					}else if (s instanceof Elettronica) {
 						Elettronica temp=el.cercaelettronicaperid((Elettronica) s);
 						if (temp.getQuantita()>=((Elettronica)s).getQuantita()) {
 							el.modificaelettronica((Elettronica) s);
+							fa.inseriscifattura(new FatturaBuilder().FatturaBuilder(acco, s, id_scontrino, 22));
+							log.acquisto(acco, s);
 						}
-						//ejb.creafattura(s,u)
 					}
-
 				}
 			}
 		}
 		return Response.status(Response.Status.OK).entity("Acquisti eseguiti con successo").build();
 	}
-	@POST
-	@Path("/acqusitaAlimento")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response acquistaalimento(Alimentari oggetto) {
-		//Alimento temp=ejb.cercastockalimentoperID(ogetto)
-		//if temp.getquantita=>ogetto.getquantita
-		//temp.setquantita(temp.getquantita-ogetto.getquantita)
-		//ejb.modificaAlimentari(temp)
-		//
-		//return Response.status(Response.Status.OK).build() ;
-		//return Response.status(Response.Status.REQUESTED_RANGE_NOT_SATISFIABLE).entity("non abbastanza stok").build();
-		return null;
-	}
-	@POST
-	@Path("/acqusitaAlimento")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response acquistaabbigliamento(Abbigliamento oggetto) {
-		//Abbigliamento temp=ejb.cercastockabbigliamentoperID(ogetto)
-		//if temp.getquantita=>ogetto.getquantita
-		//temp.setquantita(temp.getquantita-ogetto.getquantita)
-		//ejb.modificaAbbigliamento(temp)
-		//return Response.status(Response.Status.OK).build() ;
-		//return Response.status(Response.Status.REQUESTED_RANGE_NOT_SATISFIABLE).entity("non abbastanza stok").build();
-		return null;
-	}
-	@POST
-	@Path("/acqusitaAlimento")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response acquistaElettronica(Elettronica oggetto) {
-		//Elettronica temp=ejb.cercastockElettronicaperID(ogetto)
-		//if temp.getquantita=>ogetto.getquantita
-		//temp.setquantita(temp.getquantita-ogetto.getquantita)
-		//ejb.modificaElettronica(temp)
-		//return Response.status(Response.Status.OK).build() ;
-		//return Response.status(Response.Status.REQUESTED_RANGE_NOT_SATISFIABLE).entity("non abbastanza stok").build();
-		return null;
-	}
-
-	@POST
-	@Path("/aggiungifondi")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response acquistacredito(Account account) {
-		Account temp = null;//=ejb.cercaaccountperID(utente);
-		temp.setPortafoglio(account.getPortafoglio());
-		//ejb.modificaaccount(temp);
-		return Response.status(Response.Status.OK).entity("Saldo aggiornato con successo").build();
-	}
-
-
+//	@POST
+//	@Path("/acqusitaAlimento")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response acquistaalimento(Alimentari oggetto) {
+//		//Alimento temp=ejb.cercastockalimentoperID(ogetto)
+//		//if temp.getquantita=>ogetto.getquantita
+//		//temp.setquantita(temp.getquantita-ogetto.getquantita)
+//		//ejb.modificaAlimentari(temp)
+//		//
+//		//return Response.status(Response.Status.OK).build() ;
+//		//return Response.status(Response.Status.REQUESTED_RANGE_NOT_SATISFIABLE).entity("non abbastanza stok").build();
+//		return null;
+//	}
+//	@POST
+//	@Path("/acqusitaAlimento")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response acquistaabbigliamento(Abbigliamento oggetto) {
+//		//Abbigliamento temp=ejb.cercastockabbigliamentoperID(ogetto)
+//		//if temp.getquantita=>ogetto.getquantita
+//		//temp.setquantita(temp.getquantita-ogetto.getquantita)
+//		//ejb.modificaAbbigliamento(temp)
+//		//return Response.status(Response.Status.OK).build() ;
+//		//return Response.status(Response.Status.REQUESTED_RANGE_NOT_SATISFIABLE).entity("non abbastanza stok").build();
+//		return null;
+//	}
+//	@POST
+//	@Path("/acqusitaAlimento")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response acquistaElettronica(Elettronica oggetto) {
+//		//Elettronica temp=ejb.cercastockElettronicaperID(ogetto)
+//		//if temp.getquantita=>ogetto.getquantita
+//		//temp.setquantita(temp.getquantita-ogetto.getquantita)
+//		//ejb.modificaElettronica(temp)
+//		//return Response.status(Response.Status.OK).build() ;
+//		//return Response.status(Response.Status.REQUESTED_RANGE_NOT_SATISFIABLE).entity("non abbastanza stok").build();
+//		return null;
+//	}
+//
+//	@POST
+//	@Path("/aggiungifondi")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response acquistacredito(Account account) {
+//		Account temp = null;//=ejb.cercaaccountperID(utente);
+//		temp.setPortafoglio(account.getPortafoglio());
+//		//ejb.modificaaccount(temp);
+//		return Response.status(Response.Status.OK).entity("Saldo aggiornato con successo").build();
+//	}
 }

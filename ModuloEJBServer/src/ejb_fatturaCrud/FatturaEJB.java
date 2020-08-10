@@ -41,8 +41,8 @@ public class FatturaEJB implements Ifattura {
 	@Override
 	public List<Fattura> cercafatturaperIdUtente(Fattura fa) {
 		EntityManager entitymanager=x.apriconnessione();
-		TypedQuery<Fattura> query = entitymanager.createQuery("SELECT p FROM Fattura p WHERE p.id_utente LIKE :id_utente",Fattura.class)
-				.setParameter("id_utente", fa.getUtente().getId());
+		TypedQuery<Fattura> query = entitymanager.createQuery("SELECT p FROM Fattura p WHERE p.id_account LIKE :id_account",Fattura.class)
+				.setParameter("id_utente", fa.getAccount().getId());
 		List<Fattura> lista = query.getResultList();
 		x.chiudiconnessione(entitymanager);
 		return lista;

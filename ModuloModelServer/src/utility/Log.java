@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import model.Account;
 import model.Alimentari;
-public class log {
+public class Log {
 	
 	public void loggerlogin(Account a) {
 		Logger logger = Logger.getLogger("MyLog");  
