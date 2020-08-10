@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="lib/javax.ws.rs-api-2.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Diego/eclipse-workspace/Exo-Commerciale/ModuloEJBServer/lib/ejb-api-3.0.jar"/>
 	<classpathentry kind="src" path="/ModuloEJBServer"/>
+	<classpathentry kind="lib" path="C:/Users/Exolab/wildfly-17.0.1.Final/modules/system/layers/base/javax/ejb/api/main/jboss-ejb-api_3.2_spec-1.0.2.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

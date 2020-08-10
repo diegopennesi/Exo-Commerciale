@@ -76,4 +76,12 @@ public class Account implements Serializable {
 	public void setUtente(Utente utente) {
 		this.utente = utente;
 	}
+	
+	public void setListFattura(ArrayList<Fattura> listaFattura) {
+		this.listaFattura=listaFattura;
+	}
+	
+	public List<Fattura> getListFattura(){
+		return listaFattura;
+	}
 }

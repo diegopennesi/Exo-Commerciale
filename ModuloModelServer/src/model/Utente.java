@@ -63,10 +63,4 @@ public class Utente implements Serializable {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	 public List<Fattura> getListaFattura() {
-			return listaFattura;
-		}
-		public void setListaFattura(List<Fattura> listaFattura) {
-			this.listaFattura = listaFattura;
-		}
 }
