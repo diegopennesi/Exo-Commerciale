@@ -3,6 +3,8 @@
 	<name>ModuloWebClientNuovo</name>
 	<comment></comment>
 	<projects>
+		<project>ModuloEJBServerNuovo</project>
+		<project>ModuloModelServerNuovo</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -67,6 +67,7 @@ public class ResrCliente {
 		List<Elettronica> lista=el.prendilista();
 		return Response.status(Response.Status.OK).entity(lista).build() ;		
 	}
+	
 	@POST
 	@Path("/acqusita")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -183,5 +184,15 @@ public class ResrCliente {
 		temp.setPortafoglio(a.getPortafoglio());
 		ac.updateAccount(a);
 		return Response.status(Response.Status.OK).entity("Saldo aggiornato con successo").build();
+	}
+	@GET
+	@Path("/login")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response login(Account a) {
+		Account temp=ac.getAccount(a.getUsername(), a.getPassword());
+		if (temp.getUsername().equals(a.getUsername()) && temp.getPassword().equals(a.getPassword())) {
+			return Response.status(Response.Status.OK).entity(temp).build();
+		}
+		return Response.status(Response.Status.BAD_REQUEST).entity("Account non trovato").build();
 	}
 }
