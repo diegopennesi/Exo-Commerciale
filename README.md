@@ -3,7 +3,14 @@
 - fate da li git bash
 - da li clonate la repository
 - Andate su eclispse
-- Importate progetto per progetto un progetto alla volta (so 3 moduli)
+- Importate progetto per progetto un progetto alla volta (so 3 moduli)ù
+***
+11/8 aprendo il progetto mi son trovato moduli con dipendenze differenti le une dalle altre e 140 conflitti.
+ho resettato i progetti specificando java 1.8 E andando ad usare gli import di WILDFLY17 per quanto riguarda 
+- javax 
+- ebj 
+- jarxrs 
+se vi dovesse dare errore (perche sono sul path del mio server in c:\blabla fate fix project setup e fategli caricare da wildfly17 le cose)
 ***
 modifiche su account\utente, account è anagrafica utente ha i dati di log-in
 ***
