@@ -77,12 +77,6 @@ public class Alimentari implements Serializable {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public int getQuantità() {
-		return quantita;
-	}
-	public void setQuantità(int quantita) {
-		this.quantita = quantita;
-	}
 	public String getNome() {
 		return nome;
 	}

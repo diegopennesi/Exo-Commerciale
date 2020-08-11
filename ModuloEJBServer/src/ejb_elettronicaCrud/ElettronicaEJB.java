@@ -37,7 +37,7 @@ public class ElettronicaEJB implements Ielettronica{
 		EntityManager entitymanager=x.apriconnessione();
 		Elettronica temp=entitymanager.find(Elettronica.class, el.getId());
 		temp.setNome(el.getNome());
-		temp.setDestrizione(el.getDestrizione());
+		temp.setDescrizione(el.getDescrizione());
 		temp.setPrezzo(el.getPrezzo());
 		temp.setQuantita(el.getQuantita());
 		temp.setReparti(el.getReparti());

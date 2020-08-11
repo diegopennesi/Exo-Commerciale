@@ -1,5 +1,6 @@
 package ejb_accountcrud;
 
+
 import javax.ejb.Local;
 
 import model.Account;
