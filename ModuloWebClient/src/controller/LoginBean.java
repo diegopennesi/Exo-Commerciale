@@ -69,10 +69,8 @@ public class LoginBean implements Serializable{
 			conn.disconnect();
 
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (account==null) {
