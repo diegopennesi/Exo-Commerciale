@@ -31,7 +31,8 @@ public class LoginBean implements Serializable{
 	private static final long serialVersionUID = 6146784484686975074L;
 
 	@EJB
-	private IAccountCrud accountServ;
+	IAccountCrud accountServ;
+	
 
 	private Account account = new Account();
 
@@ -68,10 +69,8 @@ public class LoginBean implements Serializable{
 			conn.disconnect();
 
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (account==null) {
