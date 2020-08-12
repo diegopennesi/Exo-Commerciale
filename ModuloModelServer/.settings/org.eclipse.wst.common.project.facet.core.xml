@@ -3,12 +3,8 @@
   <runtime name="WildFly 17.0 Runtime"/>
   <installed facet="java" version="1.8"/>
   <installed facet="jst.utility" version="1.0"/>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
   <installed facet="jpt.jpa" version="2.2"/>
-=======
-  <installed facet="jpt.jpa" version="2.1"/>
->>>>>>> 87ec9e2953f5b50f7acd86e6771317d4dd799ef8
->>>>>>> 7e5955a8047ff71c4f150fc89a8cc71a10de6fba
+
+
 </faceted-project>
