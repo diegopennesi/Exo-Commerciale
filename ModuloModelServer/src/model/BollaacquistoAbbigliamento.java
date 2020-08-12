@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -44,7 +45,7 @@ public class BollaacquistoAbbigliamento implements Serializable {
 	private double prUnitario;
 	
 	@OneToOne
-	@MapsId
+	@JoinColumn(name="id_abbigliamento")
 	private Abbigliamento abbigliamento;
 	////////////////////////////////////
 	public BollaacquistoAbbigliamento(String nomeFV,long codiceAcquisto,String dataAcquisto,String stock,double prTotale,double prUnitario,

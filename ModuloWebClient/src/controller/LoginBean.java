@@ -31,7 +31,8 @@ public class LoginBean implements Serializable{
 	private static final long serialVersionUID = 6146784484686975074L;
 
 	@EJB
-	private IAccountCrud accountServ;
+	IAccountCrud accountServ;
+	
 
 	private Account account = new Account();
 

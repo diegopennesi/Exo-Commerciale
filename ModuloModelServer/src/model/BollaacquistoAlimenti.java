@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,7 +42,7 @@ public class BollaacquistoAlimenti implements Serializable{
 	@Column(name="prezzo_unitario")
 	private double prUnitario;
 	@OneToOne
-	@MapsId
+	@JoinColumn(name="id_alimentari")
 	private Alimentari alimenti;
 	
 	

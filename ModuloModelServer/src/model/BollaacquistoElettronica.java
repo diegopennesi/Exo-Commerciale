@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -42,7 +43,7 @@ public class BollaacquistoElettronica implements Serializable {
 	private double prUnitario;
 	
 	@OneToOne
-	@MapsId
+	@JoinColumn(name="id_elettronica")
 	private Elettronica elettronica;
 	////////////////////////////////
 	public BollaacquistoElettronica() {}

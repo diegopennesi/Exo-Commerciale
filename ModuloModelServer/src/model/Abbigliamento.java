@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,16 +35,16 @@ public class Abbigliamento implements Serializable{
 	private String descrizione;
 	@Column (name="quantita")
 	private int quantita;
-	@Column (name="disponibilità")
+	@Column (name="disponibilita")
 	private boolean disponibilita;
 	@Column(name="prezzo",unique=true, nullable=false)
 	private double prezzo;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_reparto")
 	private Reparti reparti;
 	@OneToOne(mappedBy="abbigliamento")
 	private BollaacquistoAbbigliamento bollaAcquisto;
-	/////////////////////////////////////////////////
+	
 	
 	public int getId() {
 		return id;
@@ -140,8 +141,8 @@ public class Abbigliamento implements Serializable{
 	@Override
 	public String toString() {
 		return "Abbigliamento [id=" + id + ", nome=" + nome + ", taglia=" + taglia + ", colore=" + colore
-				+ ", descrizione=" + descrizione + ", quantità=" + quantita + ", prezzo=" + prezzo + ", reparti="
-				+ reparti + ", bollaAcquisto=" + bollaAcquisto + "]";
+				+ ", descrizione=" + descrizione + ", quantitï¿½=" + quantita + ", prezzo=" + prezzo + ", reparti="
+				+ reparti + ", bollaAcquisto=" + "]";
 	}
 
 	@Override
