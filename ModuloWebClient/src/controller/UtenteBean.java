@@ -1,9 +1,13 @@
 package controller;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import ejb_accountcrud.IAccountCrud;
+import ejb_utenteCrud.Iutenti;
 import ejb_utenteCrud.UtentiEJB;
+import model.Account;
 import model.Utente;
 
 @SuppressWarnings("deprecation")
@@ -13,17 +17,17 @@ public class UtenteBean {
 	
     private Utente ut = new Utente();
     
-    private UtentiEJB utj = new UtentiEJB();
+    private Account ac = new Account();
     
     
+    @EJB
+    private IAccountCrud accCr;
+    
+    @EJB
+    private Iutenti userCr;
+    
 
-	public UtentiEJB getUtj() {
-		return utj;
-	}
-
-	public void setUtj(UtentiEJB utj) {
-		this.utj = utj;
-	}
+	
 
 	public Utente getUt() {
 		return ut;
@@ -33,11 +37,12 @@ public class UtenteBean {
 		this.ut = ut;
 	}
 	
-	public String registrazione(Utente ut) {
+	public String registrazione(Utente ut,Account ac) {
 		
-		if(ut != null) {
+		if(ut != null&&ac!=null) {
 		
-		utj.inserisciutente(ut);
+		userCr.inserisciutente(ut);
+		accCr.inserisciAccount(ac);
 		
 		return "login"; //login.xhtml
 		
@@ -51,7 +56,7 @@ public class UtenteBean {
 	
 	public String deleteUtente(Utente ut) {
 		
-		utj.cancellautente(ut);
+		userCr.cancellautente(ut);
 		
 		return "cancella";//utente-modifica
 		
@@ -62,7 +67,7 @@ public class UtenteBean {
 	public String modificaUt(Utente ut) {
 		
 		
-		utj.modificautente(ut);
+		userCr.modificautente(ut);
 		
 		return "login"; //login.xhtml
 		
@@ -71,7 +76,7 @@ public class UtenteBean {
 	
 	public String findUtenteForName(Utente ut) {
 		
-		utj.cercautenteperNome(ut);
+		userCr.cercautenteperNome(ut);
 		
 		return "boooooh"; //non ne ho idea!
 		
@@ -79,9 +84,17 @@ public class UtenteBean {
 	
 	public String findUtenteForId(Utente ut) {
 		
-		utj.cercautenteperid(ut);
+		userCr.cercautenteperid(ut);
 		
 		return "i have not idea"; //!!!!!!
+	}
+
+	public Account getAc() {
+		return ac;
+	}
+
+	public void setAc(Account ac) {
+		this.ac = ac;
 	}
       
       

@@ -62,14 +62,14 @@ background-size: cover; /* Resize the background image to cover the entire conta
 <br></br>
 <div>
 <span class="ui-float-label">
-<p:inputText style="border-color:orange;width:300px" id="username" value="#{utentebean.ut.username}"/>
+<p:inputText style="border-color:orange;width:300px" id="username" value="#{utentebean.ac.username}"/>
 <p:outputLabel for="@previous" value="username"/>
 </span>
 </div>
 <br></br>
 <div>
 <span class="ui-float-label">
-<p:password style="border-color:orange;width:300px" id="password" value="#{utentebean.ut.password}"/>
+<p:password style="border-color:orange;width:300px" id="password" value="#{utentebean.ac.password}"/>
 <p:outputLabel for="@previous" value="password"/>
 </span>
 </div>
@@ -85,7 +85,7 @@ background-size: cover; /* Resize the background image to cover the entire conta
 
 
 <div class="ui-darkness">
-<p:commandButton style="font-size:20px;margin-top:40px;background-color:purple;margin-left:15%" value="registra" action="#{utentebean.inserimentoUtente}" />
+<p:commandButton style="font-size:20px;margin-top:40px;background-color:purple;margin-left:15%" value="registra" action="#{utentebean.registrazione(utentebean.ut,utentebean.ac)}" />
 </div>
 
 <br/>

@@ -6,12 +6,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import ejb_connessioni.Iconnessioni;
 import model.Account;
+import model.Utente;
 
 @Stateless
 public class AccountEJB implements IAccountCrud {
 
 	@EJB
 	Iconnessioni x;
+	
+	@Override
+	public boolean inserisciAccount(Account account) {
+		EntityManager entitymanager=x.apriconnessione();
+		try{
+			entitymanager.persist(account);
+		}catch (Exception e) {
+			return false;
+		}
+		x.chiudiconnessione(entitymanager);	
+		return true;
+	}
 	
 	@Override
 	public Account getAccount(String username,String password) {

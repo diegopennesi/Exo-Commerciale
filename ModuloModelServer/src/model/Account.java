@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -24,7 +25,7 @@ public class Account implements Serializable {
 
 	private static final long serialVersionUID = -2966574268362210835L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="username", unique=true)
 	private String username;
@@ -34,8 +35,7 @@ public class Account implements Serializable {
 	private int id_ruolo;
 	@Column(name="portafoglio")
 	private double portafoglio;
-	@OneToOne
-	@MapsId
+	@OneToOne(mappedBy="account")
 	private Utente utente;
 	@OneToMany(mappedBy="account")
 	private List<Fattura> listaFattura =new ArrayList<Fattura>();

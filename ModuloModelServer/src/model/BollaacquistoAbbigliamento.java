@@ -25,7 +25,7 @@ public class BollaacquistoAbbigliamento implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="nome_fornitore/venditore")
+	@Column(name="nome_fornitore_venditore")
 	private String nomeFV;
 	
 	@Column(name="codice_acquisto", unique=true,nullable=false)

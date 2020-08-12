@@ -6,18 +6,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="utente")
+@Table(name="utenti")
 public class Utente implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6620070774300772375L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column (name = "nome")
 	private String nome;
@@ -25,7 +27,8 @@ public class Utente implements Serializable {
 	private String cognome;
 	@Column (name = "indirizzo")
 	private String indirizzo;
-	@OneToOne(mappedBy="utente")
+	@OneToOne
+	@JoinColumn(name="id_account",nullable=false)
 	private Account account;
    
 	////////////////////////////////////

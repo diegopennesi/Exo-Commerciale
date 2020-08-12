@@ -24,7 +24,7 @@ public class Reparti implements Serializable {
 	 */
 	private static final long serialVersionUID = -6277868469105084715L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="id")
 	private int id;
 	@Column (name="reparto")
@@ -39,7 +39,7 @@ public class Reparti implements Serializable {
 	@JoinTable(name="fattura_reparti",
 			joinColumns=@JoinColumn(name="id_fattura"),
 			inverseJoinColumns=@JoinColumn(name="id_reparto"))
-			private List<Fattura> listaReparti = new ArrayList<Fattura>();
+			private List<Fattura> listaFatture = new ArrayList<Fattura>();
 	/////////////////////////////////////////////////////////////////////////
 
 	public Reparti() {}

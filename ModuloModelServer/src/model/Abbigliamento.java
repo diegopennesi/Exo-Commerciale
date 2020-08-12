@@ -21,7 +21,7 @@ public class Abbigliamento implements Serializable{
 	 */
 	private static final long serialVersionUID = 6587541972395128627L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="id")
 	private int id;
 	@Column (name="nome")
