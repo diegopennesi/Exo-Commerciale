@@ -37,12 +37,13 @@ public class UtenteBean {
 		this.ut = ut;
 	}
 	
-	public String registrazione(Utente ut,Account ac) {
+	public String registrazione(Account ac,Utente ut) {
 		
 		if(ut != null&&ac!=null) {
-		
-		userCr.inserisciutente(ut);
 		accCr.inserisciAccount(ac);
+		ut.setAccount(ac);
+		userCr.inserisciutente(ut);
+		
 		
 		return "login"; //login.xhtml
 		
