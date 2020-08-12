@@ -9,14 +9,14 @@ import model.Alimentari;
 public class Log {
 	
 	public void loggerlogin(Account a) {
-		Logger logger = Logger.getLogger("MyLog");  
+		Logger logger = Logger.getLogger("logLogIn");  
 		FileHandler fh;
 		try {
 			fh = new FileHandler("C:\\Users\\Diego\\eclipse-workspace\\Exo-Commerciale\\ModuloModelServer\\LOG",true);
 			logger.addHandler(fh);
 			SimpleFormatter formatter = new SimpleFormatter();  
 			fh.setFormatter(formatter);
-			logger.info(a.getUsername() + "si è loggato");	
+			logger.info(a.getUsername() + "ha effettuato log in");	
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -24,14 +24,14 @@ public class Log {
 		}
 	}
 	public void loggerlogOff(Account a) {
-		Logger logger = Logger.getLogger("MyLog");  
+		Logger logger = Logger.getLogger("logLogIn");  
 		FileHandler fh;
 		try {
 			fh = new FileHandler("C:\\Users\\Diego\\eclipse-workspace\\Exo-Commerciale\\ModuloModelServer\\LOG",true);
 			logger.addHandler(fh);
 			SimpleFormatter formatter = new SimpleFormatter();  
 			fh.setFormatter(formatter);
-			logger.info(a.getUsername() + "si è Sloggato");	
+			logger.info(a.getUsername() + "ha effettuato log off");	
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

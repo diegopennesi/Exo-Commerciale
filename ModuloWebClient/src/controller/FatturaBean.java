@@ -4,6 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import ejb_fatturaCrud.FatturaEJB;
+import model.Account;
 import model.Fattura;
 
 @SuppressWarnings("deprecation")
@@ -48,9 +49,9 @@ public class FatturaBean {
 		return "";
 	}
 	
-	public String cercafatturaperIdUtente(Fattura fattura) {
+	public String cercafatturaperIdUtente(Account a) {
 		
-		fj.cercafatturaperIdUtente(fattura);
+		fj.cercafatturaperIdUtente(a);
 		
 		return "";
 	}

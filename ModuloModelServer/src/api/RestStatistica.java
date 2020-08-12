@@ -57,7 +57,7 @@ public class RestStatistica {
 		return Response.status(Response.Status.OK).entity(lista).build();
 	}
 	@GET
-	@Path("/acquistiAbbigliamento")
+	@Path("/acquistiElettronica")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getacquistiElettronica() {
 		ArrayList<BollaacquistoElettronica>lista=x.prendiListaBolleElettronica();
@@ -100,12 +100,12 @@ public class RestStatistica {
 		return Response.status(Response.Status.OK).entity(fatturatonetto).build();
 	}
 	@GET
-	@Path("/fatturatoAbbigliamento")
+	@Path("/fatturatoElettronica")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getfatturatoElettronica() {
 		ArrayList<BollaacquistoElettronica> lista=x.prendiListaBolleElettronica();
 		double costo=00.00;
-		double lordo=00.00;
+		double lordo=00.00;	
 		for (Object o:lista) {
 			costo=costo+((BollaacquistoElettronica)o).getPrTotale();
 		}

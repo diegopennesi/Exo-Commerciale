@@ -14,8 +14,20 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry exported="true" kind="src" path="/ModuloModelServerNuovo"/>
-	<classpathentry exported="true" kind="src" path="/ModuloEJBServerNuovo"/>
-	<classpathentry kind="lib" path="D:/JAR/primefaces-8.0.jar"/>
+	<classpathentry exported="true" kind="src" path="/ModuloModelServerNuovo">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/JAR/primefaces-8.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/ModuloEJBServerNuovo">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -1,6 +1,7 @@
 package api;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import model.Abbigliamento;
 import model.Account;
 import model.Alimentari;
 import model.Elettronica;
+import model.Fattura;
 import utility.FatturaBuilder;
 import utility.Log;
 
@@ -38,14 +40,6 @@ public class ResrCliente {
 	@EJB
 	IAccountCrud ac;
 
-//	@GET
-//	@Path("/listareparti")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response listareparti() {
-//		Reparti reparti=ejb.getlistareparti
-//		//return Response.status(Response.Status.OK).entity(reparti).build() ;	
-//		return null;
-//	}
 	@GET
 	@Path("/listareparti/abbigliamento")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -191,8 +185,19 @@ public class ResrCliente {
 	public Response login(Account a) {
 		Account temp=ac.getAccount(a.getUsername(), a.getPassword());
 		if (temp.getUsername().equals(a.getUsername()) && temp.getPassword().equals(a.getPassword())) {
+			Log log = new Log();
+			log.loggerlogin(a);
 			return Response.status(Response.Status.OK).entity(temp).build();
 		}
 		return Response.status(Response.Status.BAD_REQUEST).entity("Account non trovato").build();
 	}
+	@GET
+	@Path("/tuttiacquistiutente")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response tuttiacquistiutente(Account a) {
+		List<Fattura> lista=fa.cercafatturaperIdUtente(a);
+		Collections.reverse(lista);
+		return Response.status(Response.Status.OK).entity(lista).build();
+	}
+	
 }
