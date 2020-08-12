@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,16 +35,16 @@ public class Abbigliamento implements Serializable{
 	private String descrizione;
 	@Column (name="quantita")
 	private int quantita;
-	@Column (name="disponibilità")
+	@Column (name="disponibilita")
 	private boolean disponibilita;
 	@Column(name="prezzo",unique=true, nullable=false)
 	private double prezzo;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_reparto")
 	private Reparti reparti;
-	@OneToOne(mappedBy="abbigliamento")
-	private BollaacquistoAbbigliamento bollaAcquisto;
-	/////////////////////////////////////////////////
+//	@OneToOne(mappedBy="abbigliamento")
+//	private BollaacquistoAbbigliamento bollaAcquisto;
+	
 	
 	public int getId() {
 		return id;
@@ -61,7 +62,7 @@ public class Abbigliamento implements Serializable{
 		this.quantita = quantita;
 		this.prezzo=prezzo;
 		this.reparti=reparti;
-		this.bollaAcquisto=bollaAcquisto;
+//		this.bollaAcquisto=bollaAcquisto;
 	}
 	public Abbigliamento(String nome, String taglia, String colore, String descrizione, int quantita,boolean disponibilita,double prezzo) {
 		super();
@@ -89,11 +90,11 @@ public class Abbigliamento implements Serializable{
 	public void setReparti(Reparti reparti) {
 		this.reparti = reparti;
 	}
-	public BollaacquistoAbbigliamento getBollaAcquisto() {
-		return bollaAcquisto;
-	}
+//	public BollaacquistoAbbigliamento getBollaAcquisto() {
+//		return bollaAcquisto;
+//	}
 	public void setBollaAcquisto(BollaacquistoAbbigliamento bollaAcquisto) {
-		this.bollaAcquisto = bollaAcquisto;
+//		this.bollaAcquisto = bollaAcquisto;
 	}
 	public String getTaglia() {
 		return taglia;
@@ -140,15 +141,15 @@ public class Abbigliamento implements Serializable{
 	@Override
 	public String toString() {
 		return "Abbigliamento [id=" + id + ", nome=" + nome + ", taglia=" + taglia + ", colore=" + colore
-				+ ", descrizione=" + descrizione + ", quantità=" + quantita + ", prezzo=" + prezzo + ", reparti="
-				+ reparti + ", bollaAcquisto=" + bollaAcquisto + "]";
+				+ ", descrizione=" + descrizione + ", quantitï¿½=" + quantita + ", prezzo=" + prezzo + ", reparti="
+				+ reparti + ", bollaAcquisto=" + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bollaAcquisto == null) ? 0 : bollaAcquisto.hashCode());
+//		result = prime * result + ((bollaAcquisto == null) ? 0 : bollaAcquisto.hashCode());
 		result = prime * result + ((colore == null) ? 0 : colore.hashCode());
 		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
 		result = prime * result + id;
@@ -171,11 +172,11 @@ public class Abbigliamento implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Abbigliamento other = (Abbigliamento) obj;
-		if (bollaAcquisto == null) {
-			if (other.bollaAcquisto != null)
-				return false;
-		} else if (!bollaAcquisto.equals(other.bollaAcquisto))
-			return false;
+//		if (bollaAcquisto == null) {
+//			if (other.bollaAcquisto != null)
+//				return false;
+//		} else if (!bollaAcquisto.equals(other.bollaAcquisto))
+//			return false;
 		if (colore == null) {
 			if (other.colore != null)
 				return false;
