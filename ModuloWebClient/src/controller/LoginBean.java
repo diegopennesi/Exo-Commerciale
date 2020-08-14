@@ -66,8 +66,13 @@ public class LoginBean implements Serializable{
 						+conn.getResponseCode());
 			}
 			BufferedReader br= new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String output;
+			while ((output=br.readLine())!=null) {
+				System.out.println(output);
+			}
 			conn.disconnect();
 
+			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}	catch (IOException e) {
@@ -79,7 +84,7 @@ public class LoginBean implements Serializable{
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,"Account non trovato!","Errore Login"));
 			return "/registrazione";
 		}else {
-			return "/account-acquisti";
+			return "/account";
 		}
 
 	}

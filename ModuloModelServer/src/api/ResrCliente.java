@@ -10,6 +10,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,11 +20,13 @@ import ejb_accountcrud.IAccountCrud;
 import ejb_alimentariCrud.Ialimentari;
 import ejb_elettronicaCrud.Ielettronica;
 import ejb_fatturaCrud.Ifattura;
+import ejb_utenteCrud.Iutenti;
 import model.Abbigliamento;
 import model.Account;
 import model.Alimentari;
 import model.Elettronica;
 import model.Fattura;
+import model.Utente;
 import utility.FatturaBuilder;
 import utility.Log;
 
@@ -39,7 +42,22 @@ public class ResrCliente {
 	Ifattura fa;
 	@EJB
 	IAccountCrud ac;
-
+	@EJB
+	Iutenti ut;
+	
+	@GET
+	@Path("/inserisciutente")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response creaUtente(Utente user, Account a) {
+		user = new Utente();
+		a = new Account();
+		ac.inserisciAccount(a);
+		user.setAccount(a);
+		ut.inserisciutente(user);
+		return Response.status(Response.Status.OK).entity(a).entity(user).build() ;
+		
+	}
+	
 	@GET
 	@Path("/listareparti/abbigliamento")
 	@Produces(MediaType.APPLICATION_JSON)

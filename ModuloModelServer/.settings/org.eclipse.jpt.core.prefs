@@ -1,14 +1,6 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=87ec9e2953f5b50f7acd86e6771317d4dd799ef8
+>>>>>>>=7e5955a8047ff71c4f150fc89a8cc71a10de6fba
 eclipse.preferences.version=1
-<<<<<<< HEAD
 org.eclipse.jpt.core.platform=generic2_2
-=======
-<<<<<<< HEAD
-org.eclipse.jpt.core.platform=generic2_2
-=======
-org.eclipse.jpt.core.platform=generic2_1
->>>>>>> 87ec9e2953f5b50f7acd86e6771317d4dd799ef8
->>>>>>> 7e5955a8047ff71c4f150fc89a8cc71a10de6fba
 org.eclipse.jpt.jpa.core.discoverAnnotatedClasses=false

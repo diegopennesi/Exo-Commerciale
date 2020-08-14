@@ -32,25 +32,26 @@ public class AccountEJB implements IAccountCrud {
 		try {
 			
 		Account account= (Account)  entityManager.createQuery("select a from Account a where a.username=:username and a.password=:password",Account.class)
-				.setParameter("username", username).setParameter("password", password);
+				.setParameter("username", username).setParameter("password", password).getSingleResult();
 		return account;
 		}catch (NoResultException e) {
 			return null;
 		}
 	}
 	
+	@Override
 	public Account getAccountById(int id) {
 		EntityManager entityManager = x.apriconnessione();
 		Account account=entityManager.find(Account.class, id);
 		return account;
 	}
-
+	@Override
 	public void updateAccount(Account account) {
 		EntityManager entityManager=x.apriconnessione();
 		entityManager.merge(account);
 		x.chiudiconnessione(entityManager);
 	}
-	
+	@Override
 	public void deleteAccount(int id) {
 		EntityManager entityManager = x.apriconnessione();
 		Account account= entityManager.find(Account.class, id);

@@ -1,5 +1,12 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -40,19 +47,42 @@ public class UtenteBean {
 	public String registrazione(Account ac,Utente ut) {
 		
 		if(ut != null&&ac!=null) {
-		accCr.inserisciAccount(ac);
-		ut.setAccount(ac);
-		userCr.inserisciutente(ut);
-		
-		
-		return "login"; //login.xhtml
-		
-		}else {
+			String percorso="http://localhost:8080/progettoestateserver/rest/cliente/inserisciutente";
+			URL url;
+			try {
+				url = new URL(percorso);
+			
+			HttpURLConnection conn;
+				conn = (HttpURLConnection) url.openConnection();
+			
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Accept", "application/json");
+			if(conn.getResponseCode()!=200) {
+				throw new RuntimeException("Failed: Codice di errore HTTP:"+
+						+conn.getResponseCode());
+			}
+			BufferedReader br= new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String output;
+			while ((output=br.readLine())!=null) {
+				System.out.println(output);
+			}
+			conn.disconnect();
+			return "login";
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return "error"; //login.xhtml
+		}	else {
 		
 		return "error"; //error.xhtml
+			}
 		
-		}
 	}
+		
 	
 	
 	public String deleteUtente(Utente ut) {
