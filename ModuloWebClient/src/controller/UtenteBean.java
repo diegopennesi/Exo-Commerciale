@@ -55,7 +55,7 @@ public class UtenteBean {
 			HttpURLConnection conn;
 				conn = (HttpURLConnection) url.openConnection();
 			
-			conn.setRequestMethod("POST");
+			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
 			if(conn.getResponseCode()!=200) {
 				throw new RuntimeException("Failed: Codice di errore HTTP:"+

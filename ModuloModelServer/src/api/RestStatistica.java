@@ -59,7 +59,7 @@ public class RestStatistica {
 	@GET
 	@Path("/acquistiElettronica")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getacquistiElettronica() {
+	public Response getacquistiElettronica() { 
 		ArrayList<BollaacquistoElettronica>lista=x.prendiListaBolleElettronica();
 		Collections.reverse(lista);
 		return Response.status(Response.Status.OK).entity(lista).build();

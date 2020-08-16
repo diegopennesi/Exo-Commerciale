@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,10 +29,10 @@ public class Utente implements Serializable {
 	private String cognome;
 	@Column (name = "indirizzo")
 	private String indirizzo;
+	@JsonbTransient
 	@OneToOne
 	@JoinColumn(name="id_account",nullable=false)
 	private Account account;
-   
 	////////////////////////////////////
 	public int getId() {
 		return id;
@@ -62,4 +64,17 @@ public class Utente implements Serializable {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+	@Override
+	public String toString() {
+		return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", indirizzo=" + indirizzo
+				+ ", account=" + account + "]";
+	}
+	public Utente() {
+		
+	}
+	
+
+
+
+	
 }

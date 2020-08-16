@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class Account implements Serializable {
 	private int id_ruolo;
 	@Column(name="portafoglio")
 	private double portafoglio;
+	@JsonbTransient
 	@OneToOne(mappedBy="account")
 	private Utente utente;
 	@OneToMany(mappedBy="account")
@@ -84,4 +86,12 @@ public class Account implements Serializable {
 	public List<Fattura> getListFattura(){
 		return listaFattura;
 	}
+	@Override
+	public String toString() {
+		return "Account [username=" + username + ", password=" + password + ", id_ruolo=" + id_ruolo + ", portafoglio="
+				+ portafoglio + ", utente=" + utente + ", listaFattura=" + listaFattura + "]";
+	}
+	
+	
 }
+

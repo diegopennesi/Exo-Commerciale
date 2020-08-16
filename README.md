@@ -3,7 +3,12 @@
 - fate da li git bash
 - da li clonate la repository
 - Andate su eclispse
-- Importate progetto per progetto un progetto alla volta (so 3 moduli)ù
+- Importate progetto per progetto un progetto alla volta (so 3 moduli)
+***
+Utilizzo JNDI per la connessione
+Crezione del pattern DTO
+Test sulle rest necessario
+
 ***
 11/8 aprendo il progetto mi son trovato moduli con dipendenze differenti le une dalle altre e 140 conflitti.
 ho resettato i progetti specificando java 1.8 E andando ad usare gli import di WILDFLY17 per quanto riguarda 

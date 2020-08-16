@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,8 +21,10 @@ import javax.ws.rs.core.Response;
 import ejb_abbigliamentoCrud.Iabbigliamento;
 import ejb_accountcrud.IAccountCrud;
 import ejb_alimentariCrud.Ialimentari;
+import ejb_connessioni.Iconnessioni;
 import ejb_elettronicaCrud.Ielettronica;
 import ejb_fatturaCrud.Ifattura;
+import ejb_utenteCrud.IutenteDTO;
 import ejb_utenteCrud.Iutenti;
 import model.Abbigliamento;
 import model.Account;
@@ -27,6 +32,7 @@ import model.Alimentari;
 import model.Elettronica;
 import model.Fattura;
 import model.Utente;
+import modelDTO.UtenteDTO;
 import utility.FatturaBuilder;
 import utility.Log;
 
@@ -44,18 +50,41 @@ public class ResrCliente {
 	IAccountCrud ac;
 	@EJB
 	Iutenti ut;
+	@EJB
+	Iconnessioni x;
+	@EJB
+	IutenteDTO Idto;
 	
 	@GET
-	@Path("/inserisciutente")
+	@Path("/Inserisci/Account")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response creaUtente(Utente user, Account a) {
-		user = new Utente();
-		a = new Account();
-		ac.inserisciAccount(a);
-		user.setAccount(a);
-		ut.inserisciutente(user);
-		return Response.status(Response.Status.OK).entity(a).entity(user).build() ;
-		
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response inserisciProfilo(Account a) {
+	    ac.inserisciAccount(a);
+		return Response.status(Response.Status.OK).entity(a).build() ;
+	}
+	
+	
+	@PUT
+	@Path("/Inserisci/Utente")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response creaUtente(UtenteDTO utenteDTO) {
+		Utente utente= new Utente();
+		utente=Idto.DtoTOUtente(utenteDTO);
+		ut.inserisciutente(utente);
+		return Response.status(Response.Status.OK).build() ;
+	}
+
+
+	@GET
+	@Path("prendiutente/{id}")	
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response cercautente(@PathParam("id") int id) {
+			EntityManager entitymanager=x.apriconnessione();
+			Account temp=entitymanager.find(Account.class, id);
+		return Response.status(200).entity(temp).build() ;
 	}
 	
 	@GET

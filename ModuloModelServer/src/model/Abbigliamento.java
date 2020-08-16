@@ -16,11 +16,11 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table (name ="abbigliamento",uniqueConstraints=@UniqueConstraint(columnNames= {"prezzo"}))
-public class Abbigliamento implements Serializable{
+public class Abbigliamento {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6587541972395128627L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="id")
