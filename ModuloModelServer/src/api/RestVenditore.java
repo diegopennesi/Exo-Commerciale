@@ -12,13 +12,7 @@ import ejb_abbigliamentoCrud.Iabbigliamento;
 import ejb_alimentariCrud.Ialimentari;
 import ejb_elettronicaCrud.Ielettronica;
 import model.Abbigliamento;
-import model.Alimentari;
 import model.BollaacquistoAbbigliamento;
-import model.BollaacquistoAlimenti;
-import model.BollaacquistoElettronica;
-import model.Elettronica;
-import model.Reparti;
-import utility.BollaBuilder;
 import utility.Venditore;
 
 
@@ -32,6 +26,14 @@ public class RestVenditore {
 	Iabbigliamento ab;
 	@EJB
 	Ielettronica el;
+	
+	@GET
+	@Path("test")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void test() {
+		System.out.println("funziona");
+		
+	}
 	
 	@GET
 	@Path("/acqusita")

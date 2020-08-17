@@ -24,6 +24,13 @@ public class RestStatistica {
 	Ifattura f;
 	
 	@GET
+	@Path("test")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void test() {
+		System.out.println("funziona");
+		
+	}
+	@GET
 	@Path("/acquisti")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getallacquisti() {// :D non ricordo quale sia la corretta Lista LIFO ¯\_(ツ)_/¯
