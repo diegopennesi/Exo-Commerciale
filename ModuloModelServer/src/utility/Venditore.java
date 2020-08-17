@@ -27,6 +27,8 @@ public class Venditore {
 		mappa.put(1, ab);
 		mappa.put(2, el);
 		mappa.put(3, al);
+		//attenzione dobbiamo verificare i prezzi unitari e le quantità che siano corrette, ad esempio tutina blu sta
+		//a 15 al pezzo ma l'abbim pagato lo stock di 2 tutine 45: NOT STONK!
 		ab.add(new Abbigliamento("Cappello rosso","Unica","rosso","un semplice cappello rosso, resiste ai salti",5,true,15.50));
 		ab.add(new Abbigliamento("Maglia Verde","XL","Verde","Una maglia verde, adatta all'avventura",3,true,33.99));
 		ab.add(new Abbigliamento("Tuta blu","M","Blu","Una Salopette blu, per chi corre tra i palazzi e lancia limoni",2,true,45.00));

@@ -55,14 +55,14 @@ public class RestCliente {
 
 	}
 
-		@GET
-		@Path("/InserisciAccount")
-		@Produces(MediaType.APPLICATION_JSON)
-		@Consumes(MediaType.APPLICATION_JSON)
-		public Response inserisciProfilo(Account a) {
-		    ac.inserisciAccount(a);
-			return Response.status(Response.Status.OK).entity(a).build() ;
-		}
+	@GET
+	@Path("/InserisciAccount")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response inserisciProfilo(Account a) {
+		ac.inserisciAccount(a);
+		return Response.status(Response.Status.OK).entity(a).build() ;
+	}
 
 	@PUT
 	@Path("/InserisciUtente")
@@ -75,7 +75,7 @@ public class RestCliente {
 		return Response.status(Response.Status.OK).build() ;
 	}
 
-	
+
 	@GET
 	@Path("prendiutente/{id}")	
 	@Produces(MediaType.APPLICATION_JSON)

@@ -7,4 +7,5 @@ import model.Reparti;
 @Local
 public interface Ireparti {
 	public List<Reparti> prendiReparti();
+	public Reparti prendiRepartiperID(int id);
 }

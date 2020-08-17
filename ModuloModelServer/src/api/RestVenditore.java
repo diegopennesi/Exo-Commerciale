@@ -11,8 +11,15 @@ import javax.ws.rs.core.Response;
 import ejb_abbigliamentoCrud.Iabbigliamento;
 import ejb_alimentariCrud.Ialimentari;
 import ejb_elettronicaCrud.Ielettronica;
+import ejb_repartiCrud.Ireparti;
 import model.Abbigliamento;
+import model.Alimentari;
 import model.BollaacquistoAbbigliamento;
+import model.BollaacquistoAlimenti;
+import model.BollaacquistoElettronica;
+import model.Elettronica;
+import model.Reparti;
+import utility.BollaBuilder;
 import utility.Venditore;
 
 
@@ -26,6 +33,8 @@ public class RestVenditore {
 	Iabbigliamento ab;
 	@EJB
 	Ielettronica el;
+	@EJB
+	Ireparti rep;
 	
 	@GET
 	@Path("test")
@@ -34,7 +43,6 @@ public class RestVenditore {
 		System.out.println("funziona");
 		
 	}
-	
 	@GET
 	@Path("/acqusita")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -42,38 +50,43 @@ public class RestVenditore {
 	HashMap<Integer,ArrayList> mappa = Venditore.getIstance().getLista();
 	return Response.status(Response.Status.OK).entity(mappa).build() ;	
 	}
-
-	@POST
-	@Path("/concludiacqusito")
+	@GET
+	@Path("/concludiacquistoAbbigliamento")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String acquistaStock(Abbigliamento stock) {
-		//Entrerà un oggetto dello stock
-//		if(stock instanceof Alimentari) {
-//			BollaacquistoAlimenti boAa= new BollaacquistoAlimenti();
-//			BollaBuilder builder = new BollaBuilder();
-//			boAa=builder.BollaAli_Builder(boAa, stock, "fornitore");
-//			al.inseriscibolla(boAa);
-//			((Alimentari) stock).setBollaAcquisto(boAa);
-//			al.inseriscialimento((Alimentari)stock);
-//		}
-//		else if(stock instanceof Abbigliamento){
-			BollaacquistoAbbigliamento boAb= new BollaacquistoAbbigliamento();
-	//			BollaBuilder builder = new BollaBuilder();
-	//			boAb=builder.BollaAbb_Builder(boAb, stock, "fornitore");
-	//			ab.inseriscibolla(boAb);
-	//			((Abbigliamento) stock).setBollaAcquisto(boAb);
-			ab.inserisciabbigliamento(stock);
-			
-//		}
-//		else if(stock instanceof Elettronica) {
-//			BollaacquistoElettronica boAe= new BollaacquistoElettronica();
-//			BollaBuilder builder = new BollaBuilder();
-//			boAe=builder.BollaEle_Builder(boAe, stock, "fornitore");
-//			el.inseriscibolla(boAe);
-//			((Elettronica) stock).setBollaAcquisto(boAe);
-//			el.inseriscielettronica((Elettronica) stock);
-//		}
-		return null;	
+	public Response acquistaStock(Abbigliamento stock) {
+		stock.setReparti(rep.prendiRepartiperID(1));
+		ab.inserisciabbigliamento(stock);
+		BollaacquistoAbbigliamento boAb= new BollaacquistoAbbigliamento();
+		BollaBuilder builder = new BollaBuilder();
+		boAb=builder.BollaAbb_Builder(boAb, stock, "M.A.S.");
+		ab.inseriscibolla(boAb);
+		return Response.status(Response.Status.OK).build() ;
+	}
+	@GET
+	@Path("/concludiacquistoAlimentari")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response acquistaStock(Alimentari stock) {
+		stock.setReparti(rep.prendiRepartiperID(2));
+		al.inseriscialimento(stock);
+		BollaacquistoAlimenti boAA= new BollaacquistoAlimenti();
+		BollaBuilder builder = new BollaBuilder();
+		boAA=builder.BollaAli_Builder(boAA, stock, "GRos");
+		al.inseriscibolla(boAA);
+		return Response.status(Response.Status.OK).build() ;
+	}
+	@GET
+	@Path("/concludiacquistoElettronica")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response acquistaStock(Elettronica stock) {
+		stock.setReparti(rep.prendiRepartiperID(3));
+		el.inseriscielettronica(stock);
+		BollaacquistoElettronica boEl= new BollaacquistoElettronica();
+		BollaBuilder builder = new BollaBuilder();
+		boEl=builder.BollaEle_Builder(boEl, stock, "GRos");
+		el.inseriscibolla(boEl);
+		return Response.status(Response.Status.OK).build() ;
 	}
 }

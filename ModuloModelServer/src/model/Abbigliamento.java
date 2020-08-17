@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table (name ="abbigliamento",uniqueConstraints=@UniqueConstraint(columnNames= {"prezzo"}))
+@Table (name ="abbigliamento")
 public class Abbigliamento {
 	/**
 	 * 
@@ -37,7 +37,7 @@ public class Abbigliamento {
 	private int quantita;
 	@Column (name="disponibilita")
 	private boolean disponibilita;
-	@Column(name="prezzo",unique=true, nullable=false)
+	@Column(name="prezzo", nullable=false)
 	private double prezzo;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_reparto")
