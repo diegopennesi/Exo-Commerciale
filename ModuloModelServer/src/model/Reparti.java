@@ -35,14 +35,14 @@ public class Reparti implements Serializable {
 	private List<Elettronica> elettronica= new ArrayList<Elettronica>();
 	@OneToMany (mappedBy="reparti")
 	private List<Abbigliamento> abbigliamento= new ArrayList<Abbigliamento>();
-	@ManyToMany
-	@JoinTable(name="fattura_reparti",
-			joinColumns=@JoinColumn(name="id_fattura"),
-			inverseJoinColumns=@JoinColumn(name="id_reparto"))
-			private List<Fattura> listaFatture = new ArrayList<Fattura>();
+	@OneToMany (mappedBy="reparti")
+	private List<Fattura> fatture= new ArrayList<Fattura>();
 	/////////////////////////////////////////////////////////////////////////
 
 	public Reparti() {}
+	public Reparti(int id) {
+		this.id=id;
+	}
 	public Reparti(String reparto,List<Alimentari> alimentari,List<Elettronica>elettronica, List<Abbigliamento>abbigliamento) {
 		this.reparto=reparto;
 		this.alimentari=alimentari;
@@ -81,6 +81,18 @@ public class Reparti implements Serializable {
 	}
 	
 	
+	public List<Abbigliamento> getAbbigliamento() {
+		return abbigliamento;
+	}
+	public void setAbbigliamento(List<Abbigliamento> abbigliamento) {
+		this.abbigliamento = abbigliamento;
+	}
+	public List<Fattura> getFatture() {
+		return fatture;
+	}
+	public void setFatture(List<Fattura> fatture) {
+		this.fatture = fatture;
+	}
 	@Override
 	public String toString() {
 		return "Reparti [id=" + id + ", reparto=" + reparto + ", alimentari=" + alimentari + ", elettronica="

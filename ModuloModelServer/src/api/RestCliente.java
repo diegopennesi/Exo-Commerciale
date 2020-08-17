@@ -17,6 +17,7 @@ import ejb_alimentariCrud.Ialimentari;
 import ejb_connessioni.Iconnessioni;
 import ejb_elettronicaCrud.Ielettronica;
 import ejb_fatturaCrud.Ifattura;
+import ejb_repartiCrud.Ireparti;
 import ejb_utenteCrud.IutenteDTO;
 import ejb_utenteCrud.Iutenti;
 import model.Abbigliamento;
@@ -24,6 +25,7 @@ import model.Account;
 import model.Alimentari;
 import model.Elettronica;
 import model.Fattura;
+import model.Reparti;
 import model.Utente;
 import modelDTO.UtenteDTO;
 import utility.FatturaBuilder;
@@ -45,6 +47,8 @@ public class RestCliente {
 	Iutenti ut;
 	@EJB
 	IutenteDTO Idto;
+	@EJB
+	Ireparti rp;
 
 
 	@GET
@@ -95,29 +99,58 @@ public class RestCliente {
 		temp=ac.getAccountById(id);
 		return Response.status(200).entity(temp).build() ;
 	}
-	//	
-	//	@GET
-	//	@Path("/listareparti/abbigliamento")
-	//	@Produces(MediaType.APPLICATION_JSON)
-	//	public Response getabbigliamento() {
-	//		List<Abbigliamento> lista=ab.prendiLista();
-	//		return Response.status(Response.Status.OK).entity(lista).build() ;	
-	//	}
-	//	@GET
-	//	@Path("/listareparti/alimentari")
-	//	@Produces(MediaType.APPLICATION_JSON)
-	//	public Response alimentari() {
-	//		List<Alimentari> lista=al.prendiLista();
-	//		return Response.status(Response.Status.OK).entity(lista).build() ;	
-	//	}
-	//	@GET
-	//	@Path("/listareparti/elettronica")
-	//	@Produces(MediaType.APPLICATION_JSON)
-	//	public Response elettronica() {
-	//		List<Elettronica> lista=el.prendilista();
-	//		return Response.status(Response.Status.OK).entity(lista).build() ;		
-	//	}
-	//	
+		
+		@GET
+		@Path("/listareparti/abbigliamento")
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response getabbigliamento() {
+			 List<Abbigliamento> lista = new ArrayList<Abbigliamento>();
+			  lista= ab.prendiLista();	
+		return Response.status(Response.Status.OK).entity(lista).build() ;	
+		}
+		@GET
+		@Path("/listareparti/alimentari")
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response alimentari() {
+			List<Alimentari> lista = new ArrayList<Alimentari>();
+			lista=al.prendiLista();
+			return Response.status(Response.Status.OK).entity(lista).build() ;	
+		}
+		@GET
+		@Path("/listareparti/elettronica")
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response elettronica() {
+			List<Elettronica> lista = new ArrayList<Elettronica>();
+			lista=el.prendilista();
+			return Response.status(Response.Status.OK).entity(lista).build() ;		
+		}
+
+		@GET
+		@Path("/acqusitaAbbigliamento/{id}")
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response acquistaAlimentari(@PathParam("id") int id,List<Abbigliamento> lista) {
+			int id_scontrino =(int) (1l + (Math.random() * (100000000L - 1L)));
+			FatturaBuilder fat= new FatturaBuilder();
+			Account u= new Account();
+			u.setId(id);
+			Reparti reparto=rp.prendiRepartiperID(1);
+			for(Abbigliamento obj:lista) {
+				Fattura fattura=fat.fatturaBuilderAbbigliamento(u, obj, id_scontrino, 22,reparto);
+				fa.inseriscifattura(fattura);				
+			}
+			return Response.status(Response.Status.OK).entity(lista).build() ;	
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	//	@POST
 	//	@Path("/acqusita")
 	//	@Consumes(MediaType.APPLICATION_JSON)

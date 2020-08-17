@@ -13,15 +13,15 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="alimenti",uniqueConstraints=@UniqueConstraint(columnNames= {"prezzo"}))
+@Table(name="alimenti")
 public class Alimentari implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5901568129033252703L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column (name = "quantita")//????? come la gestiamo?
 	private int quantita;
@@ -33,7 +33,7 @@ public class Alimentari implements Serializable {
 	private String descrizione;
 	@Column (name = "disponibilita")
 	private boolean disponibilita;
-	@Column(name="prezzo",unique=true, nullable=false)
+	@Column(name="prezzo", nullable=false)
 	private double prezzo;
 	@ManyToOne
 	@JoinColumn(name="Id_reparto")

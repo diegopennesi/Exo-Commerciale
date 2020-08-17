@@ -22,8 +22,6 @@ public class RepartiEJB implements Ireparti{
 		List<Reparti> list= query.getResultList();
 		return list;
 	}
-
-
 	@Override
 	public Reparti prendiRepartiperID(int id) {
 		EntityManager entitymanager=x.apriconnessione();

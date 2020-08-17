@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import ejb_connessioni.Iconnessioni;
 import model.Account;
 import model.Fattura;
+import model.Reparti;
 
 @Stateless
 public class FatturaEJB implements Ifattura {
@@ -63,5 +64,11 @@ public class FatturaEJB implements Ifattura {
 		x.chiudiconnessione(entitymanager);
 		return lista;
 	}
+//	@Override
+//	public void inseriscifatturareparti(Fattura fa, Reparti rp) {
+//		EntityManager entitymanager=x.apriconnessione();
+//		 fa.getListaReparti().add(rp);
+//		
+//	}
 
 }

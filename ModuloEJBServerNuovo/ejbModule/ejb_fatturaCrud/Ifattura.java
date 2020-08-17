@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import model.Account;
 import model.Fattura;
+import model.Reparti;
 
 @Local
 public interface Ifattura {

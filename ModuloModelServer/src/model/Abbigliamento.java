@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +17,8 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table (name ="abbigliamento")
-public class Abbigliamento {
+public class Abbigliamento implements Serializable{
+	private static final long serialVersionUID = 3431653033814067506L;
 	/**
 	 * 
 	 */
@@ -39,9 +41,11 @@ public class Abbigliamento {
 	private boolean disponibilita;
 	@Column(name="prezzo", nullable=false)
 	private double prezzo;
+	@JsonbTransient
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_reparto")
 	private Reparti reparti;
+	@JsonbTransient
 	@OneToOne(mappedBy="abbigliamento")
 	private BollaacquistoAbbigliamento bollaAcquisto;
 	

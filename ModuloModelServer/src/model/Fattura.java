@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -16,17 +18,19 @@ import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name="fatture",uniqueConstraints=@UniqueConstraint(columnNames= {"id_scontrino"}))
+@Table(name="fatture")
 public class Fattura implements Serializable {
 
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -8681542817567967986L;
 	@Id
-	@Column(name="id_scontrino",unique=true,nullable=false)
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(name="id_scontrino",nullable=false)
 	private int id_scontrino;
 	@Column(name="descrizione")
 	private String descrizione;
@@ -39,23 +43,25 @@ public class Fattura implements Serializable {
 	private double prezzo;
 	@Column(name="iva")
 	private int iva;
-	@ManyToMany
-	@JoinTable(name="fattura_reparti",
-	joinColumns=@JoinColumn(name="id_reparto"),
-	inverseJoinColumns=@JoinColumn(name="id_fattura"))
-	private List<Reparti> listaReparti = new ArrayList<Reparti>();
+	@ManyToOne
+	@JoinColumn(name="Id_reparto")
+	private Reparti reparti;
 	
-	public Fattura() {}
-	public Fattura(int id_scontrino, String descrizione,int quantita,Account account, int iva, List<Reparti>listaReparti) {
-		this.id_scontrino=id_scontrino;
-		this.descrizione=descrizione;
-		this.quantita=quantita;
-		this.account=account;
-		this.iva=iva;
-		this.listaReparti=listaReparti;
+
+	 public Fattura() {
+		 
+	 }
+	public Fattura(int id_scontrino, String descrizione, int quantita, Account account, double prezzo, int iva,
+			Reparti reparti) {
+		super();
+		this.id_scontrino = id_scontrino;
+		this.descrizione = descrizione;
+		this.quantita = quantita;
+		this.account = account;
+		this.prezzo = prezzo;
+		this.iva = iva;
+		this.reparti = reparti;
 	}
-	
-	
 	public int getId_scontrino() {
 		return id_scontrino;
 	}
@@ -92,17 +98,23 @@ public class Fattura implements Serializable {
 	public void setIva(int iva) {
 		this.iva = iva;
 	}
-	public List<Reparti> getListaReparti() {
-		return listaReparti;
+	public int getId() {
+		return id;
 	}
-	public void setListaReparti(List<Reparti> listaReparti) {
-		this.listaReparti = listaReparti;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
+	public Reparti getReparti() {
+		return reparti;
+	}
+	public void setReparti(Reparti reparti) {
+		this.reparti = reparti;
+	}
 	@Override
 	public String toString() {
 		return "Fattura [id_scontrino=" + id_scontrino + ", descrizione=" + descrizione + ", quantita=" + quantita
-				+ ", account=" + account + ", prezzo=" + prezzo + ", iva=" + iva + ", listaReparti=" + listaReparti + "]";
+				+ ", account=" + account + ", prezzo=" + prezzo + ", iva=" + iva + ", listaReparti=" + reparti + "]";
 	}
 	
 

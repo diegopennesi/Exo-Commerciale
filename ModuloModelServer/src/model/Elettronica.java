@@ -31,7 +31,7 @@ public class Elettronica implements Serializable {
 	private String descrizione;
 	@Column (name = "quantita")
 	private int quantita;
-	@Column(name="prezzo",unique=true, nullable=false)
+	@Column(name="prezzo", nullable=false)
 	private double prezzo;
 	@ManyToOne
 	@JoinColumn(name="Id_reparto")
