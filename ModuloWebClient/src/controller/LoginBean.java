@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -16,8 +19,24 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import ejb_accountcrud.IAccountCrud;
 import model.Account;
+
+
+
+
+
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import org.apache.commons.io.IOUtils;
+
+
+
 
 
 @SuppressWarnings("deprecation")
@@ -49,45 +68,36 @@ public class LoginBean implements Serializable{
 
 
 
-	public String logIn() {
-		try {
-			FacesContext context = FacesContext.getCurrentInstance();
-			Account temp = accountServ.getAccount(account.getUsername(),account.getPassword());
-			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-			session.setAttribute("temp", temp);
-			
-			String percorso="http://localhost:8080/progettoestateserver/rest/cliente/login";
-			URL url = new URL(percorso);
-			HttpURLConnection conn=(HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Accept", "application/json");
-			if(conn.getResponseCode()!=200) {
-				throw new RuntimeException("Failed: Codice di errore HTTP:"+
-						+conn.getResponseCode());
-			}
-			BufferedReader br= new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			String output;
-			while ((output=br.readLine())!=null) {
-				System.out.println(output);
-			}
-			conn.disconnect();
+	public void logIn() throws IOException {
+		
+		
+		//URL url = new URL ("http://localhost:8080/ModuloWebClientNuovo/rest/clientela/InserisciAccount");
+//		HttpURLConnection con = (HttpURLConnection)url.openConnection();
+//		con.setRequestMethod("GET");
+//		con.setRequestProperty("Content-Type", "application/json; utf-8");
+//		con.setRequestProperty("Accept", "application/json");
+//		con.setDoOutput(true);
+//		HttpURLConnection http = (HttpURLConnection)con;
+//		Gson g = new Gson();
+//		Account account = new Account();
+//		String out=g.toJson(account, Account.class);
+	//	int length = out.length();
+//		http.setFixedLengthStreamingMode(length);
+//		http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+//		http.connect();
 
 			
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}	catch (IOException e) {
-			e.printStackTrace();
-		}
-		if (account==null) {
-			account=new Account();
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,"Account non trovato!","Errore Login"));
-			return "/registrazione";
-		}else {
-			return "/account";
-		}
+		
+		
+		
+	  
+
+	
+	
+			
+	
+
+         
 
 	}
-
-
 }

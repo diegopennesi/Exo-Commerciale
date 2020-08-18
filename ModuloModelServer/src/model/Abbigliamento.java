@@ -141,13 +141,16 @@ public class Abbigliamento implements Serializable{
 	public void setDisponibilita(boolean disponibilita) {
 		this.disponibilita = disponibilita;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "Abbigliamento [id=" + id + ", nome=" + nome + ", taglia=" + taglia + ", colore=" + colore
-				+ ", descrizione=" + descrizione + ", quantit�=" + quantita + ", prezzo=" + prezzo + ", reparti="
+				+ ", descrizione=" + descrizione + ", quantita=" + quantita + ", prezzo=" + prezzo + ", reparti="
 				+ reparti + ", bollaAcquisto=" + "]";
 	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -156,6 +159,7 @@ public class Abbigliamento implements Serializable{
 		result = prime * result + ((bollaAcquisto == null) ? 0 : bollaAcquisto.hashCode());
 		result = prime * result + ((colore == null) ? 0 : colore.hashCode());
 		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
+		result = prime * result + (disponibilita ? 1231 : 1237);
 		result = prime * result + id;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		long temp;
@@ -190,6 +194,8 @@ public class Abbigliamento implements Serializable{
 			if (other.descrizione != null)
 				return false;
 		} else if (!descrizione.equals(other.descrizione))
+			return false;
+		if (disponibilita != other.disponibilita)
 			return false;
 		if (id != other.id)
 			return false;

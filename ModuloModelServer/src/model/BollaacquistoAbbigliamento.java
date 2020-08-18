@@ -123,23 +123,23 @@ public class BollaacquistoAbbigliamento implements Serializable {
 		this.abbigliamento = abbigliamento;
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((abbigliamento == null) ? 0 : abbigliamento.hashCode());
-		result = prime * result + (int) (codiceAcquisto ^ (codiceAcquisto >>> 32));
-		result = prime * result + ((dataAcquisto == null) ? 0 : dataAcquisto.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((nomeFV == null) ? 0 : nomeFV.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(prTotale);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(prUnitario);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((stock == null) ? 0 : stock.hashCode());
-		return result;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((abbigliamento == null) ? 0 : abbigliamento.hashCode());
+//		result = prime * result + (int) (codiceAcquisto ^ (codiceAcquisto >>> 32));
+//		result = prime * result + ((dataAcquisto == null) ? 0 : dataAcquisto.hashCode());
+//		result = prime * result + id;
+//		result = prime * result + ((nomeFV == null) ? 0 : nomeFV.hashCode());
+//		long temp;
+//		temp = Double.doubleToLongBits(prTotale);
+//		result = prime * result + (int) (temp ^ (temp >>> 32));
+//		temp = Double.doubleToLongBits(prUnitario);
+//		result = prime * result + (int) (temp ^ (temp >>> 32));
+//		result = prime * result + ((stock == null) ? 0 : stock.hashCode());
+//		return result;
+//	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

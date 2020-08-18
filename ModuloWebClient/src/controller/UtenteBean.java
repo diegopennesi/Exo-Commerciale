@@ -1,19 +1,26 @@
 package controller;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
+
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
+
 import java.net.URL;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.commons.io.IOUtils;
+
+import com.google.gson.Gson;
+
 import ejb_accountcrud.IAccountCrud;
 import ejb_utenteCrud.Iutenti;
-import ejb_utenteCrud.UtentiEJB;
+
 import model.Account;
 import model.Utente;
 
@@ -44,44 +51,35 @@ public class UtenteBean {
 		this.ut = ut;
 	}
 	
-	public String registrazione(Account ac,Utente ut) {
+	public String registrazione(Account ac) throws IOException {
 		
-		if(ut != null&&ac!=null) {
-			String percorso="http://localhost:8080/progettoestateserver/rest/cliente/inserisciutente";
-			URL url;
-			try {
-				url = new URL(percorso);
-			
-			HttpURLConnection conn;
-				conn = (HttpURLConnection) url.openConnection();
-			
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", "application/json");
-			if(conn.getResponseCode()!=200) {
-				throw new RuntimeException("Failed: Codice di errore HTTP:"+
-						+conn.getResponseCode());
-			}
-			BufferedReader br= new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			String output;
-			while ((output=br.readLine())!=null) {
-				System.out.println(output);
-			}
-			conn.disconnect();
-			return "login";
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		return "error"; //login.xhtml
-		}	else {
-		
-		return "error"; //error.xhtml
-			}
-		
+		    String query_url = "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/InserisciAccount";
+		    Gson g = new Gson();
+		    String out=g.toJson(ac, Account.class); 
+		    URL url = new URL(query_url);
+		    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		    conn.setConnectTimeout(5000);
+		    conn.setRequestProperty("Content-Type", "application/json");
+		    conn.setDoOutput(true);
+		    conn.setDoInput(true);
+		    conn.setRequestMethod("PUT");
+		    OutputStream os = conn.getOutputStream();
+		    os.write(out.getBytes("UTF-8"));
+		    os.close();
+		    // read the response
+		    InputStream in = new BufferedInputStream(conn.getInputStream());
+		    String result = IOUtils.toString(in, "UTF-8");//da mettere in un oggetto! serve creare un parsing in model account 
+		    System.out.println(result);
+		    System.out.println("result after Reading JSON Response");
+		    Gson responseGson = new Gson();
+		    Account rispostaaccount=responseGson.fromJson(result, Account.class);
+		    in.close();
+		    conn.disconnect();
+		    return "login";
 	}
+				
+		
+	
 		
 	
 	

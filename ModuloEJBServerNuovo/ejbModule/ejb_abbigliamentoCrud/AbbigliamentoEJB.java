@@ -44,12 +44,15 @@ public class AbbigliamentoEJB implements Iabbigliamento {
 		temp.setColore(ab.getColore());
 		temp.setQuantita(ab.getQuantita());
 		temp.setReparti(ab.getReparti());
+		temp.setDisponibilita(ab.isDisponibilita());
 		x.chiudiconnessione(entitymanager);
 	}
 	@Override
 	public Abbigliamento cercaabbigliamentoperid(Abbigliamento ab) {
 		EntityManager entitymanager=x.apriconnessione();
-		Abbigliamento temp=entitymanager.find(Abbigliamento.class, ab.getId());
+		Abbigliamento temp=entitymanager.getReference(Abbigliamento.class, ab.getId());
+		System.out.println("sono nella EJB"+ temp.getQuantita());
+		x.chiudiconnessione(entitymanager);
 		return temp;
 	}
 	@Override
