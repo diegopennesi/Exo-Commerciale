@@ -58,5 +58,11 @@ public class UtenteDTO {
 		this.indirizzo = indirizzo;
 		this.id_account = id_account;
 	}
+	@Override
+	public String toString() {
+		return "UtenteDTO [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", indirizzo=" + indirizzo
+				+ ", id_account=" + id_account + "]";
+	}
+	
 	
 }

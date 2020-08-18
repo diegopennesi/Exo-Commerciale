@@ -68,6 +68,7 @@ public class RestCliente {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response inserisciProfilo(Account a) {
 		ac.inserisciAccount(a);
+		a=ac.getAccount(a.getUsername(), a.getPassword());
 		return Response.status(Response.Status.OK).entity(a).build() ;
 	}
 	@PUT

@@ -23,57 +23,42 @@ import ejb_utenteCrud.Iutenti;
 
 import model.Account;
 import model.Utente;
+import modelDTO.UtenteDTO;
+import utility.Universal_HTTPREQUEST;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name="utentebean",eager=true)
 @SessionScoped
 public class UtenteBean {
-	
-    private Utente ut = new Utente();
-    
+    private UtenteDTO ut = new UtenteDTO();
     private Account ac = new Account();
-    
-    
     @EJB
     private IAccountCrud accCr;
-    
     @EJB
     private Iutenti userCr;
-    
 
-	
-
-	public Utente getUt() {
+	public UtenteDTO getUt() {
 		return ut;
 	}
-
-	public void setUt(Utente ut) {
+	public void setUt(UtenteDTO ut) {
 		this.ut = ut;
 	}
-	
-	public String registrazione(Account ac) throws IOException {
-		
+	public String registrazione(Account ac,UtenteDTO ut) throws IOException {
 		    String query_url = "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/InserisciAccount";
 		    Gson g = new Gson();
 		    String out=g.toJson(ac, Account.class); 
-		    URL url = new URL(query_url);
-		    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		    conn.setConnectTimeout(5000);
-		    conn.setRequestProperty("Content-Type", "application/json");
-		    conn.setDoOutput(true);
-		    conn.setDoInput(true);
-		    conn.setRequestMethod("PUT");
-		    OutputStream os = conn.getOutputStream();
-		    os.write(out.getBytes("UTF-8"));
-		    os.close();
-		    // read the response
-		    InputStream in = new BufferedInputStream(conn.getInputStream());
-		    String result = IOUtils.toString(in, "UTF-8");//da mettere in un oggetto! serve creare un parsing in model account 
-		    System.out.println(result);
-		    System.out.println("result after Reading JSON Response");
-		    Gson responseGson = new Gson();
-		    Account rispostaaccount=responseGson.fromJson(result, Account.class);
-		    in.close();
+		    Universal_HTTPREQUEST httprequest = new Universal_HTTPREQUEST();
+		    HttpURLConnection conn = httprequest.HTTPSENDJSON(query_url, out);
+		    // leggiamo risposta di Account (serve sempre a qualcosa!)
+		    String result=httprequest.HTTPREADJSON(conn);
+		    Account acRisp=g.fromJson(result, Account.class);
+		    conn.disconnect();
+			String query_url_utente = "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/InserisciUtente";
+			ut.setId_account(acRisp.getId());
+			String out_utenteDTO=g.toJson(ut, UtenteDTO.class); 
+			conn = httprequest.HTTPSENDJSON(query_url_utente, out_utenteDTO);			    
+			result=httprequest.HTTPREADJSON(conn);			   
+			Utente utRisp=g.fromJson(result, Utente.class);			  
 		    conn.disconnect();
 		    return "login";
 	}

@@ -5,6 +5,8 @@
 - Andate su eclispse
 - Importate progetto per progetto un progetto alla volta (so 3 moduli)
 ***
+18/8 creata classe universale HTTP per inviare e leggere risposta!
+***
 Utilizzo JNDI per la connessione
 Crezione del pattern DTO
 Test sulle rest necessario
