@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import ejb_connessioni.Iconnessioni;
 import model.Reparti;
-import model.Utente;
 
 @Stateless
 public class RepartiEJB implements Ireparti{

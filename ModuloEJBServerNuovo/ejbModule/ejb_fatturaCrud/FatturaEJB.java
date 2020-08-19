@@ -10,7 +10,6 @@ import javax.persistence.TypedQuery;
 import ejb_connessioni.Iconnessioni;
 import model.Account;
 import model.Fattura;
-import model.Reparti;
 
 @Stateless
 public class FatturaEJB implements Ifattura {

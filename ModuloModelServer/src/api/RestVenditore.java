@@ -18,7 +18,6 @@ import model.BollaacquistoAbbigliamento;
 import model.BollaacquistoAlimenti;
 import model.BollaacquistoElettronica;
 import model.Elettronica;
-import model.Reparti;
 import utility.BollaBuilder;
 import utility.Venditore;
 

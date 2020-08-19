@@ -2,11 +2,7 @@ package ejb_utenteCrud;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-
 import ejb_accountcrud.IAccountCrud;
-import ejb_connessioni.Iconnessioni;
-import model.Account;
 import model.Utente;
 import modelDTO.UtenteDTO;
 

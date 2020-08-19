@@ -3,9 +3,7 @@ package utility;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import ejb_accountcrud.IAccountCrud;
 import ejb_alimentariCrud.Ialimentari;
-import model.Account;
 import model.Alimentari;
 @Stateless
 public class Consolle_utility {

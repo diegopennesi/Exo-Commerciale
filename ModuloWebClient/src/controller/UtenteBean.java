@@ -1,20 +1,11 @@
 package controller;
 
-import java.io.BufferedInputStream;
-
 import java.io.IOException;
-import java.io.InputStream;
-
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-
-import java.net.URL;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
-import org.apache.commons.io.IOUtils;
 
 import com.google.gson.Gson;
 

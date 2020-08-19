@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /ejb_abbigliamentoCrud/
 /ejb_accountcrud/
 /ejb_alimentariCrud/
@@ -6,4 +7,6 @@
 /ejb_elettronicaCrud/
 /ejb_fatturaCrud/
 /ejb_repartiCrud/
+=======
+>>>>>>> 609e331c6c7ca3835fd2920556e493578234d31d
 /ejb_utenteCrud/

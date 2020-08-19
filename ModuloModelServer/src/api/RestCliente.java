@@ -1,12 +1,9 @@
 package api;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.persistence.EntityManager;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -14,7 +11,6 @@ import javax.ws.rs.core.Response;
 import ejb_abbigliamentoCrud.Iabbigliamento;
 import ejb_accountcrud.IAccountCrud;
 import ejb_alimentariCrud.Ialimentari;
-import ejb_connessioni.Iconnessioni;
 import ejb_elettronicaCrud.Ielettronica;
 import ejb_fatturaCrud.Ifattura;
 import ejb_repartiCrud.Ireparti;
@@ -29,7 +25,6 @@ import model.Reparti;
 import model.Utente;
 import modelDTO.UtenteDTO;
 import utility.FatturaBuilder;
-import utility.Log;
 
 @Path("/clientela")
 public class RestCliente {

@@ -1,8 +1,5 @@
 package utility;
 
-import java.util.List;
-
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 

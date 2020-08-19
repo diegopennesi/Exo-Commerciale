@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import ejb_connessioni.Iconnessioni;
 import model.Account;
-import model.Utente;
+
 
 @Stateless
 public class AccountEJB implements IAccountCrud {

@@ -4,9 +4,9 @@
    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
    
    <persistence-unit name="jpaServer" transaction-type="JTA">
- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
  	<jta-data-source>java:/MySqlDSprogettoestateserver</jta-data-source>
-   
+ 	
        <class>model.Abbigliamento</class>
        <class>model.Account</class>
        <class>model.Alimentari</class>
@@ -17,16 +17,13 @@
        <class>model.Reparti</class>
        <class>model.Utente</class>
        <class>model.Fattura</class>
-
       <properties>
        <!-- <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/progettoestateserver"/>da cambiare --> 
          <property name="javax.persistence.jdbc.user" value="root"/>
          <property name="javax.persistence.jdbc.password" value=""/>
        <property name="javax.persistence.schema-generation.database.action" value="create"/>
 
-
-    
       </properties>
-      
+     
    </persistence-unit>
 </persistence>
