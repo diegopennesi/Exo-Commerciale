@@ -14,10 +14,10 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Diego/wildfly-17.0.1.Final/modules/system/layers/base/javax/ws/rs/api/main/jboss-jaxrs-api_2.1_spec-1.0.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Diego/wildfly-17.0.1.Final/modules/system/layers/base/javax/ejb/api/main/jboss-ejb-api_3.2_spec-1.0.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Diego/wildfly-17.0.1.Final/modules/system/layers/base/javax/persistence/api/main/javax.persistence-api-2.2.jar"/>
-	<classpathentry kind="lib" path="D:/JAR/javax.json.bind-api-1.0.0-M2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Exolab/wildfly-17.0.1.Final/modules/system/layers/base/javax/ws/rs/api/main/jboss-jaxrs-api_2.1_spec-1.0.2.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Exolab/wildfly-17.0.1.Final/modules/system/layers/base/javax/ejb/api/main/jboss-ejb-api_3.2_spec-1.0.2.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Exolab/wildfly-17.0.1.Final/modules/system/layers/base/javax/persistence/api/main/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Exolab/wildfly-17.0.1.Final/modules/system/layers/base/javax/json/bind/api/main/javax.json.bind-api-1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.2">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>

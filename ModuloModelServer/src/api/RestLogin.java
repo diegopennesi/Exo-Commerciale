@@ -18,19 +18,30 @@ public class RestLogin {
 	IAccountCrud ac;
 	
 	
-	@GET
-	@Path("/login")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response login(Account account) {
-		if(ac.getAccount(account.getUsername(), account.getPassword())!= null) {
-			return Response.status(Response.Status.OK).entity(account).build() ;
-		}
-		else {
-			return Response.status(Response.Status.FORBIDDEN).build() ;
-		}
-	}
+//	@GET
+//	@Path("/login")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	public Response login(Account account) {
+//		if(ac.getAccount(account.getUsername(), account.getPassword())!= null) {
+//			return Response.status(Response.Status.OK).entity(account).build() ;
+//		}
+//		else {
+//			return Response.status(Response.Status.FORBIDDEN).build() ;
+//		}
+//	}
 	
-	
+		@GET
+		@Path("/login")
+		@Produces(MediaType.APPLICATION_JSON)
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response login(Account a) {
+			System.out.println(a.getUsername()+" "+a.getPassword() );
+			Account temp=ac.getAccount(a.getUsername(), a.getPassword());
+			if (temp.getUsername().equals(a.getUsername()) && temp.getPassword().equals(a.getPassword())) {
+				return Response.status(Response.Status.OK).entity(temp).build();
+			}
+			return Response.status(Response.Status.BAD_REQUEST).entity("Account non trovato").build();
+		}
 
 }
