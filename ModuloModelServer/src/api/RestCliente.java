@@ -95,6 +95,33 @@ public class RestCliente {
 		temp=ac.getAccountById(id);
 		return Response.status(200).entity(temp).build() ;
 	}
+	@PATCH
+	@Path("modificaaccount")	
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response modificaaccount(Account a) {
+		ac.updateAccount(a);
+		return Response.status(200).entity(a).build() ;
+	}
+	@PATCH
+	@Path("modificautente")	
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response modificaaccount(UtenteDTO utenteDTO) {
+		Utente u=Idto.DtoTOUtente(utenteDTO);
+		ut.modificautente(u);
+		return Response.status(200).entity(u).build() ;
+	}
+	@PATCH
+	@Path("aggiungifondi")	
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response modificaportafoglio(Account a) {
+		Account atemp=ac.getAccountById(a.getId());
+		atemp.setPortafoglio(a.getPortafoglio());
+		ac.updateAccount(atemp);
+		return Response.status(200).entity(a).build() ;
+	}
 	@GET
 	@Path("/listareparti/abbigliamento")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -106,7 +133,7 @@ public class RestCliente {
 	@GET
 	@Path("/listareparti/alimentari")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response alimentari() {
+	public Response getalimentari() {
 		List<Alimentari> lista = new ArrayList<Alimentari>();
 		lista=al.prendiLista();
 		return Response.status(Response.Status.OK).entity(lista).build() ;	
@@ -114,7 +141,7 @@ public class RestCliente {
 	@GET
 	@Path("/listareparti/elettronica")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response elettronica() {
+	public Response getelettronica() {
 		List<Elettronica> lista = new ArrayList<Elettronica>();
 		lista=el.prendilista();
 		return Response.status(Response.Status.OK).entity(lista).build() ;		
@@ -130,7 +157,6 @@ public class RestCliente {
 		Reparti reparto=rp.prendiRepartiperID(1);
 		for(Abbigliamento obj:lista) {
 			Abbigliamento objDTB= ab.cercaabbigliamentoperid(obj);
-			System.out.println("oggetti disp sul databnase"+objDTB.getQuantita());
 			if(objDTB.getQuantita()>=obj.getQuantita()) {
 				Fattura fattura=fat.fatturaBuilderAbbigliamento(u, obj, id_scontrino, 22,reparto);
 				fa.inseriscifattura(fattura);
@@ -143,13 +169,13 @@ public class RestCliente {
 					ab.modificaabbigliamento(objDTB);
 				}
 			}else {
-				return Response.status(Response.Status.BAD_REQUEST).entity("Oggetto non disponibile, mi spiace!").build() ;	
+				return Response.status(Response.Status.BAD_REQUEST).entity("Oggetto non disponibile, mi spiace!, transazione annullata, modificare il carrello!").build() ;	
 			}
 
 		}
 		return Response.status(Response.Status.OK).entity(lista).build() ;	
 	}
-	@GET
+	@PATCH
 	@Path("/acqusitaElettronica/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -157,10 +183,23 @@ public class RestCliente {
 		FatturaBuilder fat= new FatturaBuilder();
 		Account u= new Account();
 		u.setId(id);
-		Reparti reparto=rp.prendiRepartiperID(3);
+		Reparti reparto=rp.prendiRepartiperID(1);
 		for(Elettronica obj:lista) {
-			Fattura fattura=fat.fatturaBuilderElettronica(u, obj, id_scontrino, 22,reparto);
-			fa.inseriscifattura(fattura);				
+			Elettronica objDTB= el.cercaelettronicaperid(obj);
+			if(objDTB.getQuantita()>=obj.getQuantita()) {
+				Fattura fattura=fat.fatturaBuilderElettronica(u, obj, id_scontrino, 22,reparto);
+				fa.inseriscifattura(fattura);
+				objDTB.setQuantita(objDTB.getQuantita()-(obj.getQuantita()));
+				el.modificaelettronica(objDTB);
+				objDTB=el.cercaelettronicaperid(objDTB);
+				System.out.println("quantità ogg da db"+ objDTB.getQuantita());
+				if(objDTB.getQuantita()==0) {
+					objDTB.setDisponibilita(false);
+					el.modificaelettronica(objDTB);
+				}
+			}else {
+				return Response.status(Response.Status.BAD_REQUEST).entity("Oggetto non disponibile, mi spiace!, transazione annullata, modificare il carrello!").build() ;	
+			}
 		}
 		return Response.status(Response.Status.OK).entity(lista).build() ;	
 	}
@@ -169,22 +208,29 @@ public class RestCliente {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response acquistaAlimentari(@PathParam("id") int id,List<Alimentari> lista) {
-		FatturaBuilder fat= new FatturaBuilder();
-		Account u= new Account();
-		u.setId(id);
-		Reparti reparto=rp.prendiRepartiperID(3);
-		for(Alimentari obj:lista) {
-			Fattura fattura=fat.fatturaBuilderAlimentari(u, obj, id_scontrino, 22,reparto);
-			fa.inseriscifattura(fattura);				
+			FatturaBuilder fat= new FatturaBuilder();
+			Account u= new Account();
+			u.setId(id);
+			Reparti reparto=rp.prendiRepartiperID(1);
+			for(Alimentari obj:lista) {
+				Alimentari objDTB= al.cercaalimentoperid(obj);
+				if(objDTB.getQuantita()>=obj.getQuantita()) {
+					Fattura fattura=fat.fatturaBuilderAlimentari(u, obj, id_scontrino, 22,reparto);
+					fa.inseriscifattura(fattura);
+					objDTB.setQuantita(objDTB.getQuantita()-(obj.getQuantita()));
+					al.modificaalimento(objDTB);
+					objDTB=al.cercaalimentoperid(objDTB);
+					System.out.println("quantità ogg da db"+ objDTB.getQuantita());
+					if(objDTB.getQuantita()==0) {
+						objDTB.setDisponibilita(false);
+						al.modificaalimento(objDTB);
+					}
+				}else {
+					return Response.status(Response.Status.BAD_REQUEST).entity("Oggetto non disponibile, mi spiace!, transazione annullata, modificare il carrello!").build() ;	
+				}
+			}
+			return Response.status(Response.Status.OK).entity(lista).build() ;	
 		}
-		return Response.status(Response.Status.OK).entity(lista).build() ;	
-	}
-
-
-
-
-
-
 
 
 	
