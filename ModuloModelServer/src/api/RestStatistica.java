@@ -3,18 +3,23 @@ package api;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import ejb_bollaCrud.Ibolla;
 import ejb_fatturaCrud.Ifattura;
+import ejb_repartiCrud.Ireparti;
 import model.BollaacquistoAbbigliamento;
 import model.BollaacquistoAlimenti;
 import model.BollaacquistoElettronica;
 import model.Fattura;
+import model.Reparti;
 
 @Path("/statistica")
 public class RestStatistica {
@@ -22,6 +27,8 @@ public class RestStatistica {
 	Ibolla x;
 	@EJB
 	Ifattura f;
+	@EJB
+	Ireparti y;
 	
 	@GET
 	@Path("test")
@@ -31,13 +38,21 @@ public class RestStatistica {
 		
 	}
 	@GET
+	@Path("/reparti/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getallreparti(@PathParam("id") int id) {
+		Reparti temp=y.prendiRepartiperID(id);
+		return Response.status(Response.Status.OK).entity(temp).build();
+		
+	}
+	@GET
 	@Path("/acquisti")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getallacquisti() {// :D non ricordo quale sia la corretta Lista LIFO ¯\_(ツ)_/¯
-		ArrayList<BollaacquistoAlimenti> listalim=x.prendiListaBolleAlimenti();
-		ArrayList<BollaacquistoElettronica> listaele=x.prendiListaBolleElettronica();
-		ArrayList<BollaacquistoAbbigliamento> listaabb=x.prendiListaBolleAbbigliamento();
-		HashMap<Integer,ArrayList> mappaAcquisti = new HashMap<Integer,ArrayList>();
+		List<BollaacquistoAlimenti> listalim=x.prendiListaBolleAlimenti();
+		List<BollaacquistoElettronica> listaele=x.prendiListaBolleElettronica();
+		List<BollaacquistoAbbigliamento> listaabb=x.prendiListaBolleAbbigliamento();
+		HashMap<Integer,List> mappaAcquisti = new HashMap<Integer,List>();
 		Collections.reverse(listalim);
 		Collections.reverse(listaele);
 		Collections.reverse(listaabb);
@@ -51,7 +66,7 @@ public class RestStatistica {
 	@Path("/acquistiAlimenti")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getacquistiAlimenti() {
-		ArrayList<BollaacquistoAlimenti> lista=x.prendiListaBolleAlimenti();
+		List<BollaacquistoAlimenti> lista=x.prendiListaBolleAlimenti();
 		Collections.reverse(lista);
 		return Response.status(Response.Status.OK).entity(lista).build();
 	}
@@ -59,7 +74,7 @@ public class RestStatistica {
 	@Path("/acquistiAbbigliamento")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getacquistiAbbigliamento() {
-		ArrayList<BollaacquistoAbbigliamento>lista=x.prendiListaBolleAbbigliamento();
+	    List<BollaacquistoAbbigliamento>lista=x.prendiListaBolleAbbigliamento();
 		Collections.reverse(lista);
 		return Response.status(Response.Status.OK).entity(lista).build();
 	}
@@ -67,7 +82,7 @@ public class RestStatistica {
 	@Path("/acquistiElettronica")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getacquistiElettronica() { 
-		ArrayList<BollaacquistoElettronica>lista=x.prendiListaBolleElettronica();
+		List<BollaacquistoElettronica>lista=x.prendiListaBolleElettronica();
 		Collections.reverse(lista);
 		return Response.status(Response.Status.OK).entity(lista).build();
 	}
@@ -76,30 +91,32 @@ public class RestStatistica {
 	@Path("/fatturatoAlimentari")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getfatturatoAlimentari() {
-		ArrayList<BollaacquistoAlimenti> lista=x.prendiListaBolleAlimenti();
+		List<BollaacquistoAlimenti> listaalimento=x.prendiListaBolleAlimenti();
 		double costo=00.00;
 		double lordo=00.00;
-		for (Object o:lista) {
-			costo=costo+((BollaacquistoAlimenti)o).getPrTotale();
+
+		for (BollaacquistoAlimenti o:listaalimento) {
+			costo=costo+o.getPrTotale();
 		}
-		ArrayList<Fattura> fatturealimenti=(ArrayList<Fattura>) f.cercafatturaperReparto(1);
-		for (Object o:fatturealimenti) {
-			lordo=lordo+((Fattura)o).getPrezzo();
+		ArrayList<Fattura> fatturealimenti=(ArrayList<Fattura>) f.cercafatturaperReparto(2);
+		for (Fattura o:fatturealimenti) {
+			lordo=lordo+(o).getPrezzo();
 		}
 		double fatturatonetto= (double) (lordo - costo); 
 		return Response.status(Response.Status.OK).entity(fatturatonetto).build();
+		//return Response.status(Response.Status.OK).build();
 	}
 	@GET
 	@Path("/fatturatoAbbigliamento")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getfatturatoAbbigliamento() {
-		ArrayList<BollaacquistoAbbigliamento> lista=x.prendiListaBolleAbbigliamento();
+		List<BollaacquistoAbbigliamento> lista=x.prendiListaBolleAbbigliamento();
 		double costo=00.00;
 		double lordo=00.00;
 		for (Object o:lista) {
 			costo=costo+((BollaacquistoAbbigliamento)o).getPrTotale();
 		}
-		ArrayList<Fattura> fatturealimenti=(ArrayList<Fattura>) f.cercafatturaperReparto(2);
+		ArrayList<Fattura> fatturealimenti=(ArrayList<Fattura>) f.cercafatturaperReparto(1);
 		for (Object o:fatturealimenti) {
 			lordo=lordo+((Fattura)o).getPrezzo();
 		}
@@ -110,7 +127,7 @@ public class RestStatistica {
 	@Path("/fatturatoElettronica")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getfatturatoElettronica() {
-		ArrayList<BollaacquistoElettronica> lista=x.prendiListaBolleElettronica();
+		List<BollaacquistoElettronica> lista=x.prendiListaBolleElettronica();
 		double costo=00.00;
 		double lordo=00.00;	
 		for (Object o:lista) {

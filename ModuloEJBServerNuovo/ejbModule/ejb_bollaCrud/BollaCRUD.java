@@ -20,31 +20,31 @@ public class BollaCRUD implements Ibolla {
 	Iconnessioni x;
 
 	@Override
-	public ArrayList<BollaacquistoAlimenti> prendiListaBolleAlimenti() {
+	public List<BollaacquistoAlimenti> prendiListaBolleAlimenti() {
 		EntityManager entitymanager=x.apriconnessione();
-		TypedQuery<BollaacquistoAlimenti> query = entitymanager.createQuery("SELECT p FROM bollaacquistoalimentari p",BollaacquistoAlimenti.class);
+		TypedQuery<BollaacquistoAlimenti> query = entitymanager.createQuery("SELECT p FROM BollaacquistoAlimenti p",BollaacquistoAlimenti.class);
 		List<BollaacquistoAlimenti> lista = query.getResultList();
 		x.chiudiconnessione(entitymanager);
-		return (ArrayList<BollaacquistoAlimenti>) lista;
+		return lista;
 
 	}
 
 	@Override
-	public ArrayList<BollaacquistoAbbigliamento> prendiListaBolleAbbigliamento() {
+	public List<BollaacquistoAbbigliamento> prendiListaBolleAbbigliamento() {
 		EntityManager entitymanager=x.apriconnessione();
 		TypedQuery<BollaacquistoAbbigliamento> query = entitymanager.createQuery("SELECT p FROM bollaacquistoabbigliamento p",BollaacquistoAbbigliamento.class);
 		List<BollaacquistoAbbigliamento> lista = query.getResultList();
 		x.chiudiconnessione(entitymanager);
-		return (ArrayList<BollaacquistoAbbigliamento>) lista;
+		return lista;
 	}
 
 	@Override
-	public ArrayList<BollaacquistoElettronica> prendiListaBolleElettronica() {
+	public List<BollaacquistoElettronica> prendiListaBolleElettronica() {
 		EntityManager entitymanager=x.apriconnessione();
 		TypedQuery<BollaacquistoElettronica> query = entitymanager.createQuery("SELECT p FROM bollaacquistoelettronica p",BollaacquistoElettronica.class);
 		List<BollaacquistoElettronica> lista = query.getResultList();
 		x.chiudiconnessione(entitymanager);
-		return (ArrayList<BollaacquistoElettronica>) lista;
+		return lista;
 	
 	}
 

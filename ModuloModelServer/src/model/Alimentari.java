@@ -16,10 +16,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="alimenti")
 public class Alimentari implements Serializable {
+	private static final long serialVersionUID = -5901568129033252703L;
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5901568129033252703L;
 	@Id
 	@Column (name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
