@@ -3,5 +3,6 @@ ControllerS client
 ControllerS server
 
 BUG & ERRORI:
-/listareparti/elettronica va in errore , da fixare
+/listareparti/elettronica non dovrebbe tornare anche la bolla di acquisto relativa
+/rest/statistica/reparti/1&2 non funzionano e vanno in errore, la 3 ha errore come sopra
 campo data delle model va passato in data o non possiamo fare querystring, da fixare

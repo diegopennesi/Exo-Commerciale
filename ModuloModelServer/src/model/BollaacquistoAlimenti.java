@@ -41,6 +41,7 @@ public class BollaacquistoAlimenti implements Serializable{
 	
 	@Column(name="prezzo_unitario")
 	private double prUnitario;
+	
 	@JsonbTransient
 	@OneToOne
 	@JoinColumn(name="id_alimentari")

@@ -32,7 +32,7 @@ public class BollaCRUD implements Ibolla {
 	@Override
 	public List<BollaacquistoAbbigliamento> prendiListaBolleAbbigliamento() {
 		EntityManager entitymanager=x.apriconnessione();
-		TypedQuery<BollaacquistoAbbigliamento> query = entitymanager.createQuery("SELECT p FROM bollaacquistoabbigliamento p",BollaacquistoAbbigliamento.class);
+		TypedQuery<BollaacquistoAbbigliamento> query = entitymanager.createQuery("SELECT p FROM BollaacquistoAbbigliamento p",BollaacquistoAbbigliamento.class);
 		List<BollaacquistoAbbigliamento> lista = query.getResultList();
 		x.chiudiconnessione(entitymanager);
 		return lista;
@@ -41,7 +41,7 @@ public class BollaCRUD implements Ibolla {
 	@Override
 	public List<BollaacquistoElettronica> prendiListaBolleElettronica() {
 		EntityManager entitymanager=x.apriconnessione();
-		TypedQuery<BollaacquistoElettronica> query = entitymanager.createQuery("SELECT p FROM bollaacquistoelettronica p",BollaacquistoElettronica.class);
+		TypedQuery<BollaacquistoElettronica> query = entitymanager.createQuery("SELECT p FROM BollaacquistoElettronica p",BollaacquistoElettronica.class);
 		List<BollaacquistoElettronica> lista = query.getResultList();
 		x.chiudiconnessione(entitymanager);
 		return lista;

@@ -16,13 +16,13 @@ import javax.persistence.Table;
 @Entity
 @Table (name ="elettronica")
 public class Elettronica implements Serializable {
+	private static final long serialVersionUID = 1120971636605876082L;
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1120971636605876082L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column (name = "disponibilita")
 	private boolean disponibilita;

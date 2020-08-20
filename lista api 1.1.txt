@@ -23,7 +23,7 @@ Per la Statistica
 @GET/rest/statistica/acquistiAlimenti: torna solo arraylist acquisto alienti in ordine Nuovo->vecchio
 @GET/rest/statistica/acquistiAbbigliamento: torna solo arraylist acquisto alienti in ordine Nuovo->vecchio
 @GET/rest/statistica/acquistiElettronica: torna solo arraylist acquisto alienti in ordine Nuovo->vecchio
-**@GET/rest/statistica/fattiratoAlimentari: torna il double del fatturato alimentare totale
-**@GET/rest/statistica/fattiratoAbbigliamento: torna il double del fatturato alimentare totale
-**@GET/rest/statistica/fattiratoElettronica: torna il double del fatturato alimentare totale
+@GET/rest/statistica/fattiratoAlimentari: torna il double del fatturato alimentare totale
+@GET/rest/statistica/fattiratoAbbigliamento: torna il double del fatturato alimentare totale
+@GET/rest/statistica/fattiratoElettronica: torna il double del fatturato alimentare totale
 

@@ -38,7 +38,7 @@ public class RestStatistica {
 		
 	}
 	@GET
-	@Path("/reparti/{id}")
+	@Path("/reparti/{id}")//per test sticazzi
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getallreparti(@PathParam("id") int id) {
 		Reparti temp=y.prendiRepartiperID(id);
@@ -91,20 +91,18 @@ public class RestStatistica {
 	@Path("/fatturatoAlimentari")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getfatturatoAlimentari() {
-		List<BollaacquistoAlimenti> listaalimento=x.prendiListaBolleAlimenti();
+		List<BollaacquistoAlimenti> lista=x.prendiListaBolleAlimenti();
 		double costo=00.00;
 		double lordo=00.00;
-
-		for (BollaacquistoAlimenti o:listaalimento) {
+		for (BollaacquistoAlimenti o:lista) {
 			costo=costo+o.getPrTotale();
 		}
-		ArrayList<Fattura> fatturealimenti=(ArrayList<Fattura>) f.cercafatturaperReparto(2);
+		List<Fattura> fatturealimenti=f.scaricatuttefatture();
 		for (Fattura o:fatturealimenti) {
-			lordo=lordo+(o).getPrezzo();
+			if(o.getReparti().getId()==2)lordo=lordo+o.getPrezzo();
 		}
 		double fatturatonetto= (double) (lordo - costo); 
 		return Response.status(Response.Status.OK).entity(fatturatonetto).build();
-		//return Response.status(Response.Status.OK).build();
 	}
 	@GET
 	@Path("/fatturatoAbbigliamento")
@@ -113,12 +111,12 @@ public class RestStatistica {
 		List<BollaacquistoAbbigliamento> lista=x.prendiListaBolleAbbigliamento();
 		double costo=00.00;
 		double lordo=00.00;
-		for (Object o:lista) {
-			costo=costo+((BollaacquistoAbbigliamento)o).getPrTotale();
+		for (BollaacquistoAbbigliamento o:lista) {
+			costo=costo+o.getPrTotale();
 		}
-		ArrayList<Fattura> fatturealimenti=(ArrayList<Fattura>) f.cercafatturaperReparto(1);
-		for (Object o:fatturealimenti) {
-			lordo=lordo+((Fattura)o).getPrezzo();
+		List<Fattura> fatturealimenti=f.scaricatuttefatture();
+		for (Fattura o:fatturealimenti) {
+			if(o.getReparti().getId()==1)lordo=lordo+o.getPrezzo();
 		}
 		double fatturatonetto= (double) (lordo - costo); 
 		return Response.status(Response.Status.OK).entity(fatturatonetto).build();
@@ -130,12 +128,12 @@ public class RestStatistica {
 		List<BollaacquistoElettronica> lista=x.prendiListaBolleElettronica();
 		double costo=00.00;
 		double lordo=00.00;	
-		for (Object o:lista) {
-			costo=costo+((BollaacquistoElettronica)o).getPrTotale();
+		for (BollaacquistoElettronica o:lista) {
+			costo=costo+o.getPrTotale();
 		}
-		ArrayList<Fattura> fatturealimenti=(ArrayList<Fattura>) f.cercafatturaperReparto(3);
-		for (Object o:fatturealimenti) {
-			lordo=lordo+((Fattura)o).getPrezzo();
+		List<Fattura> fatturealimenti=f.scaricatuttefatture();
+		for (Fattura o:fatturealimenti) {
+			if(o.getReparti().getId()==3)lordo=lordo+o.getPrezzo();
 		}
 		double fatturatonetto= (double) (lordo - costo); 
 		return Response.status(Response.Status.OK).entity(fatturatonetto).build();

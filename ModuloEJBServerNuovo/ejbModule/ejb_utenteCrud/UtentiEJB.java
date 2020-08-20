@@ -43,7 +43,7 @@ public class UtentiEJB implements Iutenti {
 	@Override
 	public List<Utente> cercautenteperNome(Utente ut) {
 		EntityManager entitymanager=x.apriconnessione();
-		TypedQuery<Utente> query =entitymanager.createQuery("SELECT c FROM Utente c WHERE c.name LIKE :custName", Utente.class).setParameter("custName", ut.getNome());
+		TypedQuery<Utente> query =entitymanager.createQuery("SELECT c FROM Utente c WHERE c.nome LIKE :custName", Utente.class).setParameter("custName", ut.getNome());
 		List<Utente> listaUtente= query.getResultList();
 		x.chiudiconnessione(entitymanager);
 		return listaUtente;

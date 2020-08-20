@@ -6,11 +6,13 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
 import ejb_repartiCrud.Ireparti;
 import model.Account;
+import model.Elettronica;
 import model.Fattura;
 import model.Reparti;
 import modelDTO.FatturaDTO;
@@ -61,21 +63,15 @@ public class FatturaEJB implements Ifattura {
 		entitymanager.remove(fa);
 		x.chiudiconnessione(entitymanager);
 	}
+	
 	@Override
-	public List<Fattura> cercafatturaperReparto(int reparto) {
-		Reparti rep= new Reparti();
-		rep.setId(reparto);
+	public List<Fattura> cercafatturaperReparto(Reparti rp) {
 		EntityManager entitymanager=x.apriconnessione();
-		TypedQuery<FatturaDTO> query = entitymanager.createQuery("SELECT p FROM Fattura p WHERE p.id_reparto LIKE :id_reparto",FatturaDTO.class)
-				.setParameter("id_reparto",reparto);
-		List<FatturaDTO> lista = query.getResultList();
-		List<Fattura> listafattura = new ArrayList<Fattura>();
-		for(FatturaDTO o:lista) {
-		Fattura temp=z.DtoTOFattura(o);
-		listafattura.add(temp);
-		}
+		TypedQuery<Fattura> query = entitymanager.createQuery("SELECT p FROM Fattura p WHERE p.Id_reparto LIKE :Id_reparto",Fattura.class)
+				.setParameter("Id_reparto",rp);
+		List<Fattura> lista = (ArrayList<Fattura>)query.getResultList();
 		x.chiudiconnessione(entitymanager);
-		return listafattura;
+		return lista;
 	}
 //	@Override
 //	public void inseriscifatturareparti(Fattura fa, Reparti rp) {
@@ -83,5 +79,12 @@ public class FatturaEJB implements Ifattura {
 //		 fa.getListaReparti().add(rp);
 //		
 //	}
+	@Override
+	public List<Fattura> scaricatuttefatture() {
+		EntityManager entitymanager=x.apriconnessione();
+		TypedQuery<Fattura> query=entitymanager.createQuery("SELECT p FROM Fattura p",Fattura.class);
+		List<Fattura> lista = query.getResultList();
+		return lista;
+	}
 
 }
