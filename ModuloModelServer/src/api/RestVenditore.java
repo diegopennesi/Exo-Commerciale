@@ -1,5 +1,6 @@
 package api;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,6 +26,7 @@ import utility.Venditore;
 
 @Path("/venditore")
 public class RestVenditore {
+	
 	
 	@EJB
 	Ialimentari al;
@@ -54,11 +56,13 @@ public class RestVenditore {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response acquistaStock(Abbigliamento stock) {
-		stock.setReparti(rep.prendiRepartiperID(1));
-		ab.inserisciabbigliamento(stock);
 		BollaacquistoAbbigliamento boAb= new BollaacquistoAbbigliamento();
 		BollaBuilder builder = new BollaBuilder();
+		stock.setReparti(rep.prendiRepartiperID(1));
 		boAb=builder.BollaAbb_Builder(boAb, stock, "M.A.S.");
+		double temp=(double)boAb.getPrUnitario()*1.81;//1.81 valore empirico di "guadagno" la fumetteria dove 
+		stock.setPrezzo((double)Math.round(temp*100)/100); //bazzico dice che usa questo numero per calcolare 
+		ab.inserisciabbigliamento(stock);					//il guadagano gia con iva calcolata
 		ab.inseriscibolla(boAb);
 		return Response.status(Response.Status.OK).build() ;
 	}
@@ -67,11 +71,13 @@ public class RestVenditore {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response acquistaStock(Alimentari stock) {
-		stock.setReparti(rep.prendiRepartiperID(2));
-		al.inseriscialimento(stock);
 		BollaacquistoAlimenti boAA= new BollaacquistoAlimenti();
 		BollaBuilder builder = new BollaBuilder();
+		stock.setReparti(rep.prendiRepartiperID(2));
 		boAA=builder.BollaAli_Builder(boAA, stock, "GRos");
+		double temp=(double)boAA.getPrUnitario()*1.81;
+		stock.setPrezzo((double)Math.round(temp*100)/100);
+		al.inseriscialimento(stock);
 		al.inseriscibolla(boAA);
 		return Response.status(Response.Status.OK).build() ;
 	}
@@ -80,11 +86,13 @@ public class RestVenditore {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response acquistaStock(Elettronica stock) {
-		stock.setReparti(rep.prendiRepartiperID(3));
-		el.inseriscielettronica(stock);
 		BollaacquistoElettronica boEl= new BollaacquistoElettronica();
 		BollaBuilder builder = new BollaBuilder();
-		boEl=builder.BollaEle_Builder(boEl, stock, "GRos");
+		stock.setReparti(rep.prendiRepartiperID(3));
+		boEl=builder.BollaEle_Builder(boEl, stock, "SiliconValleySupermaket");
+		double temp=(double)boEl.getPrUnitario()*1.81;
+		stock.setPrezzo((double)Math.round(temp*100)/100);
+		el.inseriscielettronica(stock);
 		el.inseriscibolla(boEl);
 		return Response.status(Response.Status.OK).build() ;
 	}

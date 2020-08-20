@@ -22,7 +22,7 @@ public class FatturaBuilder {
 		fattura.setDescrizione(s.getDescrizione());
 		fattura.setQuantita(s.getQuantita());
 		fattura.setAccount(a);
-		fattura.setPrezzo(s.getPrezzo());
+		fattura.setPrezzo(s.getPrezzo()*s.getQuantita());
 		fattura.setIva(iva);
 		fattura.setReparti(reparto);
 		return fattura;
@@ -33,7 +33,7 @@ public class FatturaBuilder {
 		fattura.setDescrizione(s.getDescrizione());
 		fattura.setQuantita(s.getQuantita());
 		fattura.setAccount(a);
-		fattura.setPrezzo(s.getPrezzo());
+		fattura.setPrezzo(s.getPrezzo()*s.getQuantita());
 		fattura.setIva(iva);
 		fattura.setReparti(reparto);
 		return fattura;
@@ -44,7 +44,7 @@ public class FatturaBuilder {
 		fattura.setDescrizione(s.getDescrizione());
 		fattura.setQuantita(s.getQuantita());
 		fattura.setAccount(a);
-		fattura.setPrezzo(s.getPrezzo());
+		fattura.setPrezzo(s.getPrezzo()*s.getQuantita());
 		fattura.setIva(iva);
 		fattura.setReparti(reparto);
 		return fattura;

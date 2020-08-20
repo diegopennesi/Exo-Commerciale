@@ -113,7 +113,7 @@ public class RestCliente {
 		return Response.status(200).entity(u).build() ;
 	}
 	@PATCH
-	@Path("aggiungifondi")	
+	@Path("modificafondi")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response modificaportafoglio(Account a) {
@@ -183,7 +183,7 @@ public class RestCliente {
 		FatturaBuilder fat= new FatturaBuilder();
 		Account u= new Account();
 		u.setId(id);
-		Reparti reparto=rp.prendiRepartiperID(1);
+		Reparti reparto=rp.prendiRepartiperID(3);
 		for(Elettronica obj:lista) {
 			Elettronica objDTB= el.cercaelettronicaperid(obj);
 			if(objDTB.getQuantita()>=obj.getQuantita()) {
@@ -211,7 +211,7 @@ public class RestCliente {
 			FatturaBuilder fat= new FatturaBuilder();
 			Account u= new Account();
 			u.setId(id);
-			Reparti reparto=rp.prendiRepartiperID(1);
+			Reparti reparto=rp.prendiRepartiperID(2);
 			for(Alimentari obj:lista) {
 				Alimentari objDTB= al.cercaalimentoperid(obj);
 				if(objDTB.getQuantita()>=obj.getQuantita()) {

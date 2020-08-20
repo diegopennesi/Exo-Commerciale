@@ -1,9 +1,10 @@
 package model;
-
 import java.io.Serializable;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,9 +34,11 @@ public class Elettronica implements Serializable {
 	private int quantita;
 	@Column(name="prezzo", nullable=false)
 	private double prezzo;
-	@ManyToOne
+	@JsonbTransient
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_reparto")
 	private Reparti reparti;
+	@JsonbTransient
 	@OneToOne(mappedBy="elettronica")
 	private BollaacquistoElettronica BollaAcquisto;
 	///////////////////////////////////////////////
@@ -106,6 +109,61 @@ public class Elettronica implements Serializable {
 	}
 	public void setBollaAcquisto(BollaacquistoElettronica bollaAcquisto) {
 		BollaAcquisto = bollaAcquisto;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((BollaAcquisto == null) ? 0 : BollaAcquisto.hashCode());
+		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
+		result = prime * result + (disponibilita ? 1231 : 1237);
+		result = prime * result + id;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(prezzo);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + quantita;
+		result = prime * result + ((reparti == null) ? 0 : reparti.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Elettronica other = (Elettronica) obj;
+		if (BollaAcquisto == null) {
+			if (other.BollaAcquisto != null)
+				return false;
+		} else if (!BollaAcquisto.equals(other.BollaAcquisto))
+			return false;
+		if (descrizione == null) {
+			if (other.descrizione != null)
+				return false;
+		} else if (!descrizione.equals(other.descrizione))
+			return false;
+		if (disponibilita != other.disponibilita)
+			return false;
+		if (id != other.id)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (Double.doubleToLongBits(prezzo) != Double.doubleToLongBits(other.prezzo))
+			return false;
+		if (quantita != other.quantita)
+			return false;
+		if (reparti == null) {
+			if (other.reparti != null)
+				return false;
+		} else if (!reparti.equals(other.reparti))
+			return false;
+		return true;
 	}
 	
 }

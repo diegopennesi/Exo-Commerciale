@@ -37,7 +37,7 @@ public class Venditore {
 		ab.add(new Abbigliamento("Bandana nera","Unica","Nera","Una semplice bandana nera, adatta per avere infiniti oggetti",4,true,29.99));
 		el.add(new Elettronica("CanonMP450","Macchina fotografica di penultima generazione",4,true,99.89));
 		el.add(new Elettronica("Bimbi 7000","Impastatrice\robot cucina capace di cucinare molti piatti. Versione Non filippina ",2,true,299.99));
-		el.add(new Elettronica("Iphone12","Cellulare trendy con un bottone. Facile da usare.Prezzo corretto",1,true,839.99));
+		el.add(new Elettronica("Iphone12","Cellulare trendy con un bottone. Facile da usare.Prezzo corretto",1,true,1839.99));
 		el.add(new Elettronica("Alienware CF5031K","Portatile di ultima generazione, ci giochi a Minecraft a 320fps",2,true,759.99));
 		el.add(new Elettronica("Drone Tomcat4000","Drone multi-Elica rotativa giroscopica tapiocante auto-bilanciante antani",5,true,59.99));
 		el.add(new Elettronica("Traduttore PocoCostoso","Traduttore tascabile dotato di inteligenza artificiale. Non è dotato del senso dell'umorismo",10,true,15.89));

@@ -1,8 +1,10 @@
 package model;
 import java.io.Serializable;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,9 +36,11 @@ public class Alimentari implements Serializable {
 	private boolean disponibilita;
 	@Column(name="prezzo", nullable=false)
 	private double prezzo;
-	@ManyToOne
+	@JsonbTransient
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_reparto")
 	private Reparti reparti;
+	@JsonbTransient
 	@OneToOne(mappedBy="alimenti")
 	private BollaacquistoAlimenti bollaAcquisto;
 	////////////////////////////////////////////

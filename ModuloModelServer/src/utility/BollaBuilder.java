@@ -21,7 +21,8 @@ public class BollaBuilder {
 		bolla.setDataAcquisto(simpleDateFormat.format(calendar.getTime()));
 		bolla.setStock(String.valueOf(((Abbigliamento) stock).getQuantita()) + " "+ ((Abbigliamento) stock).getNome());
 		bolla.setPrTotale(((Abbigliamento) stock).getPrezzo());
-		bolla.setPrUnitario((double)((Abbigliamento) stock).getPrezzo()/3);
+		double temp=(double)((Abbigliamento) stock).getPrezzo()/((Abbigliamento) stock).getQuantita();
+		bolla.setPrUnitario(((double)Math.round(temp*100)/100));
 		bolla.setAbbigliamento((Abbigliamento)stock);
 		return bolla;	
 	}
@@ -33,7 +34,8 @@ public class BollaBuilder {
 		bolla.setDataAcquisto(simpleDateFormat.format(calendar.getTime()));
 		bolla.setStock(String.valueOf(((Alimentari) stock).getQuantita()) + " "+ ((Alimentari) stock).getNome());
 		bolla.setPrTotale(((Alimentari) stock).getPrezzo());
-		bolla.setPrUnitario((double)((Alimentari) stock).getPrezzo()/3);
+		double temp=(double)((Alimentari) stock).getPrezzo()/((Alimentari) stock).getQuantita();
+		bolla.setPrUnitario(((double)Math.round(temp*100)/100));
 		bolla.setAlimenti((Alimentari) stock);
 		return bolla;	
 	}
@@ -45,7 +47,8 @@ public class BollaBuilder {
 		bolla.setDataAcquisto(simpleDateFormat.format(calendar.getTime()));
 		bolla.setStock(String.valueOf(((Elettronica) stock).getQuantita()) + " "+ ((Elettronica) stock).getNome());
 		bolla.setPrTotale(((Elettronica) stock).getPrezzo());
-		bolla.setPrUnitario((double)((Elettronica) stock).getPrezzo()/3);
+		double temp=(double)((Elettronica) stock).getPrezzo()/((Elettronica) stock).getQuantita();
+		bolla.setPrUnitario(((double)Math.round(temp*100)/100));
 		bolla.setElettronica((Elettronica) stock);
 		return bolla;	
 	}

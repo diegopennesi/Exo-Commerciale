@@ -1,0 +1,7 @@
+ToDo:
+ControllerS client
+ControllerS server
+
+BUG & ERRORI:
+/listareparti/elettronica va in errore , da fixare
+campo data delle model va passato in data o non possiamo fare querystring, da fixare

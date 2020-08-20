@@ -9,7 +9,7 @@ Per il cliente
   @PUT/rest/clientela/InserisciUtente: chiede oggetto Utente DTO, inserisce utente
   @GET/rest/clientela/rendiaccaunt/{id} : chiede un parametro INT ritorna account
 @PATCH/rest/clientela/modificaaccount: chiede oggetto Account modifica account@PATCH/rest/clientela/modificautente: chiede oggetto Utente DTO, modifica utente
-@PATCH/rest/clientela/aggiungifondi: richiede oggetto Account modifica i fondi
+@PATCH/rest/clientela/modificafondi: richiede oggetto Account modifica i fondi
   @GET/rest/clientela/listareparti/abbigliamento: ritorna lista abbigliamento
   @GET/rest/clientela/listareparti/alimentari: ritorna lista alimentari
   @GET/rest/clientela/listareparti/elettronica: ritorna lista elettronica
