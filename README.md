@@ -5,6 +5,10 @@
 - Andate su eclispse
 - Importate progetto per progetto un progetto alla volta (so 3 moduli)
 ***
+20/8
+Inserita ToDo list
+Modificate le API con calcoli arrotondandi il millesimo di euro (o vogliamo farlo truncate?)
+***
 18/8 creata classe universale HTTP per inviare e leggere risposta!
 ***
 Utilizzo JNDI per la connessione
