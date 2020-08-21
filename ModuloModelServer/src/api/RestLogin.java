@@ -24,11 +24,17 @@ public class RestLogin {
 		@Consumes(MediaType.APPLICATION_JSON)
 		public Response login(Account a) {
 			System.out.println(a.getUsername()+" "+a.getPassword() );
+			try {
 			Account temp=ac.getAccount(a.getUsername(), a.getPassword());
 			if (temp.getUsername().equals(a.getUsername()) && temp.getPassword().equals(a.getPassword())) {
 				return Response.status(Response.Status.OK).entity(temp).build();
 			}
+			}catch(NullPointerException e) {
+				return Response.status(204).entity(new Account()).build();
+			}	
+			
 			return Response.status(Response.Status.BAD_REQUEST).entity("Account non trovato").build();
-		}
+			}
+			
 
 }

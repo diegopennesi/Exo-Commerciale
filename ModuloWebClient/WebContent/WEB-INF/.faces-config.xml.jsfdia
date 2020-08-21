@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="user:#{utentebean.login}:#account.xhtml"
+    NAME="output" PATH="/account.xhtml" TARGET="rules:#account.xhtml"
+    TITLE="#{utentebean.login}:user" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="gdf:#{utentebean.login}:#guardiadifinanza.xhtml" NAME="output1"
+    PATH="/guardiadifinanza.xhtml"
+    TARGET="rules:#guardiadifinanza.xhtml"
+    TITLE="#{utentebean.login}:gdf" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="error:#{utentebean.login}:#error.xhtml"
+    NAME="output2" PATH="/error.xhtml" TARGET="rules:#error.xhtml"
+    TITLE="#{utentebean.login}:error" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#account.xhtml" PATH="/account.xhtml"
+  SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#error.xhtml" PATH="/error.xhtml"
+  SHAPE="272,321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#guardiadifinanza.xhtml"
+  PATH="/guardiadifinanza.xhtml" SHAPE="272,209,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

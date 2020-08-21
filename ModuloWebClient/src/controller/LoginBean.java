@@ -38,7 +38,16 @@ public class LoginBean implements Serializable{
 	    HttpURLConnection con = httprequest.HTTPSENDJSON(percorso, out,"POST");
 	    String result=httprequest.HTTPREADJSON(con);
 	    account=g.fromJson(result, Account.class);
-		con.disconnect();
+	    con.getErrorStream();
+	    con.disconnect();
+	    if(con.getResponseCode()==204) {
+	    	return "registrazione";
+	    }else  if (con.getResponseCode()!=200) {
+	    	throw new RuntimeException("Failed : HTTP error code : "
+						+ con.getResponseCode());
+	    }else {
+		
 		return "account";
-		}
+	    }
+	    }
 	}

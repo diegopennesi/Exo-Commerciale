@@ -11,13 +11,13 @@ public class ConnessioniEJB implements Iconnessioni
 	public EntityManager apriconnessione() {
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("jpaServer");
 		EntityManager entitymanager = emfactory.createEntityManager();
-		entitymanager.getTransaction().begin();
+		//entitymanager.getTransaction().begin();
 		return entitymanager;
 	}
 	@Override
 	public void chiudiconnessione(EntityManager entitymanager) {
-		entitymanager.getTransaction().commit();
-		entitymanager.clear();
+//		entitymanager.getTransaction().commit();
+//		entitymanager.clear();
 		entitymanager.close();
 	}
 }
