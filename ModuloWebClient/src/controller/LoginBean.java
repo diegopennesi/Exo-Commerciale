@@ -38,7 +38,6 @@ public class LoginBean implements Serializable{
 	    HttpURLConnection con = httprequest.HTTPSENDJSON(percorso, out,"POST");
 	    String result=httprequest.HTTPREADJSON(con);
 	    account=g.fromJson(result, Account.class);
-	    System.out.println(account.toString());
 		con.disconnect();
 		return "account";
 		}

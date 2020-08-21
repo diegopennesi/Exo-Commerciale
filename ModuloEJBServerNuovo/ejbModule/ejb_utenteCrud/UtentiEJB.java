@@ -3,6 +3,7 @@ package ejb_utenteCrud;
 import java.util.List;
 import javax.ejb.*;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
@@ -52,6 +53,14 @@ public class UtentiEJB implements Iutenti {
 	public Utente cercautenteperid(Utente ut) {
 		EntityManager entitymanager=x.apriconnessione();
 		Utente temp=entitymanager.find(Utente.class, ut.getId());
+		return temp;
+	}
+	@Override
+	public Utente cercautenteperid_account(int id_account) {
+		EntityManager entitymanager=x.apriconnessione();
+		Query query=entitymanager.createQuery("SELECT c FROM Utente c WHERE c.id_account LIKE :id_account", Utente.class).setParameter("id_account", id_account);//TODO
+		Utente temp=(Utente) query.getSingleResult();
+		System.out.println(temp);
 		return temp;
 	}
 	

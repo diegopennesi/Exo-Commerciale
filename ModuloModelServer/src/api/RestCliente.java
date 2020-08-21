@@ -76,7 +76,7 @@ public class RestCliente {
 		ut.inserisciutente(utente);
 		return Response.status(Response.Status.OK).build() ;
 	}
-	@GET
+	@POST
 	@Path("prendiutente/{id}")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -86,7 +86,16 @@ public class RestCliente {
 		temp=ut.cercautenteperid(temp);
 		return Response.status(200).entity(temp).build() ;
 	}
-	@GET
+	@POST
+	@Path("prendiutenteperid_account/{id}")	
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response cercautenteperid_account(@PathParam("id") int id) {
+		Utente temp = new Utente();
+		temp=ut.cercautenteperid_account(id);
+		return Response.status(200).entity(temp).build() ;
+	}
+	@POST
 	@Path("prendiaccount/{id}")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -95,6 +104,7 @@ public class RestCliente {
 		temp=ac.getAccountById(id);
 		return Response.status(200).entity(temp).build() ;
 	}
+	
 	@PATCH
 	@Path("modificaaccount")	
 	@Produces(MediaType.APPLICATION_JSON)

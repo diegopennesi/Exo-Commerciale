@@ -79,15 +79,13 @@ public class UtenteBean {
 		return "i have not idea"; //!!!!!!
 	}
 
-	public String onload(String username,String password) {
-		Account a=new Account();
-		a.setUsername(username);
-		a.setPassword(password);
+	public String onload(Account a) throws IOException {
+		this.ac=a;
 		Universal_HTTPREQUEST httprequest = new Universal_HTTPREQUEST();
-		String percorso= "http://localhost:8080/ModuloWebClientNuovo/rest/login/login";
+		String percorso= "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/prendiutente/"+ac.getId()+"";
 		Gson g = new Gson();
 		String out=g.toJson(a, Account.class);
-		
+		httprequest.HTTPSENDJSON(percorso, out, "POST");
 		return null;
 	}
       
