@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <title>Registrazione Amministratore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+<style>
+
+body,html{width:100%;height:100%;}
+
+#logo{width:100px;
+height:100px;
+border-radius:50%;
+background-image:url("https://thumbs.dreamstime.com/b/segno-rosso-di-admin-sull-illustrazione-di-vettore-del-computer-portatile-del-pc-88756468.jpg");
+background-position: center; /* Center the image */
+background-repeat: no-repeat; /* Do not repeat the image */
+background-size: cover; /* Resize the background image to cover the entire container */;
+}
+
+
+
+
+
+</style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+
+</h:head>
+<h:body id="body">
+
+
+
+
+<div id="logo"></div>
+
+
+<h:form>
+
+<h:panelGrid columns="1">
+
+<p:commandLink value="vai alla cronologia degli acquisti" />
+
+<p:commandLink value="vai alla login" />
+
+</h:panelGrid>
+
+<h:panelGrid columns="1">
+<h3 class="lead">Acquista alimenti</h3>
+
+<p:commandButton value="ordina"/>
+
+<p:outputLabel for="@next" value="Alimenti: " />
+        <p:selectOneMenu id="alimenti" value="scegli prodotto da acquistare" effect="fold" editable="true">
+            <f:selectItem itemLabel="Prodotti alimentari" itemValue="" />
+            <f:selectItems value="#"/>
+            
+        </p:selectOneMenu>
+        
+        
+        
+        <p:dataTable value="#">
+    <p:column headerText="Id">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="quantità">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="nome-prodotto">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="scadenza">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="descrizione">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="disponiblità">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="prezzo">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="Compra">
+        <p:commandButton value="acquista"/>
+    </p:column>
+    
+    <p:column headerText="Annulla">
+        <p:commandButton value="Rimuovi"/>
+    </p:column>
+</p:dataTable>
+
+</h:panelGrid>
+
+
+<h:panelGrid columns="1">
+<h3 class="lead">Acquista prodotti di elettronica</h3>
+
+<p:commandButton value="ordina"/>
+
+<p:outputLabel for="@next" value="Elettronica: " />
+        <p:selectOneMenu id="elettronica" value="scegli prodotto da acquistare" effect="fold" editable="true">
+            <f:selectItem itemLabel="Prodotti di elettronica" itemValue="" />
+            <f:selectItems value="#" />
+           
+        </p:selectOneMenu>
+        
+        
+        
+        <p:dataTable value="#">
+    <p:column headerText="Id">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="disponibilità">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="nome-prodotto">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="descrizione">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="quantità">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="prezzo">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="Compra">
+        <p:commandButton value="acquista"/>
+    </p:column>
+    
+    <p:column headerText="Annulla">
+        <p:commandButton value="Rimuovi"/>
+    </p:column>
+</p:dataTable>
+</h:panelGrid>
+
+
+<h:panelGrid columns="1">
+<h3 class="lead">Acquista prodotti di abbigliamento</h3>
+
+<p:commandButton value="ordina"/>
+
+<p:outputLabel for="@next" value="Abbigliamento: "/>
+        <p:selectOneMenu id="abbigliamento" value="scegli prodotto da acquistare" effect="fold" editable="true">
+            <f:selectItem itemLabel="Prodotti di abbigliamento" itemValue="" />
+            <f:selectItems value="#"/>
+            
+        </p:selectOneMenu>
+        
+        
+        
+        <p:dataTable value="#">
+    <p:column headerText="Id">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="nome-prodotto">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="taglia">
+        <h:outputText value="#" />
+    </p:column>
+ 
+    <p:column headerText="colore">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="descrizione">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="quantità">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="disponiblità">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="prezzo">
+        <h:outputText value="#" />
+    </p:column>
+    
+    <p:column headerText="Compra">
+        <p:commandButton value="acquista"/>
+    </p:column>
+    
+    <p:column headerText="Annulla">
+        <p:commandButton value="Rimuovi"/>
+    </p:column>
+</p:dataTable>
+        
+</h:panelGrid>       
+
+</h:form>
+
+
+
+
+
+
+
+</h:body>
+</html>

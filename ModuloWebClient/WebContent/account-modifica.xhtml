@@ -55,16 +55,19 @@
 <h:panelGrid column="1">
 
 <p:outputLabel value="username"/>
-<p:inputText/>
+<p:inputText value="#{utentebean.ac.username}"/>
 
 <p:outputLabel value="password"/>
-<p:password/>
+<p:password value="#{utentebean.ac.password}"/>
 
 <p:outputLabel value="email"/>
-<p:inputText/>
+<p:inputText value="#{utentebean.ut.indirizzo}"/>
 
-<p:outputLabel value="username"/>
-<p:inputText/>
+<p:outputLabel value="nome"/>
+<p:inputText value="#{utentebean.ut.nome}"/>
+
+<p:outputLabel value="cognome"/>
+<p:inputText value="#{utentebean.ut.cognome}"/>
 
 <p:commandButton style="margin-top:10px;" value="modifica"/>
 

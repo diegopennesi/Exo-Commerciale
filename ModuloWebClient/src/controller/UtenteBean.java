@@ -34,6 +34,14 @@ public class UtenteBean {
 	public void setUt(UtenteDTO ut) {
 		this.ut = ut;
 	}
+	public Account getAc() {
+		return ac;
+	}
+	
+	public void setAc(Account ac) {
+		this.ac = ac;
+	}
+	
 	public String registrazione(Account ac,UtenteDTO ut) throws IOException {
 		    String query_url = "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/InserisciAccount";
 		    Gson g = new Gson();
@@ -53,55 +61,24 @@ public class UtenteBean {
 		    conn.disconnect();
 		    return "login";
 	}
-				
-		
-	
-		
-	
-	
-	public String deleteUtente(Utente ut) {
-		
+	public String deleteUtente(Utente ut) {	
 		userCr.cancellautente(ut);
-		
 		return "cancella";//utente-modifica
-		
-		
-		
 	}
-	
 	public String modificaUt(Utente ut) {
-		
-		
 		userCr.modificautente(ut);
-		
-		return "login"; //login.xhtml
-		
+		return "login"; //login.xhtml	
 	}
-	
-	
 	public String findUtenteForName(Utente ut) {
-		
 		userCr.cercautenteperNome(ut);
-		
 		return "boooooh"; //non ne ho idea!
-		
 	}
 	
 	public String findUtenteForId(Utente ut) {
-		
 		userCr.cercautenteperid(ut);
-		
 		return "i have not idea"; //!!!!!!
 	}
 
-	public Account getAc() {
-		return ac;
-	}
-
-	public void setAc(Account ac) {
-		this.ac = ac;
-	}
-      
       
       
       

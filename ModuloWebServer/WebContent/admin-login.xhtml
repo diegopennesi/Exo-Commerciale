@@ -10,11 +10,11 @@
 <h:head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 
-  <title>Login</title>
+  <title>Admin-Login</title>
   
   <style>
   
-   #banner{background-image:url("https://adindex.ru/podcast/digital-boom/277781/img/getty.jpg");
+   #banner{background-image:url("https://assets.dice.com/techpro/companies/brandMax/Experis/banner.png");
    /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
@@ -26,10 +26,10 @@
   }
   
   
-  #logo{width:70px;
-  height:70px;
+  #logo{width:100px;
+  height:100px;
   border-radius:50%;
-  background-image:url("https://image.freepik.com/vettori-gratuito/logo-del-carrello-carino_23-2148453859.jpg");
+  background-image:url("https://thumbs.dreamstime.com/b/segno-rosso-di-admin-sull-illustrazione-di-vettore-del-computer-portatile-del-pc-88756468.jpg");
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
@@ -48,9 +48,13 @@
   }
   
   body,html{width:100%,height:100%;}
+  
+  
  
   
   </style>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
   
 </h:head>
 <h:body>
@@ -65,15 +69,18 @@
   
   <h:panelGrid columns="1" cellpadding="3">
   
+  <h3 class="lead">Account amministratore</h3>
+  
   <p:outputLabel value="username"/>
   <p:inputText action="#{loginbean.account.username}"/>
   <p:outputLabel value="password"/>
   <p:password action="#{loginbean.account.password}"/>
- 
+  <p:outputLabel value="email"/>
+  <p:inputText action="#"/>
   
-  <p:commandButton value="invia" action="#{loginbean.logIn()}"/> 
+  <p:commandButton value="invia" action="#{loginbean.logIn()}"/>
   
-  <p:commandLink value="registrati" action="registrazione.xhtml"/>
+  <p:commandLink value="registrati" action="#"/>
   
   </h:panelGrid>
   

@@ -6,13 +6,13 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-  <title>Registrazione Utente e Account</title>
+  <title>Registrazione Amministratore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 <style>
 #logo{width:100px;
 height:100px;
 border-radius:50%;
-background-image:url("https://image.freepik.com/vettori-gratuito/logo-del-carrello-carino_23-2148453859.jpg");
+background-image:url("https://thumbs.dreamstime.com/b/segno-rosso-di-admin-sull-illustrazione-di-vettore-del-computer-portatile-del-pc-88756468.jpg");
 background-position: center; /* Center the image */
 background-repeat: no-repeat; /* Do not repeat the image */
 background-size: cover; /* Resize the background image to cover the entire container */;
@@ -24,9 +24,11 @@ background-position: center; /* Center the image */
 background-repeat: no-repeat; /* Do not repeat the image */
 background-size: cover; /* Resize the background image to cover the entire container */}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"/>
+
 
 </style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 
 
 
@@ -38,7 +40,7 @@ background-size: cover; /* Resize the background image to cover the entire conta
 <div id="logo"></div>
 <div style="margin-left:40%;width:60%;height:50%;margin-top:2%">
 <h:form>
-<h3 class="dispaly-4">Registrazione Utente e Account</h3>
+<h3 class="lead mb-3">Registrazione Nuovo Amministratore</h3>
 <div>
 <span class="ui-float-label">
 <p:inputText style="border-color:orange;width:300px" id="nome" value="#{utentebean.ut.nome}"/>
@@ -62,14 +64,14 @@ background-size: cover; /* Resize the background image to cover the entire conta
 <br></br>
 <div>
 <span class="ui-float-label">
-<p:inputText style="border-color:orange;width:300px" id="username" value="#{utentebean.ac.username}"/>
+<p:inputText style="border-color:orange;width:300px" id="username" value="#{utentebean.ut.account}"/>
 <p:outputLabel for="@previous" value="username"/>
 </span>
 </div>
 <br></br>
 <div>
 <span class="ui-float-label">
-<p:password style="border-color:orange;width:300px" id="password" value="#{utentebean.ac.password}"/>
+<p:password style="border-color:orange;width:300px" id="password" value="#{utentebean.ut.password}"/>
 <p:outputLabel for="@previous" value="password"/>
 </span>
 </div>
@@ -80,17 +82,15 @@ background-size: cover; /* Resize the background image to cover the entire conta
 
 
 </div>
-<br></br>
 
 
 
-<div class="ui-darkness">
-<p:commandButton style="font-size:20px;margin-top:40px;background-color:purple;margin-left:15%" value="registra" action="#{utentebean.registrazione(utentebean.ac,utentebean.ut)}" />
 
-<p:commandLink value="login" action="login.xhtml"/>
-</div>
 
-<br/>
+<p:commandButton style="font-size:20px;margin-top:5px;margin-left:10%" value="registra" action="#{utentebean.inserimentoUtente}" />
+
+
+
 
 
 

@@ -59,7 +59,8 @@
 
 <div class="container">
 
-<h3 class="display-4">Benvenuto nel tuo Account</h3>
+<h3 class="display-4">Benvenuto nel tuo Account</h3> #{loginbean.account.username}
+
 </div> 
 <h:form>
 
@@ -73,7 +74,8 @@
                 Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
                 but given to ruthless violence whenever anything stands against the good of the family." />
                 
-                <p:commandLink value="Modifica le tue credenziali" action="#"/>
+                <p:commandLink value="Modifica le tue credenziali" action="account-modifica.xhtml"/>
+                
         </h:panelGrid>
 </p:fieldset>
 
