@@ -1,9 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -20,28 +22,40 @@ import utility.Universal_HTTPREQUEST;
 @SuppressWarnings("deprecation")
 @ManagedBean(name="utentebean",eager=true)
 @SessionScoped
-public class UtenteBean {
-    private UtenteDTO ut = new UtenteDTO();
+@Stateless
+public class UtenteBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2861043598871376189L;
+	@EJB
+	private IAccountCrud accCr;
+	@EJB
+	private Iutenti userCr;
+	
+    private UtenteDTO utdto = new UtenteDTO();
+    private Utente ut= new Utente();
     private Account ac = new Account();
-    @EJB
-    private IAccountCrud accCr;
-    @EJB
-    private Iutenti userCr;
 
-	public UtenteDTO getUt() {
+
+	public UtenteDTO getUtdto() {
+		return utdto;
+	}
+	public void setUtdto(UtenteDTO utdto) {
+		this.utdto = utdto;
+	}
+	public Utente getUt() {
 		return ut;
 	}
-	public void setUt(UtenteDTO ut) {
+	public void setUt(Utente ut) {
 		this.ut = ut;
 	}
 	public Account getAc() {
 		return ac;
 	}
-	
 	public void setAc(Account ac) {
 		this.ac = ac;
 	}
-	
 	public String registrazione(Account ac,UtenteDTO ut) throws IOException {
 		    String query_url = "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/InserisciAccount";
 		    Gson g = new Gson();
@@ -79,14 +93,15 @@ public class UtenteBean {
 		return "i have not idea"; //!!!!!!
 	}
 
-	public String onload(Account a) throws IOException {
+	public void onload(Account a) throws IOException {
 		this.ac=a;
 		Universal_HTTPREQUEST httprequest = new Universal_HTTPREQUEST();
-		String percorso= "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/prendiutente/"+ac.getId()+"";
+		String percorso= "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/prendiutenteperid_account/"+ac.getId()+"";
 		Gson g = new Gson();
 		String out=g.toJson(a, Account.class);
-		httprequest.HTTPSENDJSON(percorso, out, "POST");
-		return null;
+		HttpURLConnection con=httprequest.HTTPSENDJSON(percorso, out, "POST");
+		String response=httprequest.HTTPREADJSON(con);
+		this.ut=g.fromJson(response, Utente.class);
 	}
       
       

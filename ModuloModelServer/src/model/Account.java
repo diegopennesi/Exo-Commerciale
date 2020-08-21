@@ -37,6 +37,7 @@ public class Account implements Serializable {
 	@JsonbTransient
 	@OneToOne(mappedBy="account")
 	private Utente utente;
+	@JsonbTransient
 	@OneToMany(mappedBy="account")
 	private List<Fattura> listaFattura =new ArrayList<Fattura>();
     //////////////////////

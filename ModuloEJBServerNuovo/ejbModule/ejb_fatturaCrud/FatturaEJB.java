@@ -73,12 +73,7 @@ public class FatturaEJB implements Ifattura {
 		x.chiudiconnessione(entitymanager);
 		return lista;
 	}
-//	@Override
-//	public void inseriscifatturareparti(Fattura fa, Reparti rp) {
-//		EntityManager entitymanager=x.apriconnessione();
-//		 fa.getListaReparti().add(rp);
-//		
-//	}
+
 	@Override
 	public List<Fattura> scaricatuttefatture() {
 		EntityManager entitymanager=x.apriconnessione();

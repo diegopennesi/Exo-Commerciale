@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class Fattura implements Serializable {
 	private String descrizione;
 	@Column(name="quantita")
 	private int quantita;
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn(name="id_account")
 	private Account account;
@@ -37,6 +40,7 @@ public class Fattura implements Serializable {
 	private double prezzo;
 	@Column(name="iva")
 	private int iva;
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn(name="Id_reparto")
 	private Reparti reparti;

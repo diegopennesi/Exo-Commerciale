@@ -91,9 +91,13 @@ public class RestCliente {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response cercautenteperid_account(@PathParam("id") int id) {
-		Utente temp = new Utente();
-		temp=ut.cercautenteperid_account(id);
-		return Response.status(200).entity(temp).build() ;
+		List<Utente> utlist=ut.getlistautenti();
+		for (Utente o:utlist) {
+			if(o.getAccount().getId()==id) {
+			return Response.status(200).entity(o).build();
+			}
+		}
+		return Response.status(Response.Status.EXPECTATION_FAILED).entity("errore, profilo non trovato! Contattare Amministratore").build();
 	}
 	@POST
 	@Path("prendiaccount/{id}")	

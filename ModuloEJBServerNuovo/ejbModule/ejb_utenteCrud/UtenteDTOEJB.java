@@ -29,7 +29,6 @@ public class UtenteDTOEJB implements IutenteDTO {
 		ut.setCognome(utenteDTO.getCognome());
 		ut.setIndirizzo(utenteDTO.getIndirizzo());
 		ut.setAccount(x.getAccountById(utenteDTO.getId_account()));
-		
 		return ut;
 	}
 	

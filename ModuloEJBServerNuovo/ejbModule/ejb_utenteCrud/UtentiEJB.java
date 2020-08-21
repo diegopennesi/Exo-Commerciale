@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
+import model.Fattura;
 import model.Utente;
 
 @Stateless
@@ -56,13 +57,14 @@ public class UtentiEJB implements Iutenti {
 		return temp;
 	}
 	@Override
-	public Utente cercautenteperid_account(int id_account) {
+	public List<Utente> getlistautenti() {
 		EntityManager entitymanager=x.apriconnessione();
-		Query query=entitymanager.createQuery("SELECT c FROM Utente c WHERE c.id_account LIKE :id_account", Utente.class).setParameter("id_account", id_account);//TODO
-		Utente temp=(Utente) query.getSingleResult();
-		System.out.println(temp);
-		return temp;
+		TypedQuery<Utente> query=entitymanager.createQuery("SELECT p FROM Utente p",Utente.class);
+		List<Utente> lista = query.getResultList();
+		System.out.println(lista);
+		return lista;
 	}
+
 	
 	
 	

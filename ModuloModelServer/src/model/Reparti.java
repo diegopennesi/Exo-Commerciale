@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,12 +27,16 @@ public class Reparti implements Serializable {
 	private int id;
 	@Column (name="reparto")
 	private String reparto;
+	@JsonbTransient
 	@OneToMany (mappedBy="reparti")
 	private List<Alimentari> alimentari= new ArrayList<Alimentari>();
+	@JsonbTransient
 	@OneToMany (mappedBy="reparti")
 	private List<Elettronica> elettronica= new ArrayList<Elettronica>();
+	@JsonbTransient
 	@OneToMany (mappedBy="reparti")
 	private List<Abbigliamento> abbigliamento= new ArrayList<Abbigliamento>();
+	@JsonbTransient
 	@OneToMany (mappedBy="reparti")
 	private List<Fattura> fatture= new ArrayList<Fattura>();
 	/////////////////////////////////////////////////////////////////////////
