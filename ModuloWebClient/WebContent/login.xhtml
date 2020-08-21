@@ -66,9 +66,9 @@
   <h:panelGrid columns="1" cellpadding="3">
   
   <p:outputLabel value="username"/>
-  <p:inputText action="#{loginbean.account.username}"/>
+  <p:inputText value="#{loginbean.account.username}"/>
   <p:outputLabel value="password"/>
-  <p:password action="#{loginbean.account.password}"/>
+  <p:password value="#{loginbean.account.password}"/>
  
   
   <p:commandButton value="invia" action="#{loginbean.logIn()}"/> 

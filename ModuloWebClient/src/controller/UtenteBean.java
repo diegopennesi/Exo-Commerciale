@@ -47,7 +47,7 @@ public class UtenteBean {
 		    Gson g = new Gson();
 		    String out=g.toJson(ac, Account.class); 
 		    Universal_HTTPREQUEST httprequest = new Universal_HTTPREQUEST();
-		    HttpURLConnection conn = httprequest.HTTPSENDJSON(query_url, out);
+		    HttpURLConnection conn = httprequest.HTTPSENDJSON(query_url, out,"PUT");
 		    // leggiamo risposta di Account (serve sempre a qualcosa!)
 		    String result=httprequest.HTTPREADJSON(conn);
 		    Account acRisp=g.fromJson(result, Account.class);
@@ -55,7 +55,7 @@ public class UtenteBean {
 			String query_url_utente = "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/InserisciUtente";
 			ut.setId_account(acRisp.getId());
 			String out_utenteDTO=g.toJson(ut, UtenteDTO.class); 
-			conn = httprequest.HTTPSENDJSON(query_url_utente, out_utenteDTO);			    
+			conn = httprequest.HTTPSENDJSON(query_url_utente, out_utenteDTO,"PUT");			    
 			result=httprequest.HTTPREADJSON(conn);			   
 			Utente utRisp=g.fromJson(result, Utente.class);			  
 		    conn.disconnect();
@@ -79,10 +79,23 @@ public class UtenteBean {
 		return "i have not idea"; //!!!!!!
 	}
 
+	public String onload(String username,String password) {
+		Account a=new Account();
+		a.setUsername(username);
+		a.setPassword(password);
+		Universal_HTTPREQUEST httprequest = new Universal_HTTPREQUEST();
+		String percorso= "http://localhost:8080/ModuloWebClientNuovo/rest/login/login";
+		Gson g = new Gson();
+		String out=g.toJson(a, Account.class);
+		
+		return null;
+	}
       
       
       
-	
+	public UtenteBean() {
+		
+	}
 	  
 
 }

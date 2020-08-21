@@ -14,14 +14,14 @@
 		
 		
 		
-		public HttpURLConnection HTTPSENDJSON(String urlAPI,String out) throws IOException {
+		public HttpURLConnection HTTPSENDJSON(String urlAPI,String out,String requestmethod) throws IOException {
 			URL url = new URL(urlAPI);
 		    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		    conn.setConnectTimeout(5000);
 		    conn.setRequestProperty("Content-Type", "application/json");
 		    conn.setDoOutput(true);
 		    conn.setDoInput(true);
-		    conn.setRequestMethod("PUT");
+		    conn.setRequestMethod(requestmethod);
 		    OutputStream os = conn.getOutputStream();
 		    os.write(out.getBytes("UTF-8"));
 		    os.close();

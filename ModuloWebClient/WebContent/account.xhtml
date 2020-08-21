@@ -56,10 +56,15 @@
   
 </h:head>
 <h:body>
+<f:metadata>
+    <f:viewParam name="a" value="#{loginbean.account.username}" />
+  <!--   <f:event type="preRenderView" listener="#{UtenteBean.onload(loginbean.account.username,loginbean.account.password)}" />-->
+</f:metadata>
+
 
 <div class="container">
 
-<h3 class="display-4">Benvenuto nel tuo Account</h3> #{loginbean.account.username}
+<h3 class="display-4">Benvenuto nel tuo Account #{loginbean.account.username}</h3> 
 
 </div> 
 <h:form>

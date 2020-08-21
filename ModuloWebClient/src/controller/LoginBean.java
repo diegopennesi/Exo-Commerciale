@@ -31,16 +31,15 @@ public class LoginBean implements Serializable{
 	public String logIn() throws IOException {
 		
 		Universal_HTTPREQUEST httprequest = new Universal_HTTPREQUEST();
-		if (account!= null) {
-		String percorso= "http://localhost:8080/ModuloWebClientNuovo/rest/login/login";
+
+		String percorso= "http://localhost:8080/ModuloWebClientNuovo/rest/login/log-in";
 		Gson g = new Gson();
-		String out=g.toJson(account, Account.class);
-	    HttpURLConnection con = httprequest.HTTPSENDJSON(percorso, out);
+		String out=g.toJson(account, Account.class);		
+	    HttpURLConnection con = httprequest.HTTPSENDJSON(percorso, out,"POST");
+	    String result=httprequest.HTTPREADJSON(con);
+	    account=g.fromJson(result, Account.class);
+	    System.out.println(account.toString());
 		con.disconnect();
 		return "account";
-		}else {
-			return "error";
 		}
-			
 	}
-}
