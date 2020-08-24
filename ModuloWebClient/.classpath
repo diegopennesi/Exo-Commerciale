@@ -24,8 +24,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Exolab/Downloads/commons-io-2.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Exolab/eclipse-workspace/Exo-Commerciale/ModuloWebClient/WebContent/WEB-INF/lib/gson-2.8.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Exolab/Downloads/primefaces-8.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAR/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="D:/JAR/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="D:/JAR/primefaces-8.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

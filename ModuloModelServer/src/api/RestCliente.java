@@ -86,18 +86,19 @@ public class RestCliente {
 		temp=ut.cercautenteperid(temp);
 		return Response.status(200).entity(temp).build() ;
 	}
-	@POST
+	@PUT
 	@Path("prendiutenteperid_account/{id}")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response cercautenteperid_account(@PathParam("id") int id) {
 		List<Utente> utlist=ut.getlistautenti();
 		for (Utente o:utlist) {
-			if(o.getAccount().getId()==id) {
-			return Response.status(200).entity(o).build();
+			if(o.getAccount().getId() == id) {
+			UtenteDTO temp=Idto.UtenteToDTO(o);
+			return Response.status(200).entity(temp).build();
 			}
 		}
-		return Response.status(Response.Status.EXPECTATION_FAILED).entity("errore, profilo non trovato! Contattare Amministratore").build();
+		return Response.status(Response.Status.BAD_GATEWAY).entity("errore, profilo non trovato! Contattare Amministratore").build();
 	}
 	@POST
 	@Path("prendiaccount/{id}")	
@@ -109,7 +110,7 @@ public class RestCliente {
 		return Response.status(200).entity(temp).build() ;
 	}
 	
-	@PATCH
+	@PUT
 	@Path("modificaaccount")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -117,7 +118,7 @@ public class RestCliente {
 		ac.updateAccount(a);
 		return Response.status(200).entity(a).build() ;
 	}
-	@PATCH
+	@PUT
 	@Path("modificautente")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

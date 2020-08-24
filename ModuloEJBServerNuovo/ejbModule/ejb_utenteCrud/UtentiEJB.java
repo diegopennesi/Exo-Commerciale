@@ -61,7 +61,6 @@ public class UtentiEJB implements Iutenti {
 		EntityManager entitymanager=x.apriconnessione();
 		TypedQuery<Utente> query=entitymanager.createQuery("SELECT p FROM Utente p",Utente.class);
 		List<Utente> lista = query.getResultList();
-		System.out.println(lista);
 		return lista;
 	}
 
