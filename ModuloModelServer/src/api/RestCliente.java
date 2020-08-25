@@ -119,7 +119,7 @@ public class RestCliente {
 		ac.updateAccount(a);
 		return Response.status(200).entity(a).build() ;
 	}
-	@POST
+	@PUT
 	@Path("modifica/utente")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

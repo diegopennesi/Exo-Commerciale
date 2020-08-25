@@ -36,10 +36,11 @@ public class UtentiEJB implements Iutenti {
 	@Override
 	public void modificautente(Utente ut) {
 		EntityManager entitymanager=x.apriconnessione();
-		Utente temp=entitymanager.find(Utente.class, ut.getId());
-		temp.setNome(ut.getNome());
-		temp.setCognome(ut.getCognome());
-		temp.setIndirizzo(ut.getIndirizzo());
+//		Utente temp=entitymanager.find(Utente.class, ut.getId());
+//		temp.setNome(ut.getNome());
+//		temp.setCognome(ut.getCognome());
+//		temp.setIndirizzo(ut.getIndirizzo());
+		entitymanager.merge(ut);
 		x.chiudiconnessione(entitymanager);
 	}
 	@Override
