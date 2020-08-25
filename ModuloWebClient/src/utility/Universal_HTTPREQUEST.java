@@ -19,11 +19,14 @@
 		    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		    conn.setConnectTimeout(5000);
 		    conn.setRequestProperty("Content-Type", "application/json");
+		    conn.setRequestProperty("Accept", "application/json");
+		    conn.setRequestMethod(requestmethod);
 		    conn.setDoOutput(true);
 		    conn.setDoInput(true);
-		    conn.setRequestMethod(requestmethod);
 		    OutputStream os = conn.getOutputStream();
-		    os.write(out.getBytes("UTF-8"));
+		    System.out.println(out);
+		    os.write(out.getBytes());
+		    os.flush();
 		    os.close();
 		    return conn;
 		}

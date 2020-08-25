@@ -69,10 +69,10 @@ public class UtenteBean implements Serializable {
 			String query_url_utente = "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/InserisciUtente";
 			ut.setId_account(acRisp.getId());
 			String out_utenteDTO=g.toJson(ut, UtenteDTO.class); 
-			conn = httprequest.HTTPSENDJSON(query_url_utente, out_utenteDTO,"PUT");			    
-			result=httprequest.HTTPREADJSON(conn);			   
-			Utente utRisp=g.fromJson(result, Utente.class);			  
-		    conn.disconnect();
+			HttpURLConnection conn2 = httprequest.HTTPSENDJSON(query_url_utente, out_utenteDTO,"PUT");			    
+			result=httprequest.HTTPREADJSON(conn2);			   
+			Utente utRisp=g.fromJson(result, Utente.class);		 //??	  
+		    conn2.disconnect();
 		    return "login";
 	}
 	public String deleteUtente(Utente ut) {	
@@ -81,21 +81,22 @@ public class UtenteBean implements Serializable {
 	}
 	public String modifica() throws IOException {
 		Universal_HTTPREQUEST httprequest = new Universal_HTTPREQUEST();
-		String url= "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/modificaaccount";
+		String url= "http://localhost:8080/ModuloWebClientNuovo/rest/clientela/modifica/account/"+ac.getId()+"";
 		Gson g = new Gson();
 		String out=g.toJson(ac, Account.class);
-		HttpURLConnection conn = httprequest.HTTPSENDJSON(url, out,"PUT");
+		HttpURLConnection conn=httprequest.HTTPSENDJSON(url, out,"PUT");
+	//	String result = httprequest.HTTPREADJSON(conn);		
 		conn.disconnect();
-		String url2="http://localhost:8080/ModuloWebClientNuovo/rest/clientela/modificautente";
-		UtenteDTO dto= new UtenteDTO();//magari usiamo udtDTO del bean!?
-		dto.setId(ut.getId());
-		dto.setNome(ut.getNome());
-		dto.setCognome(ut.getCognome());
-		dto.setIndirizzo(ut.getIndirizzo());
-		dto.setId_account(ac.getId());
-		String out2=g.toJson(dto, UtenteDTO.class);
-		HttpURLConnection conn2 = httprequest.HTTPSENDJSON(url2, out2,"PUT");
-		conn2.disconnect();
+									String url2="http://localhost:8080/ModuloWebClientNuovo/rest/clientela/modificautente";
+									UtenteDTO dto= new UtenteDTO();//magari usiamo udtDTO del bean!?
+									dto.setId(ut.getId());
+									dto.setNome(ut.getNome());
+									dto.setCognome(ut.getCognome());
+									dto.setIndirizzo(ut.getIndirizzo());
+									dto.setId_account(ac.getId());
+									String out2=g.toJson(dto, UtenteDTO.class);
+									HttpURLConnection conn2 = httprequest.HTTPSENDJSON(url2, out2,"POST");
+									conn2.disconnect();
 		return "login"; //login.xhtml	
 	}
 	public String findUtenteForName(Utente ut) {

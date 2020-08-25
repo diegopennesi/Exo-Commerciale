@@ -111,15 +111,16 @@ public class RestCliente {
 	}
 	
 	@PUT
-	@Path("modificaaccount")	
+	@Path("modifica/account/{id}")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response modificaaccount(Account a) {
+	public Response modificaaccount(@PathParam("id") int id,Account a) {
+		System.out.println("sono nel metodo di @POST"+ a.toString());
 		ac.updateAccount(a);
 		return Response.status(200).entity(a).build() ;
 	}
-	@PUT
-	@Path("modificautente")	
+	@POST
+	@Path("modifica/utente")	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response modificaaccount(UtenteDTO utenteDTO) {

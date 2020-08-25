@@ -29,9 +29,7 @@ public class LoginBean implements Serializable{
 	}
 	
 	public String logIn() throws IOException {
-		
 		Universal_HTTPREQUEST httprequest = new Universal_HTTPREQUEST();
-
 		String percorso= "http://localhost:8080/ModuloWebClientNuovo/rest/login/log-in";
 		Gson g = new Gson();
 		String out=g.toJson(account, Account.class);		

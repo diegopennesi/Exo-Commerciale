@@ -3,7 +3,7 @@ package ejb_utenteCrud;
 import java.util.List;
 import javax.ejb.*;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+
 import javax.persistence.TypedQuery;
 
 import ejb_connessioni.Iconnessioni;
